@@ -8,8 +8,9 @@ public interface IUserService {
 	 * 注册
 	 * 
 	 * @param user
+	 * @throws Exception 
 	 */
-	void register(User user);
+	void register(User user) throws Exception;
 	
 	/**
 	 * 登录操作
