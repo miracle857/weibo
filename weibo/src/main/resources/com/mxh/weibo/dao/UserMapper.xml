@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mxh.weibo.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.mxh.weibo.common.model.User">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="user_UUID" jdbcType="INTEGER" property="uuid" />
+    <result column="user_USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="user_NICKNAME" jdbcType="VARCHAR" property="nickname" />
+    <result column="user_PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="user_COMMENT" jdbcType="VARCHAR" property="comment" />
+    <result column="user_STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="user_EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="user_DELETED" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    user.UUID as user_UUID, user.USERNAME as user_USERNAME, user.NICKNAME as user_NICKNAME, 
+    user.PASSWORD as user_PASSWORD, user.COMMENT as user_COMMENT, user.STATUS as user_STATUS, 
+    user.EMAIL as user_EMAIL, user.DELETED as user_DELETED
+  </sql>
+  <select id="selectByExample" parameterType="com.mxh.weibo.common.model.UserExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from weibo_user user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from weibo_user user
+    where user.UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_user
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mxh.weibo.common.model.UserExample">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_user user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mxh.weibo.common.model.User">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_user (UUID, USERNAME, NICKNAME, 
+      PASSWORD, COMMENT, STATUS, 
+      EMAIL, DELETED)
+    values (#{uuid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.User">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="nickname != null">
+        NICKNAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="comment != null">
+        COMMENT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mxh.weibo.common.model.UserExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from weibo_user user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_user user
+    <set>
+      <if test="record.uuid != null">
+        user.UUID = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        user.USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        user.NICKNAME = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        user.PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null">
+        user.COMMENT = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        user.STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        user.EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        user.DELETED = #{record.deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_user user
+    set user.UUID = #{record.uuid,jdbcType=INTEGER},
+      user.USERNAME = #{record.username,jdbcType=VARCHAR},
+      user.NICKNAME = #{record.nickname,jdbcType=VARCHAR},
+      user.PASSWORD = #{record.password,jdbcType=VARCHAR},
+      user.COMMENT = #{record.comment,jdbcType=VARCHAR},
+      user.STATUS = #{record.status,jdbcType=VARCHAR},
+      user.EMAIL = #{record.email,jdbcType=VARCHAR},
+      user.DELETED = #{record.deleted,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mxh.weibo.common.model.User">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_user
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        COMMENT = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mxh.weibo.common.model.User">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_user
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      COMMENT = #{comment,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=TINYINT}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByEmailOrUsername" resultType="BaseResultMap">
+  	select 
+  	  <include refid="Base_Column_List" />
+  	from weibo_user user
+  	where user.`deleted` = 0
+  	<if test="username != null">
+  		AND user.`USERNAME` = #{username,jdbcType=VARCHAR}
+  	</if>
+  	<if test="email != null">
+  		AND user.EMAIL = #{email,jdbcType=VARCHAR}
+  	</if>
+  </select>
+</mapper>
