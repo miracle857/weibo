@@ -7,6 +7,7 @@ import com.mxh.weibo.common.DC;
 import com.mxh.weibo.common.email.Mail;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.util.MD5;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.sevice.IUserService;
 
@@ -16,10 +17,13 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	public UserMapper userMapper;
 	
-	public void register(User user) {
+	public void register(User user) throws Exception {
+		
+		chickUserNameExist(user.getUsername());
 		
 		user.setDeleted((byte)0);
 		user.setStatus(DC.STATUS_NORMAL);
+		user.setPassword(MD5.getMD5(user.getPassword()));
 		userMapper.insertSelective(user);
 	}
 
@@ -32,6 +36,8 @@ public class UserServiceImpl implements IUserService {
 		User selectByEmailOrUsername = userMapper.selectByEmailOrUsername(user.getEmail(), user.getUsername());
 		if(selectByEmailOrUsername != null){
 			Mail.send(user.getEmail(), user.getUsername());
+		}else{
+			throw new WeiboException("账号或邮箱错误");
 		}
 		
 	}
