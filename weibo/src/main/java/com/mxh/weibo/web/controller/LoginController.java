@@ -11,6 +11,6 @@ public class LoginController {
 
 	@RequestMapping
 	public String register(User user,Model model){
-		return "";
+		return "1";
 	}
 }
