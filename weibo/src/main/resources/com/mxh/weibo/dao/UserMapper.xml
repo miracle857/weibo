@@ -318,7 +318,7 @@
     where UUID = #{uuid,jdbcType=INTEGER}
   </update>
   
-  <select id="selectByEmailOrUsername" resultType="BaseResultMap">
+  <select id="selectByEmailOrUsername" resultMap="BaseResultMap">
   	select 
   	  <include refid="Base_Column_List" />
   	from weibo_user user
@@ -330,4 +330,14 @@
   		AND user.EMAIL = #{email,jdbcType=VARCHAR}
   	</if>
   </select>
+  
+  <update id="updateByUserName" parameterType="com.mxh.weibo.common.model.User">
+  	update weibo_user
+    set NICKNAME = #{nickname,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      COMMENT = #{comment,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+    where USERNAME = #{username,jdbcType=INTEGER}
+  </update>
 </mapper>

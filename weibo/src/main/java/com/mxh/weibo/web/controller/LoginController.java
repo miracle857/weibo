@@ -9,8 +9,8 @@ import com.mxh.weibo.common.model.User;
 @Controller
 public class LoginController {
 
-	@RequestMapping
+	@RequestMapping("login")
 	public String register(User user,Model model){
-		return "1";
+		return "login";
 	}
 }

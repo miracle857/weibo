@@ -8,27 +8,27 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<import resource="spring-mvc.xml" />
-	<import resource="spring-shiro.xml" />
-	<import resource="redis-context.xml" />
+	<!-- <import resource="spring-shiro.xml" /> -->
+	<!-- <import resource="redis-context.xml" /> -->
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.mxh" />
 
 	<!-- 第一步：配置数据源 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:config.properties" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName">
-			<value>${driver}</value>
+			<value>${db.driver}</value>
 		</property>
 		<property name="url">
-			<value>${url}</value>
+			<value>${db.url}</value>
 		</property>
 		<property name="username">
-			<value>${user}</value>
+			<value>${db.user}</value>
 		</property>
 		<property name="password">
-			<value>${password}</value>
+			<value>${db.password}</value>
 		</property>
 		<!-- 最大连接数 -->
 		<property name="maxActive">
@@ -47,14 +47,14 @@
 
 	<!-- 第二步：创建sqlSessionFactory。生产sqlSession -->
 	<bean id="sqlSessionFactory" class=" org.mybatis.spring.SqlSessionFactoryBean ">
-		<property name="mapperLocations" value="classpath:com/tdh/crs/mapper/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/mxh/weibo/dao/*.xml"></property>
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
 	<!-- 配置mybatis接口代理开发 * 接口类名和映射文件必须同名 * 接口类和映射文件必须在同一个目录 下 * 映射文件namespace名字必须是接口的全类路径名 
 		* 接口的方法名必须和映射Statement的ｉｄ一致 -->
 	<bean class=" org.mybatis.spring.mapper.MapperScannerConfigurer ">
-		<property name="basePackage" value="com.tdh.crs.dao"></property>
+		<property name="basePackage" value="com.mxh.weibo.dao"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
@@ -80,7 +80,7 @@
 	<!-- 配置拦截service -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* com.tdh.crs.facade
+			pointcut="execution(* com.mxh.weibo.service
 .*.*(..))" />
 
 	</aop:config>

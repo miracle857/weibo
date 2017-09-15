@@ -16,12 +16,12 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	public UserMapper userMapper;
-	
+
 	public void register(User user) throws Exception {
-		
+
 		chickUserNameExist(user.getUsername());
-		
-		user.setDeleted((byte)0);
+
+		user.setDeleted((byte) 0);
 		user.setStatus(DC.STATUS_NORMAL);
 		user.setPassword(MD5.getMD5(user.getPassword()));
 		userMapper.insertSelective(user);
@@ -29,23 +29,30 @@ public class UserServiceImpl implements IUserService {
 
 	public void login(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void findPassword(User user) throws Exception {
 		User selectByEmailOrUsername = userMapper.selectByEmailOrUsername(user.getEmail(), user.getUsername());
-		if(selectByEmailOrUsername != null){
-			Mail.send(user.getEmail(), user.getUsername());
-		}else{
+		if (selectByEmailOrUsername != null) {
+			String pwd = Mail.send(user.getEmail(), user.getUsername());
+			user.setPassword(MD5.getMD5(pwd));
+			userMapper.updateByUserName(user);
+		} else {
 			throw new WeiboException("账号或邮箱错误");
 		}
-		
+
 	}
-	
-	public void chickUserNameExist(String username) throws WeiboException{
+
+	public void chickUserNameExist(String username) throws WeiboException {
 		User user = userMapper.selectByEmailOrUsername(null, username);
-		if(user == null){
+		if (user == null) {
 			throw new WeiboException("用户名存在");
 		}
+	}
+
+	public void chickEmailExist(String email) throws WeiboException {
+		// TODO Auto-generated method stub
+		
 	}
 }

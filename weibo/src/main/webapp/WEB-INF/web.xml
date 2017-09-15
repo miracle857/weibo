@@ -5,6 +5,18 @@
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
   
+  
+  <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:/spring/spring.xml
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
   <!-- 编码过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>

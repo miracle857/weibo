@@ -53,15 +53,18 @@ public class Mail {
 	 * 
 	 * @param email-收件人
 	 * @throws Exception
+	 * @return new password
 	 */
-	public static void send(String email, String username) throws Exception {
+	public static String send(String email, String username) throws Exception {
 
+		String pwd = getRandomString(6);
+		
 		// 2. 根据配置创建会话对象, 用于和邮件服务器交互
 		Session session = Session.getDefaultInstance(props);
 		session.setDebug(true); // 设置为debug模式, 可以查看详细的发送 log
 
 		// 3. 创建一封邮件
-		MimeMessage message = createMimeMessage(session, myEmailAccount, email, username);
+		MimeMessage message = createMimeMessage(session, myEmailAccount, email, username,pwd);
 
 		// 4. 根据 Session 获取邮件传输对象
 		Transport transport = session.getTransport();
@@ -88,6 +91,8 @@ public class Mail {
 
 		// 7. 关闭连接
 		transport.close();
+		
+		return pwd;
 	}
 
 	/**
@@ -102,7 +107,7 @@ public class Mail {
 	 * @return
 	 * @throws Exception
 	 */
-	public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, String username)
+	public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, String username,String pwd)
 			throws Exception {
 		// 1. 创建一封邮件
 		MimeMessage message = new MimeMessage(session);
@@ -117,7 +122,7 @@ public class Mail {
 		message.setSubject(subject, "UTF-8");
 
 		// 5. Content: 邮件正文（可以使用html标签）（内容有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改发送内容）
-		message.setContent(getContent(username), "text/html;charset=UTF-8");
+		message.setContent(getContent(username,pwd), "text/html;charset=UTF-8");
 
 		// 6. 设置发件时间
 		message.setSentDate(new Date());
@@ -128,8 +133,8 @@ public class Mail {
 		return message;
 	}
 
-	private static String getContent(String username) {
-		return "尊敬的：" + username + " 你好,您的新密码为：" + getRandomString(6) + "。" + "\r\n请及时修改密码。";
+	private static String getContent(String username,String pwd) {
+		return "尊敬的：" + username + " 你好,您的新密码为：" + pwd + "。" + "\r\n请及时修改密码。";
 	}
 
 	private static String string = "abcdefghijklmnopqrstuvwxyz123456789QAZWSXEDCRFVTGBYHNUJMIKLOP";

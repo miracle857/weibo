@@ -1,10 +1,332 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <!--  fontawesome -->
+    <link href="${ctx}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
+
+	<!-- jquery -->
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<title>weibo</title>
 </head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.nav{
+	    position:fixed; /* 绝对定位，fixed是相对于浏览器窗口定位。 */
+	    top:0; /* 距离窗口顶部距离 */
+	    left:0; /* 距离窗口左边的距离 */
+	    width:100%; /* 宽度设置为100% */
+	    height:40px; /* 高度 */
+	    z-index:99; /* 层叠顺序，数值越大就越高。页面滚动的时候就不会被其他内容所遮挡。 */
+		border: 1px solid #ccc;
+		background-color: white;
+	}
+	.nav-container{
+		margin: 0 auto;
+		width: 60%;    /*  这里有问题，需要 @media*/
+		height: 40px;
+	}
+	.nav-container div{
+		float: left;
+	}
+	.nav-search{
+		height: 30px;
+		width: 200px;
+		border: 1px solid #ccc;
+		margin-top: 5px;
+		margin-left: 10%;
+	}
+	.nav-option{
+		margin-left: 10%;
+	}
+	.nav-option ul li{
+		list-style: none;
+		float: left;
+		margin-top: 10px;
+		margin-left: 20px;
+		cursor:pointer;
+	}
+	.body{
+		background-image: url(1img/background.png);
+		
+	}
+	@media screen and (max-width: 1500px){
+		.nav-container{
+			margin: 0 auto;
+			width: 1000px;    
+			height: 40px;
+		}
+
+	}
+	a{
+		text-decoration: none !important;
+	}
+
+	.side-nav{
+		position:relative;  /* 绝对定位，fixed是相对于浏览器窗口定位。 */
+	    top:40px;  /* 距离窗口顶部距离 */
+	    left:18%; /* 距离窗口左边的距离 */
+	    width:150px; /* 宽度设置为100% */
+	    height:485px; /* 高度 */
+		opacity:1;
+    float: left;
+		background-color: rgba(70,149,194,0.3);
+	}
+	.side-a{
+		color: white;
+		margin-left: 10px;
+		font-weight: bold;
+	}
+	.side-b{
+		color: white;
+		margin-left: 10px;
+	}
+    .mid-body{
+        position: relative;
+        left: 19%;
+        top: 40px;
+        float: left;
+        width: 600px;
+        height: 1000px;
+    }
+    .reply{
+        height: 165px;
+        border: 1px solid #ccc;
+    }
+    .btn-reply{
+        float: right;
+        top: -10px;
+        left: -10px;
+        position: relative;
+        background-color: #FFC09F;
+        border-radius: 5px;
+        height: 25px;
+        width: 60px;
+        color: white;
+        border: none;
+    }
+    .weibo-body{
+        border: 1px solid #ccc;  /* shanchu */
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    ._username{
+        
+    }
+    li{
+        float: left;
+        list-style: none;
+    }
+   .menu ul li{
+        width: 25%;
+    }
+    .menu ul li>*{
+        margin: 0 auto;
+    }
+    .menu span{
+        height: 20px;
+    }
+    .menu_a{
+        height: 20px;
+    }
+    a{
+        color: black;
+    }
+    .menu a{
+        text-align: center;
+        display: block;
+    }
+
+    /* 要删除的*/
+    .body{
+        border: 1px solid #ccc;
+    }
+</style>
 <body>
-	你好${msg};
+    <!--  顶部导航栏 -->
+	<div class="nav">
+		<div class="nav-container">
+			<!-- logo -->
+			<div>
+				<img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
+				<div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
+			</div>
+			<!-- 搜索栏 -->
+			<div class="nav-search" >
+				<div><input type="text" class="" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
+				<a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
+			</div>
+			<!-- 选项栏 -->
+			<div class="nav-option">
+			<ul>
+				<li><i class="glyphicon glyphicon-home"></i>首页</li>
+				<li><i class="glyphicon glyphicon-envelope">消息</i></li>
+				<li><i class="glyphicon glyphicon-cog"></i>设置 </li>
+				<li><i class="glyphicon glyphicon-cog"></i>发现 </li>
+				<li><i class="glyphicon glyphicon-edit"></i>发微博</li>
+			</ul>
+				
+			</div>
+		</div>
+	</div>
+	<div class="body" style="height: 1000px;">
+		<!-- 左侧边栏 -->
+		<div class="side-nav">
+			<div style="height: 10px;"></div>
+			<div><h5><a href="" class="side-a">首页</a></h5></div>
+			<div><h5><a href="" class="side-a">我的收藏</a></h5></div>
+
+			<hr style="border:0;background-color:#87BADB;height:1px;">
+
+			<div> <a href="" class="side-b"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;好友圈</a> </div>
+			<div> <a href="" class="side-b"><i class="glyphicon glyphicon-star-empty"></i>&nbsp;&nbsp;我的关注</a></div>
+
+			<hr style="border:0;background-color:#87BADB;height:1px;">
+		</div>
+		<!-- 中间 -->
+		<div class="mid-body">
+            <!-- 发weibo区 -->
+            <div class="reply">
+                <div> <em class="spac3">发条weibo试试</em></div>
+                <div>
+                    <textarea name="" id="" cols="80" rows="5" style="margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
+                </div>
+                <div>
+                    <button type="button" class="btn-reply">发布</button>
+                </div>
+            </div>
+
+            <!-- weibo内容区 -->
+            <div>
+                <div class="weibo-body">
+                    <div class="inner" style="width: 600px; padding: 20px;">
+                        <div class="head-img" style="width: 40px;height: 70px; float: left;">
+                            <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px; display: block;">
+                        </div>
+                        <div class="other" style="display: block; margin-left: 40px;">
+                            <div class="_username" style="font-weight: bold; left: 20px; position: relative; height: 20px;">
+                                name
+                            </div>
+                            <div class="time" style="left: 20px; position: relative; font-size: 10px; height: 20px;">
+                                今天19：00
+                            </div>
+                            <div class="area" style="left: 20px; position: relative;">
+                                这里是weibo内容区
+                                <br><br><br><br><br>
+                                1
+                            </div>
+                        </div>
+                         <div class="menu">
+                            <ul>
+                                <li> <a href=""><i class="fa fa-star-o"></i><i class="fa fa-star"></i>收藏</a></li>
+                                <li> <a href=""><i class="fa fa-share"></i>转发</a></li>
+                                <li> <a href=""><i class="fa fa-commenting-o"></i> 回复</a></li>
+                                <li> <a href=""><i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up"></i>点赞</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 底部菜单栏 -->
+                   
+                </div>
+                
+                <div class="weibo-body">
+                    2
+                </div>               
+            </div>
+        </div>
+		<!-- 右侧边栏 -->
+        
+        <style>
+            .side-right{
+                width: 230px;
+                height: 1000px;
+                float: left;
+                position: relative;
+                left: 20%;
+                top: 40px;
+            }
+            .my-msg{
+                border: 1px solid #ccc;
+                padding: 20px;
+                height: 140px;
+            }
+            .my-fans ul li{
+                width: 33.333%;
+                text-align: center;
+            }
+        </style>
+        <div class="side-right">
+            <div class="my-msg">
+                <div class="my-img" style="text-align: center;">
+                    <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px;">
+                </div>
+                <div class="my-name" style="text-align: center;">
+                    <h5 style="font-weight: bold;">凡人皆需侍奉x</h5>
+                </div>
+                <div class="my-fans">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" style="font-weight: bold;">2</a>
+                            <span style="display: block;">关注</span>
+                        </li>
+                        <li>
+                            <a href="" style="font-weight: bold;">5</a>
+                            <span style="display: block;">粉丝</span>
+                        </li>
+                        <li>
+                            <a href="" style="font-weight: bold;">22</a>
+                            <span style="display: block;">微博</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="random">
+                random<i class="fa fa-address-book"></i>
+            </div>
+        </div>
+	</div>
+    <br>
+     <br>
+      <br>
+       <br>
+
+        <br>
+         <br>
+          <br>
+           <br> <br>
+
+            <br>
+            >
+      <br>
+       <br>
+
+        <br>
+         <br>
+          <br>
+           <br> <br>
+
+            <br>
 </body>
+<script>
+    var a = $(".side-nav").css("top");
+    window.onscroll = function() {
+        var x = parseInt(a)+window.pageYOffset;
+        $(".side-nav").css("top",x+"px");
+　　}
+    $("a").mouseover(function(){
+         $(this).css("color","#FF3366");
+    });
+    $("a").mouseout(function(){
+         $(this).css("color","black");
+    });
+</script>
 </html>

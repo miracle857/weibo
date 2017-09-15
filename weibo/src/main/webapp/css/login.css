@@ -1,0 +1,162 @@
+		body{
+			color: #000;
+		    font-family: 'Open Sans';
+		    padding: 0px !important;
+		    margin: 0px !important;
+		    font-size: 13px;
+		    direction: ltr;
+		}
+		div {
+		    display: block;
+		}
+		.login{
+			background-color: #444 !important;
+		}
+		.logo{
+			width: 247px;
+		    margin: 0 auto;
+		    margin-top: 60px;
+		    padding: 15px;
+		    text-align: center;
+		}
+		.login .content {
+		    background-color: #fff;
+		    width: 291px;
+		    margin: 0 auto;
+		    margin-bottom: 0px;
+		    padding: 50px;
+		    padding-top: 20px;
+		    padding-bottom: 15px;
+		}
+		.login .content .form-title {
+		    font-weight: 300;
+		    margin-bottom: 25px;
+		}
+		h3 {
+		    font-size: 24.5px;
+		}
+		.login .content .input-icon {
+		    border-left: 2px solid #35aa47 !important;
+		}
+		div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
+		    -webkit-border-radius: 0 !important;
+		    -moz-border-radius: 0 !important;
+		    border-radius: 0 !important;
+		}
+		.login .content .control-group {
+		    margin-bottom: 20px !important;
+		}
+		.login .content .input-icon .m-wrap {
+		    margin: 0px !important;
+		}
+		.login .content .m-wrap {
+		    width: 249px;
+		    border-left: 0 !important;
+		}
+
+		.input-icon.left input {
+		    padding-left: 33px !important;
+		}
+		.uneditable-input, textarea.m-wrap, input.m-wrap {
+		    -webkit-appearance: none !important;
+		    color: #333333;
+		   	outline:none;
+		    height: 20px;
+		    padding: 6px 6px !important;
+		    line-height: 20px;
+		    font-size: 14px;
+		    font-weight: normal;
+		    vertical-align: top;
+		    background-color: #ffffff;
+		    background-image: none !important;
+		    filter: none !important;
+		    -webkit-box-shadow: none !important;
+		    -moz-box-shadow: none !important;
+		    box-shadow: none !important;
+		    -webkit-border-radius: 0px;
+		    -moz-border-radius: 0px;
+		    border-radius: 0px;
+		    background: transparent;
+		}
+		.login .content .form-actions .btn_1 {
+		    margin-top: 1px;
+		}
+		.btn_1.green {
+		    color: white;
+		    text-shadow: none;
+		    background-color: #35aa47;
+		}
+		.btn_1 {
+		    background-color: #e5e5e5;
+		    background-image: none;
+		    filter: none;
+		    border: 0;
+		    padding: 7px 14px;
+		    text-shadow: none;
+		    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+		    font-size: 14px;
+		    color: #333333;
+		    cursor: pointer;
+		    outline: none;
+		    -webkit-box-shadow: none !important;
+		    -moz-box-shadow: none !important;
+		    box-shadow: none !important;
+		    -webkit-border-radius: 0 !important;
+		    -moz-border-radius: 0 !important;
+		    border-radius: 0 !important;
+		}
+
+		.pull-right {
+		    float: right;
+		}
+		.form-actions:after {
+		    clear: both;
+		}
+		
+		.form-actions:before, .form-actions:after {
+		    display: table;
+		    line-height: 0;
+		    content: "";
+		}
+
+		.copyright {
+		    text-align: center;
+		    width: 250px;
+		    margin: 0 auto;
+		    padding: 10px 10px 0 10px;
+		    color: #999;
+		    font-size: 11px;
+		}
+		input.m-wrap {
+		    border: 1px solid #e5e5e5;
+		}
+		.input-icon.left i {
+		    color: #ccc;
+		    display: block !important;
+		    position: absolute !important;
+		    z-index: 1;
+		    margin: 9px 2px 4px 10px;
+		    width: 16px;
+		    height: 16px;
+		    font-size: 16px;
+		    text-align: center;
+		}
+
+		
+		[class^="icon-"], [class*=" icon-"]{
+		    font-family: FontAwesome;
+		    font-weight: normal;
+		    font-style: normal;
+		    text-decoration: inherit;
+		    -webkit-font-smoothing: antialiased;
+		}
+
+		.icon-user:before {
+		    content: "\f007";
+		}
+		.icon-lock:before {
+		    content: "\f023";
+		}
+		.input-icon.left input {
+		    padding-left: 33px !important;
+		}

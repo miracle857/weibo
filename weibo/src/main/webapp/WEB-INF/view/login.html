@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	
+    <!--  fontawesome -->
+    <link href="${ctx}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="${ctx}/css/login.css" rel="stylesheet" /> 
+
+	<!-- jquery -->
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body class="login">
+
+
+	<div class="logo">
+		<img src="img/logo1.png" alt="" /> 
+	</div>
+
+	<div class="content">
+
+		<form class="login-form" action="#" method="post">
+			<h3 class="form-title" style="text-align: center;">Login to your account</h3>
+			
+			<div class="control-group">
+				
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-user"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请输入用户名" name="name"/>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-lock"></i>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="请输入密码" name="password"/>
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<label class="checkbox">
+				<input type="checkbox" name="remember" value="1"/> 记住密码
+				</label>
+				<button type="submit" class="btn_1 green pull-right">
+				登录 <i class="fa fa-arrow-circle-right"></i>
+				</button>            
+			</div>
+
+			<div class="forget-password">
+				<h4>Forgot your password ?</h4>
+				<p>
+					no worries, click <a href="javascript:toForgetPassword();" class="" id="forget-password">here</a>
+					to reset your password.
+				</p>
+			</div>
+			<div class="create-account">
+				<p>
+					Don't have an account yet ?&nbsp; 
+					<a href="javascript:toRegister();" id="register-btn" class="">Create an account</a>
+				</p>
+			</div>
+		</form>
+
+		<form class="forget-form" action="index.html" style="display: none;">
+			<h3 class="form-title">Forget Password ?</h3>
+			<p>Enter your e-mail address below to reset your password.</p>
+			<div class="control-group">
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="fa fa-envelope-o"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="button" id="back-btn" class="btn_1 back-btn">
+				<i class="fa fa-arrow-circle-left"></i> Back
+				</button>
+				<button type="submit" class="btn_1 green pull-right">
+				Submit <i class="fa fa-arrow-circle-right"></i>
+				</button>            
+			</div>
+		</form>
+		<!-- END FORGOT PASSWORD FORM -->
+		<!-- BEGIN REGISTRATION FORM -->
+		<form class="register-form" action="index.html" style="display: none;">
+			<h3 class="form-title">Sign Up</h3>
+			<p>Enter your account details below:</p>
+			<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Username</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-user"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Password</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-lock"></i>
+						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password"/>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="fa fa-check"></i>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword"/>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+				<label class="control-label visible-ie8 visible-ie9">Email</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="fa fa-envelope-o"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox">
+					<input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+					</label>  
+					<div id="register_tnc_error"></div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button id="register-back-btn" type="button" class="btn_1 back-btn">
+				<i class="fa fa-arrow-circle-left"></i>  Back
+				</button>
+				<button type="submit" id="register-submit-btn" class="btn_1 green pull-right">
+				Sign Up <i class="fa fa-arrow-circle-right"></i>
+				</button>            
+			</div>
+		</form>
+
+
+	</div>
+
+	<div class="copyright">
+		©2017 no one All Rights Reserved.
+	</div>
+	<script>
+		$(function(){
+
+			$("input[name!='remember']").focus(function(){
+				$(this).css("border","1px solid green");
+			});
+			$("input[name!='remember']").blur(function(){
+				$(this).css("border","1px solid #E5E5E5");
+			});
+		});
+		
+		function toForgetPassword(){
+			$(".login-form").css("display","none");
+			$(".register-form").css("display","none");
+			$(".forget-form").css("display","");
+		}
+		function backToLogin(){
+			$(".login-form").css("display","");
+			$(".register-form").css("display","none");
+			$(".forget-form").css("display","none");
+		}
+		function toRegister(){
+			$(".login-form").css("display","none");
+			$(".register-form").css("display","");
+			$(".forget-form").css("display","none");
+		}
+
+		$(".back-btn").click(backToLogin);
+	</script>
+	</body>
+</html>
