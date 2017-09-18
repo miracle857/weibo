@@ -6,7 +6,8 @@ public class MD5 {
 	 
     //main测试类
     public static void main(String[] args) {
-        getMD5("aaa");
+        System.out.println(getMD5("aaa_ ._"));
+        System.out.println(getMD5("aaa_"));
     }
  
     /**

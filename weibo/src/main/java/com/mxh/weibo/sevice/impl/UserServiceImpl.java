@@ -1,9 +1,11 @@
 package com.mxh.weibo.sevice.impl;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.DC;
+import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.email.Mail;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
@@ -17,18 +19,32 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	public UserMapper userMapper;
 
-	public void register(User user) throws Exception {
+	public void register(UserToken userToken) throws Exception {
 
-		chickUserNameExist(user.getUsername());
-
+		// 检查用户名和邮箱
+		this.chickUserNameExist(userToken.getUsername());
+		this.chickEmailExist(userToken.getEmail());
+		
+		// 判定密码相同与否
+		if(!(userToken.getPassword().equals(userToken.getRpassword()))){
+			throw new WeiboException("两次密码不一致");
+		}
+		
+		// 整理数据，插入数据库
+		User user = new User();
+		PropertyUtils.copyProperties(user, userToken);
 		user.setDeleted((byte) 0);
 		user.setStatus(DC.STATUS_NORMAL);
 		user.setPassword(MD5.getMD5(user.getPassword()));
 		userMapper.insertSelective(user);
 	}
 
-	public void login(User user) {
-		// TODO Auto-generated method stub
+	public User login(UserToken user) throws WeiboException {
+		User user2 = userMapper.selectByEmailOrUsername(null, user.getUsername());
+		if(user2 == null || !(user2.getPassword().equals(MD5.getMD5(user.getPassword())))){
+			throw new WeiboException("用户名或者密码错误");
+		}
+		return user2;
 
 	}
 
@@ -46,13 +62,15 @@ public class UserServiceImpl implements IUserService {
 
 	public void chickUserNameExist(String username) throws WeiboException {
 		User user = userMapper.selectByEmailOrUsername(null, username);
-		if (user == null) {
+		if (user != null) {
 			throw new WeiboException("用户名存在");
 		}
 	}
 
 	public void chickEmailExist(String email) throws WeiboException {
-		// TODO Auto-generated method stub
-		
+		User user = userMapper.selectByEmailOrUsername(email, null);
+		if (user != null) {
+			throw new WeiboException("该邮箱已经被注册");
+		}
 	}
 }

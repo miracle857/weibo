@@ -49,6 +49,7 @@
 	<bean id="sqlSessionFactory" class=" org.mybatis.spring.SqlSessionFactoryBean ">
 		<property name="mapperLocations" value="classpath:com/mxh/weibo/dao/*.xml"></property>
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
 	</bean>
 
 	<!-- 配置mybatis接口代理开发 * 接口类名和映射文件必须同名 * 接口类和映射文件必须在同一个目录 下 * 映射文件namespace名字必须是接口的全类路径名 

@@ -1,5 +1,6 @@
 package com.mxh.weibo.sevice;
 
+import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
 
@@ -11,14 +12,16 @@ public interface IUserService {
 	 * @param user
 	 * @throws Exception 
 	 */
-	void register(User user) throws Exception;
+	void register(UserToken user) throws Exception;
 	
 	/**
 	 * 登录操作
 	 * 
 	 * @param user
+	 * @return 
+	 * @throws WeiboException 
 	 */
-	void login(User user);
+	User login(UserToken user) throws WeiboException;
 	
 	/**
 	 * 找回密码操作
