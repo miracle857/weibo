@@ -24,9 +24,14 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("/main")
 	public String toLogin(){
 		return "login";
+	}
+	
+	@RequestMapping("/index")
+	public String toIndex(){
+		return "index";
 	}
 	
 	@RequestMapping("/login")

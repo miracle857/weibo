@@ -21,7 +21,7 @@
 
 	<div class="content">
 
-		<form class="login-form" action="#" method="post">
+		<form class="login-form" action="#" method="post" id="login-form">
 			<h3 class="form-title" style="text-align: center;">Login to your account</h3>
 			
 			<div class="control-group">
@@ -46,7 +46,7 @@
 				<label class="checkbox">
 				<input type="checkbox" name="remember" value="1"/> 记住密码
 				</label>
-				<button type="submit" class="btn_1 green pull-right">
+				<button type="button" class="btn_1 green pull-right" id="login-submit-btn">
 				登录 <i class="fa fa-arrow-circle-right"></i>
 				</button>            
 			</div>
@@ -153,55 +153,7 @@
 	<div class="copyright">
 		©2017 no one All Rights Reserved.
 	</div>
-	<script>
-		$(function(){
-
-			$("input[name!='remember']").focus(function(){
-				$(this).css("border","1px solid green");
-			});
-			$("input[name!='remember']").blur(function(){
-				$(this).css("border","1px solid #E5E5E5");
-			});
-		});
-		
-		function toForgetPassword(){
-			$(".login-form").css("display","none");
-			$(".register-form").css("display","none");
-			$(".forget-form").css("display","");
-		}
-		function backToLogin(){
-			$(".login-form").css("display","");
-			$(".register-form").css("display","none");
-			$(".forget-form").css("display","none");
-		}
-		function toRegister(){
-			$(".login-form").css("display","none");
-			$(".register-form").css("display","");
-			$(".forget-form").css("display","none");
-		}
-
-		
-		function register(){
-			$.ajax({
-				url: "/user/register.do",
-				type:'post',
-				data:$('#register-form').serialize(),
-				dataType:'json',
-				success:function(data){
-					if(data.success){
-						alert("注册成功");
-					}else{
-						alert(data.message);
-					}
-				},
-				error:function(e){
-					
-				}
-			}); 
-		}
-		
-		$(".back-btn").click(backToLogin);
-		$("#register-submit-btn").click(register);
-	</script>
+	<script src="${ctx}/3rd/layer-v3.1.0/layer.js"></script>
+	<script src="${ctx}/js/login.js"></script>
 	</body>
 </html>

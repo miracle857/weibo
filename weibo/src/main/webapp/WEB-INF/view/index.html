@@ -13,151 +13,17 @@
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+	<link href="${ctx}/css/index.css" rel="stylesheet" /> 
 	<title>weibo</title>
 </head>
-<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.nav{
-	    position:fixed; /* 绝对定位，fixed是相对于浏览器窗口定位。 */
-	    top:0; /* 距离窗口顶部距离 */
-	    left:0; /* 距离窗口左边的距离 */
-	    width:100%; /* 宽度设置为100% */
-	    height:40px; /* 高度 */
-	    z-index:99; /* 层叠顺序，数值越大就越高。页面滚动的时候就不会被其他内容所遮挡。 */
-		border: 1px solid #ccc;
-		background-color: white;
-	}
-	.nav-container{
-		margin: 0 auto;
-		width: 60%;    /*  这里有问题，需要 @media*/
-		height: 40px;
-	}
-	.nav-container div{
-		float: left;
-	}
-	.nav-search{
-		height: 30px;
-		width: 200px;
-		border: 1px solid #ccc;
-		margin-top: 5px;
-		margin-left: 10%;
-	}
-	.nav-option{
-		margin-left: 10%;
-	}
-	.nav-option ul li{
-		list-style: none;
-		float: left;
-		margin-top: 10px;
-		margin-left: 20px;
-		cursor:pointer;
-	}
-	.body{
-		background-image: url(1img/background.png);
-		
-	}
-	@media screen and (max-width: 1500px){
-		.nav-container{
-			margin: 0 auto;
-			width: 1000px;    
-			height: 40px;
-		}
 
-	}
-	a{
-		text-decoration: none !important;
-	}
-
-	.side-nav{
-		position:relative;  /* 绝对定位，fixed是相对于浏览器窗口定位。 */
-	    top:40px;  /* 距离窗口顶部距离 */
-	    left:18%; /* 距离窗口左边的距离 */
-	    width:150px; /* 宽度设置为100% */
-	    height:485px; /* 高度 */
-		opacity:1;
-    float: left;
-		background-color: rgba(70,149,194,0.3);
-	}
-	.side-a{
-		color: white;
-		margin-left: 10px;
-		font-weight: bold;
-	}
-	.side-b{
-		color: white;
-		margin-left: 10px;
-	}
-    .mid-body{
-        position: relative;
-        left: 19%;
-        top: 40px;
-        float: left;
-        width: 600px;
-        height: 1000px;
-    }
-    .reply{
-        height: 165px;
-        border: 1px solid #ccc;
-    }
-    .btn-reply{
-        float: right;
-        top: -10px;
-        left: -10px;
-        position: relative;
-        background-color: #FFC09F;
-        border-radius: 5px;
-        height: 25px;
-        width: 60px;
-        color: white;
-        border: none;
-    }
-    .weibo-body{
-        border: 1px solid #ccc;  /* shanchu */
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    ._username{
-        
-    }
-    li{
-        float: left;
-        list-style: none;
-    }
-   .menu ul li{
-        width: 25%;
-    }
-    .menu ul li>*{
-        margin: 0 auto;
-    }
-    .menu span{
-        height: 20px;
-    }
-    .menu_a{
-        height: 20px;
-    }
-    a{
-        color: black;
-    }
-    .menu a{
-        text-align: center;
-        display: block;
-    }
-
-    /* 要删除的*/
-    .body{
-        border: 1px solid #ccc;
-    }
-</style>
 <body>
     <!--  顶部导航栏 -->
 	<div class="nav">
 		<div class="nav-container">
 			<!-- logo -->
 			<div>
-				<img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
+				<img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
 				<div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
 			</div>
 			<!-- 搜索栏 -->
@@ -210,7 +76,7 @@
                 <div class="weibo-body">
                     <div class="inner" style="width: 600px; padding: 20px;">
                         <div class="head-img" style="width: 40px;height: 70px; float: left;">
-                            <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px; display: block;">
+                            <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px; display: block;">
                         </div>
                         <div class="other" style="display: block; margin-left: 40px;">
                             <div class="_username" style="font-weight: bold; left: 20px; position: relative; height: 20px;">
@@ -245,29 +111,10 @@
         </div>
 		<!-- 右侧边栏 -->
         
-        <style>
-            .side-right{
-                width: 230px;
-                height: 1000px;
-                float: left;
-                position: relative;
-                left: 20%;
-                top: 40px;
-            }
-            .my-msg{
-                border: 1px solid #ccc;
-                padding: 20px;
-                height: 140px;
-            }
-            .my-fans ul li{
-                width: 33.333%;
-                text-align: center;
-            }
-        </style>
         <div class="side-right">
             <div class="my-msg">
                 <div class="my-img" style="text-align: center;">
-                    <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px;">
+                    <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px;">
                 </div>
                 <div class="my-name" style="text-align: center;">
                     <h5 style="font-weight: bold;">凡人皆需侍奉x</h5>
