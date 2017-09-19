@@ -1,6 +1,8 @@
 package com.mxh.weibo.web.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +38,11 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public BaseResponse<User> login(UserToken user,Model model){
+	public BaseResponse<User> login(UserToken user,Model model,HttpSession session){
 		BaseResponse<User> res = new BaseResponse<>();
 		try {
 			User login = userService.login(user);
+			session.setAttribute("user", login);
 			res.setBody(login);
 			res.setSuccess(true);
 		} catch (WeiboException e) {

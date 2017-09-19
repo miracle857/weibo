@@ -115,10 +115,6 @@ a {
 	margin-bottom: 5px;
 }
 
-._username {
-	
-}
-
 li {
 	float: left;
 	list-style: none;
@@ -169,7 +165,43 @@ a {
 	text-align: center;
 }
 
- /* 要删除的*/
-    .body{
-        border: 1px solid #ccc;
-    }
+.inner {
+	width: 600px;
+	padding: 20px;
+}
+
+.head-img {
+	width: 40px;
+	height: 70px;
+	float: left;
+}
+
+.body-img {
+	height: 40px;
+	width: 40px;
+	display: block;
+}
+
+._username {
+	font-weight: bold;
+	left: 20px;
+	position: relative;
+	height: 20px;
+}
+
+.time {
+	left: 20px;
+	position: relative;
+	font-size: 10px;
+	height: 20px;
+}
+
+.area {
+	left: 20px;
+	position: relative;
+}
+
+.other{
+	 display: block; 
+	 margin-left: 40px;
+}

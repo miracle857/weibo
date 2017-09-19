@@ -15,6 +15,13 @@
 
 	<link href="${ctx}/css/index.css" rel="stylesheet" /> 
 	<title>weibo</title>
+	<#if user.nickname==null>
+	<script>
+		layer.prompt(function(val, index){
+		  layer.close(index);
+		});
+	</script>
+	</#if>
 </head>
 
 <body>
@@ -72,20 +79,20 @@
             </div>
 
             <!-- weibo内容区 -->
-            <div>
+            <div id="container">
                 <div class="weibo-body">
-                    <div class="inner" style="width: 600px; padding: 20px;">
-                        <div class="head-img" style="width: 40px;height: 70px; float: left;">
-                            <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px; display: block;">
+                    <div class="inner">
+                        <div class="head-img">
+                            <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle body-img">
                         </div>
                         <div class="other" style="display: block; margin-left: 40px;">
-                            <div class="_username" style="font-weight: bold; left: 20px; position: relative; height: 20px;">
+                            <div class="_username">
                                 name
                             </div>
-                            <div class="time" style="left: 20px; position: relative; font-size: 10px; height: 20px;">
+                            <div class="time">
                                 今天19：00
                             </div>
-                            <div class="area" style="left: 20px; position: relative;">
+                            <div class="area">
                                 这里是weibo内容区
                                 <br><br><br><br><br>
                                 1
@@ -108,7 +115,7 @@
                     2
                 </div>               
             </div>
-        </div>
+       		</div>
 		<!-- 右侧边栏 -->
         
         <div class="side-right">
@@ -117,7 +124,7 @@
                     <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px;">
                 </div>
                 <div class="my-name" style="text-align: center;">
-                    <h5 style="font-weight: bold;">凡人皆需侍奉x</h5>
+                    <h5 style="font-weight: bold;">${user.nickname}</h5>
                 </div>
                 <div class="my-fans">
                     <ul>
@@ -163,6 +170,7 @@
 
             <br>
 </body>
+<script src="${ctx}/js/index.js"></script>
 <script>
     var a = $(".side-nav").css("top");
     window.onscroll = function() {
