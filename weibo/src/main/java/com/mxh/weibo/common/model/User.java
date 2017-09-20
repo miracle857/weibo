@@ -6,59 +6,71 @@ public class User implements Serializable {
 
 	/**
 	 * Column: weibo_user.UUID
-	 * 
 	 * @mbggenerated
 	 */
 	private Integer uuid;
 	/**
-	 * Áî®Êà∑Âêç. Column: weibo_user.USERNAME
-	 * 
+	 * µ«¬º”√ªß√˚. Column: weibo_user.USERNAME
 	 * @mbggenerated
 	 */
 	private String username;
 	/**
-	 * ÊòµÁß∞. Column: weibo_user.NICKNAME
-	 * 
+	 * Í«≥∆. Column: weibo_user.NICKNAME
 	 * @mbggenerated
 	 */
 	private String nickname;
 	/**
-	 * ÂØÜÁ†Å. Column: weibo_user.PASSWORD
-	 * 
+	 * √‹¬Î. Column: weibo_user.PASSWORD
 	 * @mbggenerated
 	 */
 	private String password;
 	/**
-	 * ‰∏™‰∫∫ËØ¥Êòé. Column: weibo_user.COMMENT
-	 * 
+	 * ∏ˆ»ÀÀµ√˜. Column: weibo_user.COMMENT
 	 * @mbggenerated
 	 */
 	private String comment;
 	/**
-	 * Ë¥¶Êà∑Áä∂ÊÄÅ. Column: weibo_user.STATUS
-	 * 
+	 * ◊¥Ã¨. Column: weibo_user.STATUS
 	 * @mbggenerated
 	 */
 	private String status;
 	/**
-	 * ÈÇÆÁÆ±.Column: weibo_user.EMAIL
-	 * 
+	 * ” œ‰. Column: weibo_user.EMAIL
 	 * @mbggenerated
 	 */
 	private String email;
 	/**
-	 * Column: weibo_user.DELETED
-	 * 
+	 * …æ≥˝±Í÷æ. Column: weibo_user.DELETED
 	 * @mbggenerated
 	 */
 	private Byte deleted;
+	/**
+	 * Õ∑œÒ. Column: weibo_user.HEADIMG
+	 * @mbggenerated
+	 */
+	private String headimg;
+	/**
+	 * Œ¢≤© ˝ƒø. Column: weibo_user.WEIBO
+	 * @mbggenerated
+	 */
+	private Integer weibo;
+	/**
+	 * πÿ◊¢. Column: weibo_user.FOLLOW
+	 * @mbggenerated
+	 */
+	private Integer follow;
+	/**
+	 * ∑€Àø. Column: weibo_user.FOLLOWER
+	 * @mbggenerated
+	 */
+	private Integer follower;
 	/**
 	 * @mbggenerated
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @return the value of weibo_user.UUID
+	 * @return  the value of weibo_user.UUID
 	 * @mbggenerated
 	 */
 	public Integer getUuid() {
@@ -66,8 +78,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param uuid
-	 *            the value for weibo_user.UUID
+	 * @param uuid  the value for weibo_user.UUID
 	 * @mbggenerated
 	 */
 	public void setUuid(Integer uuid) {
@@ -75,7 +86,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.USERNAME
+	 * @return  the value of weibo_user.USERNAME
 	 * @mbggenerated
 	 */
 	public String getUsername() {
@@ -83,8 +94,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param username
-	 *            the value for weibo_user.USERNAME
+	 * @param username  the value for weibo_user.USERNAME
 	 * @mbggenerated
 	 */
 	public void setUsername(String username) {
@@ -92,7 +102,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.NICKNAME
+	 * @return  the value of weibo_user.NICKNAME
 	 * @mbggenerated
 	 */
 	public String getNickname() {
@@ -100,8 +110,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param nickname
-	 *            the value for weibo_user.NICKNAME
+	 * @param nickname  the value for weibo_user.NICKNAME
 	 * @mbggenerated
 	 */
 	public void setNickname(String nickname) {
@@ -109,7 +118,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.PASSWORD
+	 * @return  the value of weibo_user.PASSWORD
 	 * @mbggenerated
 	 */
 	public String getPassword() {
@@ -117,8 +126,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param password
-	 *            the value for weibo_user.PASSWORD
+	 * @param password  the value for weibo_user.PASSWORD
 	 * @mbggenerated
 	 */
 	public void setPassword(String password) {
@@ -126,7 +134,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.COMMENT
+	 * @return  the value of weibo_user.COMMENT
 	 * @mbggenerated
 	 */
 	public String getComment() {
@@ -134,8 +142,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param comment
-	 *            the value for weibo_user.COMMENT
+	 * @param comment  the value for weibo_user.COMMENT
 	 * @mbggenerated
 	 */
 	public void setComment(String comment) {
@@ -143,7 +150,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.STATUS
+	 * @return  the value of weibo_user.STATUS
 	 * @mbggenerated
 	 */
 	public String getStatus() {
@@ -151,8 +158,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param status
-	 *            the value for weibo_user.STATUS
+	 * @param status  the value for weibo_user.STATUS
 	 * @mbggenerated
 	 */
 	public void setStatus(String status) {
@@ -160,7 +166,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.EMAIL
+	 * @return  the value of weibo_user.EMAIL
 	 * @mbggenerated
 	 */
 	public String getEmail() {
@@ -168,8 +174,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param email
-	 *            the value for weibo_user.EMAIL
+	 * @param email  the value for weibo_user.EMAIL
 	 * @mbggenerated
 	 */
 	public void setEmail(String email) {
@@ -177,7 +182,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_user.DELETED
+	 * @return  the value of weibo_user.DELETED
 	 * @mbggenerated
 	 */
 	public Byte getDeleted() {
@@ -185,11 +190,74 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param deleted
-	 *            the value for weibo_user.DELETED
+	 * @param deleted  the value for weibo_user.DELETED
 	 * @mbggenerated
 	 */
 	public void setDeleted(Byte deleted) {
 		this.deleted = deleted;
+	}
+
+	/**
+	 * @return  the value of weibo_user.HEADIMG
+	 * @mbggenerated
+	 */
+	public String getHeadimg() {
+		return headimg;
+	}
+
+	/**
+	 * @param headimg  the value for weibo_user.HEADIMG
+	 * @mbggenerated
+	 */
+	public void setHeadimg(String headimg) {
+		this.headimg = headimg;
+	}
+
+	/**
+	 * @return  the value of weibo_user.WEIBO
+	 * @mbggenerated
+	 */
+	public Integer getWeibo() {
+		return weibo;
+	}
+
+	/**
+	 * @param weibo  the value for weibo_user.WEIBO
+	 * @mbggenerated
+	 */
+	public void setWeibo(Integer weibo) {
+		this.weibo = weibo;
+	}
+
+	/**
+	 * @return  the value of weibo_user.FOLLOW
+	 * @mbggenerated
+	 */
+	public Integer getFollow() {
+		return follow;
+	}
+
+	/**
+	 * @param follow  the value for weibo_user.FOLLOW
+	 * @mbggenerated
+	 */
+	public void setFollow(Integer follow) {
+		this.follow = follow;
+	}
+
+	/**
+	 * @return  the value of weibo_user.FOLLOWER
+	 * @mbggenerated
+	 */
+	public Integer getFollower() {
+		return follower;
+	}
+
+	/**
+	 * @param follower  the value for weibo_user.FOLLOWER
+	 * @mbggenerated
+	 */
+	public void setFollower(Integer follower) {
+		this.follower = follower;
 	}
 }

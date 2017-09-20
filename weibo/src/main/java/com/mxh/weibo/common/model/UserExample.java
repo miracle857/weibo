@@ -698,6 +698,256 @@ public class UserExample {
 			addCriterion("user.DELETED not between", value1, value2, "deleted");
 			return (Criteria) this;
 		}
+
+		public Criteria andHeadimgIsNull() {
+			addCriterion("user.HEADIMG is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgIsNotNull() {
+			addCriterion("user.HEADIMG is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgEqualTo(String value) {
+			addCriterion("user.HEADIMG =", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgNotEqualTo(String value) {
+			addCriterion("user.HEADIMG <>", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgGreaterThan(String value) {
+			addCriterion("user.HEADIMG >", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgGreaterThanOrEqualTo(String value) {
+			addCriterion("user.HEADIMG >=", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgLessThan(String value) {
+			addCriterion("user.HEADIMG <", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgLessThanOrEqualTo(String value) {
+			addCriterion("user.HEADIMG <=", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgLike(String value) {
+			addCriterion("user.HEADIMG like", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgNotLike(String value) {
+			addCriterion("user.HEADIMG not like", value, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgIn(List<String> values) {
+			addCriterion("user.HEADIMG in", values, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgNotIn(List<String> values) {
+			addCriterion("user.HEADIMG not in", values, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgBetween(String value1, String value2) {
+			addCriterion("user.HEADIMG between", value1, value2, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadimgNotBetween(String value1, String value2) {
+			addCriterion("user.HEADIMG not between", value1, value2, "headimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboIsNull() {
+			addCriterion("user.WEIBO is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboIsNotNull() {
+			addCriterion("user.WEIBO is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboEqualTo(Integer value) {
+			addCriterion("user.WEIBO =", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboNotEqualTo(Integer value) {
+			addCriterion("user.WEIBO <>", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboGreaterThan(Integer value) {
+			addCriterion("user.WEIBO >", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboGreaterThanOrEqualTo(Integer value) {
+			addCriterion("user.WEIBO >=", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboLessThan(Integer value) {
+			addCriterion("user.WEIBO <", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboLessThanOrEqualTo(Integer value) {
+			addCriterion("user.WEIBO <=", value, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboIn(List<Integer> values) {
+			addCriterion("user.WEIBO in", values, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboNotIn(List<Integer> values) {
+			addCriterion("user.WEIBO not in", values, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboBetween(Integer value1, Integer value2) {
+			addCriterion("user.WEIBO between", value1, value2, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeiboNotBetween(Integer value1, Integer value2) {
+			addCriterion("user.WEIBO not between", value1, value2, "weibo");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowIsNull() {
+			addCriterion("user.FOLLOW is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowIsNotNull() {
+			addCriterion("user.FOLLOW is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowEqualTo(Integer value) {
+			addCriterion("user.FOLLOW =", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowNotEqualTo(Integer value) {
+			addCriterion("user.FOLLOW <>", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowGreaterThan(Integer value) {
+			addCriterion("user.FOLLOW >", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowGreaterThanOrEqualTo(Integer value) {
+			addCriterion("user.FOLLOW >=", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowLessThan(Integer value) {
+			addCriterion("user.FOLLOW <", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowLessThanOrEqualTo(Integer value) {
+			addCriterion("user.FOLLOW <=", value, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowIn(List<Integer> values) {
+			addCriterion("user.FOLLOW in", values, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowNotIn(List<Integer> values) {
+			addCriterion("user.FOLLOW not in", values, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowBetween(Integer value1, Integer value2) {
+			addCriterion("user.FOLLOW between", value1, value2, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowNotBetween(Integer value1, Integer value2) {
+			addCriterion("user.FOLLOW not between", value1, value2, "follow");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerIsNull() {
+			addCriterion("user.FOLLOWER is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerIsNotNull() {
+			addCriterion("user.FOLLOWER is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerEqualTo(Integer value) {
+			addCriterion("user.FOLLOWER =", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerNotEqualTo(Integer value) {
+			addCriterion("user.FOLLOWER <>", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerGreaterThan(Integer value) {
+			addCriterion("user.FOLLOWER >", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerGreaterThanOrEqualTo(Integer value) {
+			addCriterion("user.FOLLOWER >=", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerLessThan(Integer value) {
+			addCriterion("user.FOLLOWER <", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerLessThanOrEqualTo(Integer value) {
+			addCriterion("user.FOLLOWER <=", value, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerIn(List<Integer> values) {
+			addCriterion("user.FOLLOWER in", values, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerNotIn(List<Integer> values) {
+			addCriterion("user.FOLLOWER not in", values, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerBetween(Integer value1, Integer value2) {
+			addCriterion("user.FOLLOWER between", value1, value2, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerNotBetween(Integer value1, Integer value2) {
+			addCriterion("user.FOLLOWER not between", value1, value2, "follower");
+			return (Criteria) this;
+		}
 	}
 
 	/**

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mxh.weibo.dao.ReplyMapper">
+  <resultMap id="BaseResultMap" type="com.mxh.weibo.common.model.Reply">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="reply_UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="reply_WEIBO_UUID" jdbcType="VARCHAR" property="weiboUuid" />
+    <result column="reply_USER_USERNAME" jdbcType="VARCHAR" property="userUsername" />
+    <result column="reply_USER_NICKNAME" jdbcType="VARCHAR" property="userNickname" />
+    <result column="reply_PUBLISHTIME" jdbcType="TIMESTAMP" property="publishtime" />
+    <result column="reply_CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="reply_DELETED" jdbcType="TINYINT" property="deleted" />
+    <result column="reply_REPLY_WHO" jdbcType="VARCHAR" property="replyWho" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    reply.UUID as reply_UUID, reply.WEIBO_UUID as reply_WEIBO_UUID, reply.USER_USERNAME as reply_USER_USERNAME, 
+    reply.USER_NICKNAME as reply_USER_NICKNAME, reply.PUBLISHTIME as reply_PUBLISHTIME, 
+    reply.CONTENT as reply_CONTENT, reply.DELETED as reply_DELETED, reply.REPLY_WHO as reply_REPLY_WHO
+  </sql>
+  <select id="selectByExample" parameterType="com.mxh.weibo.common.model.ReplyExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from weibo_reply reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from weibo_reply reply
+    where reply.UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_reply
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mxh.weibo.common.model.ReplyExample">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_reply reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mxh.weibo.common.model.Reply">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_reply (UUID, WEIBO_UUID, USER_USERNAME, 
+      USER_NICKNAME, PUBLISHTIME, CONTENT, 
+      DELETED, REPLY_WHO)
+    values (#{uuid,jdbcType=VARCHAR}, #{weiboUuid,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=TINYINT}, #{replyWho,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Reply">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_reply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="weiboUuid != null">
+        WEIBO_UUID,
+      </if>
+      <if test="userUsername != null">
+        USER_USERNAME,
+      </if>
+      <if test="userNickname != null">
+        USER_NICKNAME,
+      </if>
+      <if test="publishtime != null">
+        PUBLISHTIME,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="replyWho != null">
+        REPLY_WHO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboUuid != null">
+        #{weiboUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userUsername != null">
+        #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null">
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="replyWho != null">
+        #{replyWho,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mxh.weibo.common.model.ReplyExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from weibo_reply reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_reply reply
+    <set>
+      <if test="record.uuid != null">
+        reply.UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weiboUuid != null">
+        reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userUsername != null">
+        reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNickname != null">
+        reply.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishtime != null">
+        reply.PUBLISHTIME = #{record.publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null">
+        reply.CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        reply.DELETED = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.replyWho != null">
+        reply.REPLY_WHO = #{record.replyWho,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_reply reply
+    set reply.UUID = #{record.uuid,jdbcType=VARCHAR},
+      reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
+      reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
+      reply.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
+      reply.PUBLISHTIME = #{record.publishtime,jdbcType=TIMESTAMP},
+      reply.CONTENT = #{record.content,jdbcType=VARCHAR},
+      reply.DELETED = #{record.deleted,jdbcType=TINYINT},
+      reply.REPLY_WHO = #{record.replyWho,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mxh.weibo.common.model.Reply">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_reply
+    <set>
+      <if test="weiboUuid != null">
+        WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userUsername != null">
+        USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null">
+        PUBLISHTIME = #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="replyWho != null">
+        REPLY_WHO = #{replyWho,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mxh.weibo.common.model.Reply">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_reply
+    set WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
+      USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
+      USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      PUBLISHTIME = #{publishtime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=TINYINT},
+      REPLY_WHO = #{replyWho,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

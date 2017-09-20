@@ -22,6 +22,20 @@
 		name="maxInMemorySize" value="1000000"></property> 最大50M <property name="maxUploadSize" 
 		value="50000000"></property> </bean> -->
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.mxh.weibo.web.intercepter.DefaultInteceptor">
+				<property name="ignoreUrl">
+					<list>
+						<value>/user/login</value>
+						<value>/user/main.do</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<bean id="freeMarkerResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="contentType" value="text/html;charset=utf-8" />

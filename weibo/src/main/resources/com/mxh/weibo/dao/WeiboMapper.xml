@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mxh.weibo.dao.WeiboMapper">
+  <resultMap id="BaseResultMap" type="com.mxh.weibo.common.model.Weibo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="weibo_UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="weibo_USER_USERNAME" jdbcType="VARCHAR" property="userUsername" />
+    <result column="weibo_USER_NICKNAME" jdbcType="VARCHAR" property="userNickname" />
+    <result column="weibo_USER_HEADIMG" jdbcType="VARCHAR" property="userHeadimg" />
+    <result column="weibo_PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="weibo_CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="weibo_PRAISE" jdbcType="INTEGER" property="praise" />
+    <result column="weibo_LIKE" jdbcType="INTEGER" property="like" />
+    <result column="weibo_REPLY_UUID" jdbcType="VARCHAR" property="replyUuid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    weibo.UUID as weibo_UUID, weibo.USER_USERNAME as weibo_USER_USERNAME, weibo.USER_NICKNAME as weibo_USER_NICKNAME, 
+    weibo.USER_HEADIMG as weibo_USER_HEADIMG, weibo.PUBLISH_TIME as weibo_PUBLISH_TIME, 
+    weibo.CONTENT as weibo_CONTENT, weibo.PRAISE as weibo_PRAISE, weibo.LIKE as weibo_LIKE, 
+    weibo.REPLY_UUID as weibo_REPLY_UUID
+  </sql>
+  <select id="selectByExample" parameterType="com.mxh.weibo.common.model.WeiboExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from weibo_weibo weibo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from weibo_weibo weibo
+    where weibo.UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_weibo
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mxh.weibo.common.model.WeiboExample">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from weibo_weibo weibo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mxh.weibo.common.model.Weibo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_weibo (UUID, USER_USERNAME, USER_NICKNAME, 
+      USER_HEADIMG, PUBLISH_TIME, CONTENT, 
+      PRAISE, LIKE, REPLY_UUID
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
+      #{userHeadimg,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
+      #{praise,jdbcType=INTEGER}, #{like,jdbcType=INTEGER}, #{replyUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Weibo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into weibo_weibo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="userUsername != null">
+        USER_USERNAME,
+      </if>
+      <if test="userNickname != null">
+        USER_NICKNAME,
+      </if>
+      <if test="userHeadimg != null">
+        USER_HEADIMG,
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="praise != null">
+        PRAISE,
+      </if>
+      <if test="like != null">
+        LIKE,
+      </if>
+      <if test="replyUuid != null">
+        REPLY_UUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userUsername != null">
+        #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadimg != null">
+        #{userHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="praise != null">
+        #{praise,jdbcType=INTEGER},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=INTEGER},
+      </if>
+      <if test="replyUuid != null">
+        #{replyUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mxh.weibo.common.model.WeiboExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from weibo_weibo weibo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_weibo weibo
+    <set>
+      <if test="record.uuid != null">
+        weibo.UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userUsername != null">
+        weibo.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNickname != null">
+        weibo.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userHeadimg != null">
+        weibo.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTime != null">
+        weibo.PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null">
+        weibo.CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.praise != null">
+        weibo.PRAISE = #{record.praise,jdbcType=INTEGER},
+      </if>
+      <if test="record.like != null">
+        weibo.LIKE = #{record.like,jdbcType=INTEGER},
+      </if>
+      <if test="record.replyUuid != null">
+        weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_weibo weibo
+    set weibo.UUID = #{record.uuid,jdbcType=VARCHAR},
+      weibo.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
+      weibo.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
+      weibo.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
+      weibo.PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      weibo.CONTENT = #{record.content,jdbcType=VARCHAR},
+      weibo.PRAISE = #{record.praise,jdbcType=INTEGER},
+      weibo.LIKE = #{record.like,jdbcType=INTEGER},
+      weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mxh.weibo.common.model.Weibo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_weibo
+    <set>
+      <if test="userUsername != null">
+        USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadimg != null">
+        USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="praise != null">
+        PRAISE = #{praise,jdbcType=INTEGER},
+      </if>
+      <if test="like != null">
+        LIKE = #{like,jdbcType=INTEGER},
+      </if>
+      <if test="replyUuid != null">
+        REPLY_UUID = #{replyUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mxh.weibo.common.model.Weibo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update weibo_weibo
+    set USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
+      USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      PRAISE = #{praise,jdbcType=INTEGER},
+      LIKE = #{like,jdbcType=INTEGER},
+      REPLY_UUID = #{replyUuid,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

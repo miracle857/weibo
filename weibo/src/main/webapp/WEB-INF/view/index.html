@@ -71,7 +71,7 @@
             <div class="reply">
                 <div> <em class="spac3">发条weibo试试</em></div>
                 <div>
-                    <textarea name="" id="" cols="80" rows="5" style="margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
+                    <textarea name="" id="reply-content" cols="80" rows="5" style="margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
                 </div>
                 <div>
                     <button type="button" class="btn-reply">发布</button>
@@ -124,7 +124,7 @@
                     <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle" style="height: 40px;width: 40px;">
                 </div>
                 <div class="my-name" style="text-align: center;">
-                    <h5 style="font-weight: bold;">${user.nickname}</h5>
+                    <h5 style="font-weight: bold;" id="h5-nickname">${user.nickname}</h5>
                 </div>
                 <div class="my-fans">
                     <ul>

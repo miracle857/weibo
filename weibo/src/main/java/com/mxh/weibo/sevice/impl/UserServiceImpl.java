@@ -1,6 +1,7 @@
 package com.mxh.weibo.sevice.impl;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,9 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public User login(UserToken user) throws WeiboException {
+		if(StringUtils.isBlank(user.getUsername())){
+			throw new WeiboException("用户名不能为空");
+		}
 		User user2 = userMapper.selectByEmailOrUsername(null, user.getUsername());
 		if(user2 == null || !(user2.getPassword().equals(MD5.getMD5(user.getPassword())))){
 			throw new WeiboException("用户名或者密码错误");
