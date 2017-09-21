@@ -16,8 +16,9 @@ public interface IWeiboService {
 	/**
 	 * 发布weibo
 	 * @param weibo
+	 * @return 
 	 */
-	void publishWeibo(Weibo weibo);
+	Weibo publishWeibo(Weibo weibo);
 	
 	/**
 	 * 删除

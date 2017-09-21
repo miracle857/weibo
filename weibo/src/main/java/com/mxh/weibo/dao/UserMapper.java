@@ -76,4 +76,6 @@ public interface UserMapper {
 	User selectByEmailOrUsername(@Param("email") String email, @Param("username") String username);
 
 	int updateByUserName(User user);
+	
+	int updateByUsernameSelective(User user);
 }

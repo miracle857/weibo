@@ -41,11 +41,15 @@ $(".btn-reply").click(function() {
 
 	// 1.对textarea 判空
 	// 2.ajax给后台传数据
-	
+	var data = {};
+	data.userUsername=$("#s-username").val();
+	data.userNickname=name;
+	data.content=$("#reply-content").val();
 	$.ajax({
 		url : "",
 		type : "post",
-		data : "",
+		data : data.serialize(),
+		datatype : "json",
 		success : function(data){
 			
 		},
@@ -53,7 +57,6 @@ $(".btn-reply").click(function() {
 			
 		}
 	});
-	
 	// 3.日期处理，并展示内容
 	$("#container").prepend(body);
 	$("#test").show("slow");

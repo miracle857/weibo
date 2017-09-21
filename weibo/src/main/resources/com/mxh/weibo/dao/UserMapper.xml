@@ -405,4 +405,41 @@
       EMAIL = #{email,jdbcType=VARCHAR},
     where USERNAME = #{username,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateByUsernameSelective" parameterType="com.mxh.weibo.common.model.User">
+    update weibo_user
+    <set>
+      <if test="nickname != null">
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        COMMENT = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="headimg != null">
+        HEADIMG = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null">
+        WEIBO = #{weibo,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null">
+        FOLLOW = #{follow,jdbcType=INTEGER},
+      </if>
+      <if test="follower != null">
+        FOLLOWER = #{follower,jdbcType=INTEGER},
+      </if>
+    </set>
+    where USERNAME = #{username,jdbcType=VARCHAR}
+  </update>
 </mapper>

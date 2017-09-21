@@ -35,7 +35,6 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
 
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
-			System.out.println("1232232");
 			response.sendRedirect("/user/main.do");
 			return false;
 		}
