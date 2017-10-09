@@ -2,7 +2,7 @@ package com.mxh.weibo.web;
 
 import java.io.Serializable;
 
-public class BaseResponse<T> implements Serializable{
+public class BaseResponse<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +20,23 @@ public class BaseResponse<T> implements Serializable{
 	 * 返回内容
 	 */
 	private T body;
+
+	public BaseResponse() {
+		super();
+	}
+
+	public BaseResponse(boolean success, String message) {
+		super();
+		this.success = success;
+		this.message = message;
+	}
+
+	public BaseResponse(boolean success, String message, T body) {
+		super();
+		this.success = success;
+		this.message = message;
+		this.body = body;
+	}
 
 	public boolean isSuccess() {
 		return success;
@@ -44,6 +61,5 @@ public class BaseResponse<T> implements Serializable{
 	public void setBody(T body) {
 		this.body = body;
 	}
-	
-	
+
 }

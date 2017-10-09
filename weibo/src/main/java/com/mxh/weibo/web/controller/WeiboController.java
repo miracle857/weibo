@@ -21,8 +21,7 @@ public class WeiboController {
 	@RequestMapping("/publish")
 	@ResponseBody
 	public BaseResponse<Weibo> publishWeibo(Weibo weibo){
-		weiboService.publishWeibo(weibo);
-		return null;
+		return new BaseResponse<>(true,"发布成功",weiboService.publishWeibo(weibo));
 	}
 	
 	@RequestMapping("/list")

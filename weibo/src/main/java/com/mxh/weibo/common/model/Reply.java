@@ -4,223 +4,226 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Reply implements Serializable {
-    /**
-     * Column: weibo_reply.UUID
-     *
-     * @mbggenerated
-     */
-    private String uuid;
+	/**
+	 * Column: weibo_reply.UUID
+	 *
+	 * @mbggenerated
+	 */
+	private String uuid;
 
-    /**
-     * ∂‘”¶Œ¢≤©µƒUUID.
-     * Column: weibo_reply.WEIBO_UUID
-     *
-     * @mbggenerated
-     */
-    private String weiboUuid;
+	/**
+	 * ÂØπÂ∫îÂæÆÂçöÁöÑUUID. Column: weibo_reply.WEIBO_UUID
+	 *
+	 * @mbggenerated
+	 */
+	private String weiboUuid;
 
-    /**
-     * ”√ªß√˚.
-     * Column: weibo_reply.USER_USERNAME
-     *
-     * @mbggenerated
-     */
-    private String userUsername;
+	/**
+	 * Áî®Êà∑Âêç. Column: weibo_reply.USER_USERNAME
+	 *
+	 * @mbggenerated
+	 */
+	private String userUsername;
 
-    /**
-     * ”√ªßÍ«≥∆.
-     * Column: weibo_reply.USER_NICKNAME
-     *
-     * @mbggenerated
-     */
-    private String userNickname;
+	/**
+	 * Áî®Êà∑ÊòµÁß∞. Column: weibo_reply.USER_NICKNAME
+	 *
+	 * @mbggenerated
+	 */
+	private String userNickname;
 
-    /**
-     * ∑¢≤º ±º‰.
-     * Column: weibo_reply.PUBLISHTIME
-     *
-     * @mbggenerated
-     */
-    private Date publishtime;
+	/**
+	 * 
+	 * Column: weibo_reply.PUBLISHTIME
+	 *
+	 * @mbggenerated
+	 */
+	private Date publishtime;
 
-    /**
-     * ƒ⁄»›.
-     * Column: weibo_reply.CONTENT
-     *
-     * @mbggenerated
-     */
-    private String content;
+	/**
+	 * ÂÜÖÂÆπ. Column: weibo_reply.CONTENT
+	 *
+	 * @mbggenerated
+	 */
+	private String content;
 
-    /**
-     * Column: weibo_reply.DELETED
-     *
-     * @mbggenerated
-     */
-    private Byte deleted;
+	/**
+	 * Column: weibo_reply.DELETED
+	 *
+	 * @mbggenerated
+	 */
+	private Byte deleted;
 
-    /**
-     * ªÿ∏¥À≠.
-     * Column: weibo_reply.REPLY_WHO
-     *
-     * @mbggenerated
-     */
-    private String replyWho;
+	/**
+	 * Column: weibo_reply.REPLY_WHO
+	 *
+	 * @mbggenerated
+	 */
+	private String replyWho;
 
-    /**
-     *
-     * @mbggenerated
-     */
-    private static final long serialVersionUID = 1L;
+	/**
+	 *
+	 * @mbggenerated
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @return the value of weibo_reply.UUID
-     *
-     * @mbggenerated
-     */
-    public String getUuid() {
-        return uuid;
-    }
+	/**
+	 * @return the value of weibo_reply.UUID
+	 *
+	 * @mbggenerated
+	 */
+	public String getUuid() {
+		return uuid;
+	}
 
-    /**
-     *
-     * @param uuid the value for weibo_reply.UUID
-     *
-     * @mbggenerated
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+	/**
+	 *
+	 * @param uuid
+	 *            the value for weibo_reply.UUID
+	 *
+	 * @mbggenerated
+	 */
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 
-    /**
-     * @return the value of weibo_reply.WEIBO_UUID
-     *
-     * @mbggenerated
-     */
-    public String getWeiboUuid() {
-        return weiboUuid;
-    }
+	/**
+	 * @return the value of weibo_reply.WEIBO_UUID
+	 *
+	 * @mbggenerated
+	 */
+	public String getWeiboUuid() {
+		return weiboUuid;
+	}
 
-    /**
-     *
-     * @param weiboUuid the value for weibo_reply.WEIBO_UUID
-     *
-     * @mbggenerated
-     */
-    public void setWeiboUuid(String weiboUuid) {
-        this.weiboUuid = weiboUuid;
-    }
+	/**
+	 *
+	 * @param weiboUuid
+	 *            the value for weibo_reply.WEIBO_UUID
+	 *
+	 * @mbggenerated
+	 */
+	public void setWeiboUuid(String weiboUuid) {
+		this.weiboUuid = weiboUuid;
+	}
 
-    /**
-     * @return the value of weibo_reply.USER_USERNAME
-     *
-     * @mbggenerated
-     */
-    public String getUserUsername() {
-        return userUsername;
-    }
+	/**
+	 * @return the value of weibo_reply.USER_USERNAME
+	 *
+	 * @mbggenerated
+	 */
+	public String getUserUsername() {
+		return userUsername;
+	}
 
-    /**
-     *
-     * @param userUsername the value for weibo_reply.USER_USERNAME
-     *
-     * @mbggenerated
-     */
-    public void setUserUsername(String userUsername) {
-        this.userUsername = userUsername;
-    }
+	/**
+	 *
+	 * @param userUsername
+	 *            the value for weibo_reply.USER_USERNAME
+	 *
+	 * @mbggenerated
+	 */
+	public void setUserUsername(String userUsername) {
+		this.userUsername = userUsername;
+	}
 
-    /**
-     * @return the value of weibo_reply.USER_NICKNAME
-     *
-     * @mbggenerated
-     */
-    public String getUserNickname() {
-        return userNickname;
-    }
+	/**
+	 * @return the value of weibo_reply.USER_NICKNAME
+	 *
+	 * @mbggenerated
+	 */
+	public String getUserNickname() {
+		return userNickname;
+	}
 
-    /**
-     *
-     * @param userNickname the value for weibo_reply.USER_NICKNAME
-     *
-     * @mbggenerated
-     */
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
+	/**
+	 *
+	 * @param userNickname
+	 *            the value for weibo_reply.USER_NICKNAME
+	 *
+	 * @mbggenerated
+	 */
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 
-    /**
-     * @return the value of weibo_reply.PUBLISHTIME
-     *
-     * @mbggenerated
-     */
-    public Date getPublishtime() {
-        return publishtime;
-    }
+	/**
+	 * @return the value of weibo_reply.PUBLISHTIME
+	 *
+	 * @mbggenerated
+	 */
+	public Date getPublishtime() {
+		return publishtime;
+	}
 
-    /**
-     *
-     * @param publishtime the value for weibo_reply.PUBLISHTIME
-     *
-     * @mbggenerated
-     */
-    public void setPublishtime(Date publishtime) {
-        this.publishtime = publishtime;
-    }
+	/**
+	 *
+	 * @param publishtime
+	 *            the value for weibo_reply.PUBLISHTIME
+	 *
+	 * @mbggenerated
+	 */
+	public void setPublishtime(Date publishtime) {
+		this.publishtime = publishtime;
+	}
 
-    /**
-     * @return the value of weibo_reply.CONTENT
-     *
-     * @mbggenerated
-     */
-    public String getContent() {
-        return content;
-    }
+	/**
+	 * @return the value of weibo_reply.CONTENT
+	 *
+	 * @mbggenerated
+	 */
+	public String getContent() {
+		return content;
+	}
 
-    /**
-     *
-     * @param content the value for weibo_reply.CONTENT
-     *
-     * @mbggenerated
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
+	/**
+	 *
+	 * @param content
+	 *            the value for weibo_reply.CONTENT
+	 *
+	 * @mbggenerated
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    /**
-     * @return the value of weibo_reply.DELETED
-     *
-     * @mbggenerated
-     */
-    public Byte getDeleted() {
-        return deleted;
-    }
+	/**
+	 * @return the value of weibo_reply.DELETED
+	 *
+	 * @mbggenerated
+	 */
+	public Byte getDeleted() {
+		return deleted;
+	}
 
-    /**
-     *
-     * @param deleted the value for weibo_reply.DELETED
-     *
-     * @mbggenerated
-     */
-    public void setDeleted(Byte deleted) {
-        this.deleted = deleted;
-    }
+	/**
+	 *
+	 * @param deleted
+	 *            the value for weibo_reply.DELETED
+	 *
+	 * @mbggenerated
+	 */
+	public void setDeleted(Byte deleted) {
+		this.deleted = deleted;
+	}
 
-    /**
-     * @return the value of weibo_reply.REPLY_WHO
-     *
-     * @mbggenerated
-     */
-    public String getReplyWho() {
-        return replyWho;
-    }
+	/**
+	 * @return the value of weibo_reply.REPLY_WHO
+	 *
+	 * @mbggenerated
+	 */
+	public String getReplyWho() {
+		return replyWho;
+	}
 
-    /**
-     *
-     * @param replyWho the value for weibo_reply.REPLY_WHO
-     *
-     * @mbggenerated
-     */
-    public void setReplyWho(String replyWho) {
-        this.replyWho = replyWho;
-    }
+	/**
+	 *
+	 * @param replyWho
+	 *            the value for weibo_reply.REPLY_WHO
+	 *
+	 * @mbggenerated
+	 */
+	public void setReplyWho(String replyWho) {
+		this.replyWho = replyWho;
+	}
 }
