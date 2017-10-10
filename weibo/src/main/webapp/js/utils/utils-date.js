@@ -242,3 +242,72 @@ function StringToDate(DateStr) {
  }  
  return myDate;  
 }
+
+function FormatDateTime(strTime,format) {
+	var date = new Date(strTime);
+	
+	if (!format) {
+		format = "yyyy-MM-dd hh:mm:ss";
+	}
+	/*
+	 * eg:format="yyyy-MM-dd hh:mm:ss";
+	 */
+	var o = {
+		"M+" : date.getMonth() + 1, // month
+		"d+" : date.getDate(), // day
+		"h+" : date.getHours(), // hour
+		"m+" : date.getMinutes(), // minute
+		"s+" : date.getSeconds(), // second
+		"q+" : Math.floor((date.getMonth() + 3) / 3), // quarter;
+		"S" : date.getMilliseconds()
+	// millisecond
+	};
+
+	var week = {
+		"0" : "天",
+		"1" : "一",
+		"2" : "二",
+		"3" : "三",
+		"4" : "四",
+		"5" : "五",
+		"6" : "六"
+	};
+
+	if (/(y+)/.test(format)) {
+		format = format.replace(RegExp.$1, (date.getFullYear() + "")
+				.substr(4 - RegExp.$1.length));
+	}
+
+	if (/(E+)/.test(format)) {
+		format = format.replace(RegExp.$1,
+				((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "星期" : "周")
+						: "")
+						+ week[date.getDay() + ""]);
+	}
+
+	for ( var k in o) {
+		if (new RegExp("(" + k + ")").test(format)) {
+			format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k]
+					: ("00" + o[k]).substr(("" + o[k]).length));
+		}
+	}
+	return format.replace(Totay(),'今天').replace(Yesterday(),'昨天');
+}
+function Totay() {   
+	 var date = new Date();
+	 var year = date.getFullYear();
+	 var month = date.getMonth()+1;
+	 var day = date.getDate();
+	 if(day < 10)
+	 	day = "0"+day;
+	 return year+"-"+month+"-"+day;
+}
+function Yesterday() {   
+	 var date = new Date();
+	 var year = date.getFullYear();
+	 var month = date.getMonth()+1;
+	 var day = date.getDate()-1;
+	 if(day < 10)
+	 	day = "0"+day;
+	 return year+"-"+month+"-"+day;
+}
