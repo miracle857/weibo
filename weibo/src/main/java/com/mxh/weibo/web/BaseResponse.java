@@ -42,24 +42,27 @@ public class BaseResponse<T> implements Serializable {
 		return success;
 	}
 
-	public void setSuccess(boolean success) {
+	public BaseResponse<T> setSuccess(boolean success) {
 		this.success = success;
+		return this;
 	}
 
 	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public BaseResponse<T> setMessage(String message) {
 		this.message = message;
+		return this;
 	}
 
 	public T getBody() {
 		return body;
 	}
 
-	public void setBody(T body) {
+	public BaseResponse<T> setBody(T body) {
 		this.body = body;
+		return this;
 	}
 
 }

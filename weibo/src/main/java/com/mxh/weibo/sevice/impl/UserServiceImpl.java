@@ -34,6 +34,9 @@ public class UserServiceImpl implements IUserService {
 		// 整理数据，插入数据库
 		User user = new User();
 		PropertyUtils.copyProperties(user, userToken);
+		user.setWeibo(0);
+		user.setFollow(0);
+		user.setFollower(0);
 		user.setDeleted((byte) 0);
 		user.setStatus(DC.STATUS_NORMAL);
 		user.setPassword(MD5.getMD5(user.getPassword()));

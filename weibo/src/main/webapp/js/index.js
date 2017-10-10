@@ -46,18 +46,23 @@ $(".btn-reply").click(function() {
 	data.userNickname=name;
 	data.content=$("#reply-content").val();
 	$.ajax({
-		url : "",
+		url : "/w/publish.do",
 		type : "post",
-		data : data.serialize(),
+		data : {
+			userUsername:$("#s-username").val(),
+			userNickname:name,
+			content:$("#reply-content").val()
+		},
 		datatype : "json",
 		success : function(data){
-			
+			// 3.日期处理，并展示内容
+			console.log(data.body);
+			$("#container").prepend(body);
+			$("#test").show("slow");
 		},
 		error : function(){
 			
 		}
 	});
-	// 3.日期处理，并展示内容
-	$("#container").prepend(body);
-	$("#test").show("slow");
+	
 });

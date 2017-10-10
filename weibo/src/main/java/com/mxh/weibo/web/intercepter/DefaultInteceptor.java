@@ -35,7 +35,7 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
 
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
-			response.sendRedirect("/user/main.do");
+			response.sendRedirect("/main.do");
 			return false;
 		}
 		// request.setAttribute("Dict",

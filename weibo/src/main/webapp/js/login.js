@@ -28,7 +28,7 @@ $("#login-submit-btn").click(login);
 function login(){
 	
 	$.ajax({
-		url : "/user/login.do",
+		url : "/login.do",
 		type : 'post',
 		data : $('#login-form').serialize(),
 		dataType : 'json',
@@ -36,7 +36,7 @@ function login(){
 			if (data.success) {
 				layer.msg('登录成功！', {icon: 1});
 				setTimeout(function(){
-					window.location.href="/user/index.do";
+					window.location.href="/index.do";
 				},1000);
 			} else {
 				layer.msg(data.message, {icon: 5});
@@ -53,7 +53,7 @@ function register() {
 	//TODO  表单数据校验  1.密码长度  2.用户名长度  3.密码是否相同  4.邮箱是否格式正确
 	
 	$.ajax({
-		url : "/user/register.do",
+		url : "/register.do",
 		type : 'post',
 		data : $('#register-form').serialize(),
 		dataType : 'json',

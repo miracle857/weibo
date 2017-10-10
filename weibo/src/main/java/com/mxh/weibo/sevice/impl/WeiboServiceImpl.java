@@ -32,7 +32,7 @@ public class WeiboServiceImpl implements IWeiboService {
 	@Override
 	public Weibo publishWeibo(Weibo weibo) {
 		weibo.setUuid(UUIDUtils.getUUID());
-		weibo.setLike(0);
+		weibo.setLiked(0);
 		weibo.setPraise(0);
 		weibo.setPublishTime(new Date()); // 到时候传回前台会不会出问题？？？
 

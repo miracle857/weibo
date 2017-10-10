@@ -13,7 +13,7 @@
     <result column="weibo_PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="weibo_CONTENT" jdbcType="VARCHAR" property="content" />
     <result column="weibo_PRAISE" jdbcType="INTEGER" property="praise" />
-    <result column="weibo_LIKE" jdbcType="INTEGER" property="like" />
+    <result column="weibo_LIKED" jdbcType="INTEGER" property="liked" />
     <result column="weibo_REPLY_UUID" jdbcType="VARCHAR" property="replyUuid" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -89,7 +89,7 @@
     -->
     weibo.UUID as weibo_UUID, weibo.USER_USERNAME as weibo_USER_USERNAME, weibo.USER_NICKNAME as weibo_USER_NICKNAME, 
     weibo.USER_HEADIMG as weibo_USER_HEADIMG, weibo.PUBLISH_TIME as weibo_PUBLISH_TIME, 
-    weibo.CONTENT as weibo_CONTENT, weibo.PRAISE as weibo_PRAISE, weibo.LIKE as weibo_LIKE, 
+    weibo.CONTENT as weibo_CONTENT, weibo.PRAISE as weibo_PRAISE, weibo.LIKED as weibo_LIKED, 
     weibo.REPLY_UUID as weibo_REPLY_UUID
   </sql>
   <select id="selectByExample" parameterType="com.mxh.weibo.common.model.WeiboExample" resultMap="BaseResultMap">
@@ -145,11 +145,11 @@
     -->
     insert into weibo_weibo (UUID, USER_USERNAME, USER_NICKNAME, 
       USER_HEADIMG, PUBLISH_TIME, CONTENT, 
-      PRAISE, LIKE, REPLY_UUID
+      PRAISE, LIKED, REPLY_UUID
       )
     values (#{uuid,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
       #{userHeadimg,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
-      #{praise,jdbcType=INTEGER}, #{like,jdbcType=INTEGER}, #{replyUuid,jdbcType=VARCHAR}
+      #{praise,jdbcType=INTEGER}, #{liked,jdbcType=INTEGER}, #{replyUuid,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Weibo">
@@ -180,8 +180,8 @@
       <if test="praise != null">
         PRAISE,
       </if>
-      <if test="like != null">
-        LIKE,
+      <if test="liked != null">
+        LIKED,
       </if>
       <if test="replyUuid != null">
         REPLY_UUID,
@@ -209,8 +209,8 @@
       <if test="praise != null">
         #{praise,jdbcType=INTEGER},
       </if>
-      <if test="like != null">
-        #{like,jdbcType=INTEGER},
+      <if test="liked != null">
+        #{liked,jdbcType=INTEGER},
       </if>
       <if test="replyUuid != null">
         #{replyUuid,jdbcType=VARCHAR},
@@ -255,8 +255,8 @@
       <if test="record.praise != null">
         weibo.PRAISE = #{record.praise,jdbcType=INTEGER},
       </if>
-      <if test="record.like != null">
-        weibo.LIKE = #{record.like,jdbcType=INTEGER},
+      <if test="record.liked != null">
+        weibo.LIKED = #{record.liked,jdbcType=INTEGER},
       </if>
       <if test="record.replyUuid != null">
         weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR},
@@ -279,7 +279,7 @@
       weibo.PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
       weibo.CONTENT = #{record.content,jdbcType=VARCHAR},
       weibo.PRAISE = #{record.praise,jdbcType=INTEGER},
-      weibo.LIKE = #{record.like,jdbcType=INTEGER},
+      weibo.LIKED = #{record.liked,jdbcType=INTEGER},
       weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -310,8 +310,8 @@
       <if test="praise != null">
         PRAISE = #{praise,jdbcType=INTEGER},
       </if>
-      <if test="like != null">
-        LIKE = #{like,jdbcType=INTEGER},
+      <if test="liked != null">
+        LIKED = #{liked,jdbcType=INTEGER},
       </if>
       <if test="replyUuid != null">
         REPLY_UUID = #{replyUuid,jdbcType=VARCHAR},
@@ -331,7 +331,7 @@
       PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
       CONTENT = #{content,jdbcType=VARCHAR},
       PRAISE = #{praise,jdbcType=INTEGER},
-      LIKE = #{like,jdbcType=INTEGER},
+      LIKED = #{liked,jdbcType=INTEGER},
       REPLY_UUID = #{replyUuid,jdbcType=VARCHAR}
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>

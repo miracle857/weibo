@@ -18,7 +18,6 @@ import com.mxh.weibo.sevice.IUserService;
 import com.mxh.weibo.web.BaseResponse;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
@@ -26,7 +25,7 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 	
-	@RequestMapping("/main")
+	@RequestMapping({"/main",""})
 	public String toLogin(){
 		return "login";
 	}

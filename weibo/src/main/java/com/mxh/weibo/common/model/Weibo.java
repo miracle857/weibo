@@ -4,78 +4,59 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Weibo implements Serializable {
+
 	/**
 	 * Column: weibo_weibo.UUID
-	 *
 	 * @mbggenerated
 	 */
 	private String uuid;
-
 	/**
-	 * 发布人的username. Column: weibo_weibo.USER_USERNAME
-	 *
+	 * �û���. Column: weibo_weibo.USER_USERNAME
 	 * @mbggenerated
 	 */
 	private String userUsername;
-
 	/**
-	 * 发布人的昵称. Column: weibo_weibo.USER_NICKNAME
-	 *
+	 * �û��ǳ�. Column: weibo_weibo.USER_NICKNAME
 	 * @mbggenerated
 	 */
 	private String userNickname;
-
 	/**
-	 * 头像. Column: weibo_weibo.USER_HEADIMG
-	 *
+	 * �û�ͷ��. Column: weibo_weibo.USER_HEADIMG
 	 * @mbggenerated
 	 */
 	private String userHeadimg;
-
 	/**
-	 * 发布时间. Column: weibo_weibo.PUBLISH_TIME
-	 *
+	 * ����ʱ��. Column: weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
 	 */
 	private Date publishTime;
-
 	/**
-	 * 内容. Column: weibo_weibo.CONTENT
-	 *
+	 * ����. Column: weibo_weibo.CONTENT
 	 * @mbggenerated
 	 */
 	private String content;
-
 	/**
-	 * 收藏. Column: weibo_weibo.PRAISE
-	 *
+	 * ��. Column: weibo_weibo.PRAISE
 	 * @mbggenerated
 	 */
 	private Integer praise;
-
 	/**
-	 * 喜欢. Column: weibo_weibo.LIKE
-	 *
+	 * �ղ�. Column: weibo_weibo.LIKED
 	 * @mbggenerated
 	 */
-	private Integer like;
-
+	private Integer liked;
 	/**
-	 * Column: weibo_weibo.REPLY_UUID
-	 *
+	 * �ظ�UUID. Column: weibo_weibo.REPLY_UUID
 	 * @mbggenerated
 	 */
 	private String replyUuid;
-
 	/**
-	 *
 	 * @mbggenerated
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @return the value of weibo_weibo.UUID
-	 *
+	 * @return  the value of weibo_weibo.UUID
 	 * @mbggenerated
 	 */
 	public String getUuid() {
@@ -83,10 +64,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param uuid
-	 *            the value for weibo_weibo.UUID
-	 *
+	 * @param uuid  the value for weibo_weibo.UUID
 	 * @mbggenerated
 	 */
 	public void setUuid(String uuid) {
@@ -94,8 +72,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.USER_USERNAME
-	 *
+	 * @return  the value of weibo_weibo.USER_USERNAME
 	 * @mbggenerated
 	 */
 	public String getUserUsername() {
@@ -103,10 +80,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param userUsername
-	 *            the value for weibo_weibo.USER_USERNAME
-	 *
+	 * @param userUsername  the value for weibo_weibo.USER_USERNAME
 	 * @mbggenerated
 	 */
 	public void setUserUsername(String userUsername) {
@@ -114,8 +88,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.USER_NICKNAME
-	 *
+	 * @return  the value of weibo_weibo.USER_NICKNAME
 	 * @mbggenerated
 	 */
 	public String getUserNickname() {
@@ -123,10 +96,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param userNickname
-	 *            the value for weibo_weibo.USER_NICKNAME
-	 *
+	 * @param userNickname  the value for weibo_weibo.USER_NICKNAME
 	 * @mbggenerated
 	 */
 	public void setUserNickname(String userNickname) {
@@ -134,8 +104,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.USER_HEADIMG
-	 *
+	 * @return  the value of weibo_weibo.USER_HEADIMG
 	 * @mbggenerated
 	 */
 	public String getUserHeadimg() {
@@ -143,10 +112,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param userHeadimg
-	 *            the value for weibo_weibo.USER_HEADIMG
-	 *
+	 * @param userHeadimg  the value for weibo_weibo.USER_HEADIMG
 	 * @mbggenerated
 	 */
 	public void setUserHeadimg(String userHeadimg) {
@@ -154,8 +120,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.PUBLISH_TIME
-	 *
+	 * @return  the value of weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
 	 */
 	public Date getPublishTime() {
@@ -163,10 +128,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param publishTime
-	 *            the value for weibo_weibo.PUBLISH_TIME
-	 *
+	 * @param publishTime  the value for weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
 	 */
 	public void setPublishTime(Date publishTime) {
@@ -174,8 +136,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.CONTENT
-	 *
+	 * @return  the value of weibo_weibo.CONTENT
 	 * @mbggenerated
 	 */
 	public String getContent() {
@@ -183,10 +144,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param content
-	 *            the value for weibo_weibo.CONTENT
-	 *
+	 * @param content  the value for weibo_weibo.CONTENT
 	 * @mbggenerated
 	 */
 	public void setContent(String content) {
@@ -194,8 +152,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.PRAISE
-	 *
+	 * @return  the value of weibo_weibo.PRAISE
 	 * @mbggenerated
 	 */
 	public Integer getPraise() {
@@ -203,10 +160,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param praise
-	 *            the value for weibo_weibo.PRAISE
-	 *
+	 * @param praise  the value for weibo_weibo.PRAISE
 	 * @mbggenerated
 	 */
 	public void setPraise(Integer praise) {
@@ -214,28 +168,23 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return the value of weibo_weibo.LIKE
-	 *
+	 * @return  the value of weibo_weibo.LIKED
 	 * @mbggenerated
 	 */
-	public Integer getLike() {
-		return like;
+	public Integer getLiked() {
+		return liked;
 	}
 
 	/**
-	 *
-	 * @param like
-	 *            the value for weibo_weibo.LIKE
-	 *
+	 * @param liked  the value for weibo_weibo.LIKED
 	 * @mbggenerated
 	 */
-	public void setLike(Integer like) {
-		this.like = like;
+	public void setLiked(Integer liked) {
+		this.liked = liked;
 	}
 
 	/**
-	 * @return the value of weibo_weibo.REPLY_UUID
-	 *
+	 * @return  the value of weibo_weibo.REPLY_UUID
 	 * @mbggenerated
 	 */
 	public String getReplyUuid() {
@@ -243,10 +192,7 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 *
-	 * @param replyUuid
-	 *            the value for weibo_weibo.REPLY_UUID
-	 *
+	 * @param replyUuid  the value for weibo_weibo.REPLY_UUID
 	 * @mbggenerated
 	 */
 	public void setReplyUuid(String replyUuid) {

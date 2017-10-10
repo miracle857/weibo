@@ -28,8 +28,8 @@
 			<bean class="com.mxh.weibo.web.intercepter.DefaultInteceptor">
 				<property name="ignoreUrl">
 					<list>
-						<value>/user/login</value>
-						<value>/user/main.do</value>
+						<value>/login</value>
+						<value>/main.do</value>
 					</list>
 				</property>
 			</bean>
