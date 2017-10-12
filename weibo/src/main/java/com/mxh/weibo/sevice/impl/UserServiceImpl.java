@@ -43,16 +43,15 @@ public class UserServiceImpl implements IUserService {
 		userMapper.insertSelective(user);
 	}
 
-	public User login(UserToken user) throws WeiboException {
-		if(StringUtils.isBlank(user.getUsername())){
+	public User login(UserToken userToken) throws WeiboException {
+		if(StringUtils.isBlank(userToken.getUsername())){
 			throw new WeiboException("用户名不能为空");
 		}
-		User user2 = userMapper.selectByEmailOrUsername(null, user.getUsername());
-		if(user2 == null || !(user2.getPassword().equals(MD5.getMD5(user.getPassword())))){
+		User user = userMapper.selectByEmailOrUsername(null, userToken.getUsername());
+		if(user == null || !(user.getPassword().equals(MD5.getMD5(userToken.getPassword())))){
 			throw new WeiboException("用户名或者密码错误");
 		}
-		return user2;
-
+		return user;
 	}
 
 	public void findPassword(User user) throws Exception {

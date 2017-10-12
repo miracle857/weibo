@@ -1,8 +1,12 @@
 package com.mxh.weibo.web.controller;
 
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +30,15 @@ public class UserController {
 	IUserService userService;
 	
 	@RequestMapping({"/main",""})
-	public String toLogin(){
+	public String toLogin(HttpServletRequest  request){
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if("user".equals(cookie.getName())){
+				request.setAttribute("user", cookie.getValue());
+			}else if("pwd".equals(cookie.getName())){
+				request.setAttribute("pwd", cookie.getValue());
+			}
+		}
 		return "login";
 	}
 	
@@ -37,11 +49,21 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public BaseResponse<User> login(UserToken user,Model model,HttpSession session){
+	public BaseResponse<User> login(UserToken user,HttpServletRequest  request,HttpServletResponse response){
 		BaseResponse<User> res = new BaseResponse<>();
 		try {
 			User login = userService.login(user);
-			session.setAttribute("user", login);
+			if(StringUtils.isNotBlank(user.getRememberMe())){
+				Cookie userCookie = new Cookie("user", user.getUsername());
+				Cookie pwdCookie = new Cookie("pwd", user.getPassword());
+				userCookie.setMaxAge(60*60*24*15); // 15天
+				pwdCookie.setMaxAge(60*60*24*15);
+				userCookie.setSecure(true); //只在https下有效
+				pwdCookie.setSecure(true);
+				response.addCookie(userCookie);
+				response.addCookie(pwdCookie);
+			}
+			request.getSession().setAttribute("user", login);
 			res.setBody(login);
 			res.setSuccess(true);
 		} catch (WeiboException e) {

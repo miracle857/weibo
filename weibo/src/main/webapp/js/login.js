@@ -6,6 +6,14 @@ $(function() {
 	$("input[name!='remember']").blur(function() {
 		$(this).css("border", "1px solid #E5E5E5");
 	});
+	
+	var username = "${user}";
+	var pwd = "${pwd}";
+	if(username != null && pwd != null){
+		$("input[name=username]").val(username);
+		$("input[name=password]").val(pwd);
+	}
+	
 });
 
 function toForgetPassword() {
