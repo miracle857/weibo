@@ -9,7 +9,7 @@
 	<link href="${ctx}/css/login.css" rel="stylesheet" /> 
 
 	<!-- jquery -->
-	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="${ctx}/3rd/jquery/jquery3.2.1.js"></script>
 
 </head>
 <body class="login">
@@ -44,7 +44,7 @@
 			</div>
 			<div class="form-actions">
 				<label class="checkbox">
-				<input type="checkbox" name="remember" value="1"/> 记住密码
+				<input type="checkbox" name="rememberMe" value="1" id="remeberMe"/> 记住密码
 				</label>
 				<button type="button" class="btn_1 green pull-right" id="login-submit-btn">
 				登录 <i class="fa fa-arrow-circle-right"></i>
@@ -155,5 +155,15 @@
 	</div>
 	<script src="${ctx}/3rd/layer-v3.1.0/layer.js"></script>
 	<script src="${ctx}/js/login.js"></script>
+	<script>
+	<#if username??>
+		var username = "${username}";
+		var pwd = "${pwd}";
+		if(username != null && pwd != null){
+			$("input[name=username]").val(username);
+			$("input[name=password]").val(pwd);
+		}
+	</#if>
+	</script>
 	</body>
 </html>

@@ -7,13 +7,6 @@ $(function() {
 		$(this).css("border", "1px solid #E5E5E5");
 	});
 	
-	var username = "${user}";
-	var pwd = "${pwd}";
-	if(username != null && pwd != null){
-		$("input[name=username]").val(username);
-		$("input[name=password]").val(pwd);
-	}
-	
 });
 
 function toForgetPassword() {
@@ -42,10 +35,14 @@ function login(){
 		dataType : 'json',
 		success : function(data) {
 			if (data.success) {
+				if($("#remeberMe").prop('checked')){
+					setCookie("username",$("input[name=username]").val(),30);
+					setCookie("pwd",$("input[name=password]").val(),30);
+				}
 				layer.msg('登录成功！', {icon: 1});
 				setTimeout(function(){
 					window.location.href="/index.do";
-				},1000);
+				},750);
 			} else {
 				layer.msg(data.message, {icon: 5});
 			}
@@ -85,3 +82,10 @@ function register() {
 
 $(".back-btn").click(backToLogin);
 $("#register-submit-btn").click(register);
+
+function setCookie(c_name,value,expiredays){
+	var exdate=new Date()
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+
+	((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}

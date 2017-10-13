@@ -53,7 +53,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		return user;
 	}
-
 	public void findPassword(User user) throws Exception {
 		User selectByEmailOrUsername = userMapper.selectByEmailOrUsername(user.getEmail(), user.getUsername());
 		if (selectByEmailOrUsername != null) {
@@ -67,6 +66,9 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public void chickUserNameExist(String username) throws WeiboException {
+		if(StringUtils.isBlank(username)){
+			throw new WeiboException("用户名不能为空");
+		}
 		User user = userMapper.selectByEmailOrUsername(null, username);
 		if (user != null) {
 			throw new WeiboException("用户名存在");
@@ -74,6 +76,9 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public void chickEmailExist(String email) throws WeiboException {
+		if(StringUtils.isBlank(email)){
+			throw new WeiboException("邮箱不能为空");
+		}
 		User user = userMapper.selectByEmailOrUsername(email, null);
 		if (user != null) {
 			throw new WeiboException("该邮箱已经被注册");
