@@ -2,6 +2,8 @@ package com.mxh.weibo.sevice;
 
 import java.util.List;
 
+import com.mxh.weibo.common.PaginatedList;
+import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
 
 public interface IWeiboService {
@@ -11,7 +13,7 @@ public interface IWeiboService {
 	 * @param weibo
 	 * @return
 	 */
-	List<Weibo> listWeibo(Weibo weibo);
+	PaginatedList<Weibo> listWeibo(WeiboCriteria criteria);
 	
 	/**
 	 * 发布weibo

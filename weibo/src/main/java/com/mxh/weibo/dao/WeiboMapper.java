@@ -1,5 +1,6 @@
 package com.mxh.weibo.dao;
 
+import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.model.WeiboExample;
 import java.util.List;
@@ -72,4 +73,8 @@ public interface WeiboMapper {
 	 * @mbggenerated
 	 */
 	int updateByPrimaryKey(Weibo record);
+
+	List<Weibo> selectByWeiboCriteria(WeiboCriteria criteria);
+
+	int countByWeiboCriteria(WeiboCriteria criteria);
 }

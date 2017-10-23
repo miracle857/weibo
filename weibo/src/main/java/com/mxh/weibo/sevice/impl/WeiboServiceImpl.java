@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mxh.weibo.common.exception.WeiboException;
+import com.mxh.weibo.common.PaginatedList;
+import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.util.UUIDUtils;
@@ -24,9 +25,15 @@ public class WeiboServiceImpl implements IWeiboService {
 	public UserMapper userMapper;
 
 	@Override
-	public List<Weibo> listWeibo(Weibo weibo) {
-		// TODO 一次展示几条？ 分页? 还是不分页自动加载？
-		return null;
+	public PaginatedList<Weibo> listWeibo(WeiboCriteria criteria) {
+		int total = weiboMapper.countByWeiboCriteria(criteria);
+		criteria.setTotal(total); // 计算数量，得出分页信息
+		
+		List<Weibo> list = weiboMapper.selectByWeiboCriteria(criteria);
+		PaginatedList<Weibo> result = new PaginatedList<>();
+		result.setResult(list);
+		result.setPagination(criteria);
+		return result;
 	}
 
 	@Override
@@ -39,7 +46,6 @@ public class WeiboServiceImpl implements IWeiboService {
 		User user = userMapper.selectByEmailOrUsername(null, weibo.getUserUsername());
 		user.setWeibo(user.getWeibo() + 1);
 
-		// FIXME 要不要捕捉一些未知的异常....又感觉不可能会出现异常...
 		weiboMapper.insertSelective(weibo);
 		userMapper.updateByPrimaryKeySelective(user);
 

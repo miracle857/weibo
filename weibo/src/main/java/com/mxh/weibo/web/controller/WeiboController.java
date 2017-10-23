@@ -7,9 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mxh.weibo.common.PaginatedList;
+import com.mxh.weibo.common.Pagination;
+import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.sevice.IWeiboService;
 import com.mxh.weibo.web.BaseResponse;
+import com.mxh.weibo.web.response.ResponsePageVo;
 
 @Controller
 @RequestMapping("/w")
@@ -26,7 +30,16 @@ public class WeiboController {
 	
 	@RequestMapping("/list")
 	@ResponseBody
-	public BaseResponse<List<Weibo>> listWeibo(){
-		return null;
+	public ResponsePageVo listWeibo(WeiboCriteria criteria){
+		PaginatedList<Weibo> paginatedList = weiboService.listWeibo(criteria);
+		Pagination pagination = paginatedList.getPagination();
+		List<Weibo> result = paginatedList.getResult();
+		ResponsePageVo response = new ResponsePageVo();
+		response.setRows(result);
+		response.setPage(pagination.getPage());
+		response.setTotal(pagination.getTotal());
+		response.setPageCount(pagination.getTotalPage());
+		response.setPageSize(pagination.getPagesize());
+		return response;
 	}
 }

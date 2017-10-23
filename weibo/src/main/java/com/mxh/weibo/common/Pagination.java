@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 分页信息 
+ */
 public class Pagination implements Serializable {
 
 	private static final long serialVersionUID = 3717895025579044361L;

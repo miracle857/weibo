@@ -335,4 +335,28 @@
       REPLY_UUID = #{replyUuid,jdbcType=VARCHAR}
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectByWeiboCriteria" parameterType="com.mxh.weibo.common.dto.criteria.WeiboCriteria" resultMap="BaseResultMap">
+	 select
+	   <include refid="Base_Column_List" />
+	 from weibo_weibo weibo
+	 where 1=1 
+	 <if test="userUsername != null and '' != userUsername">
+	 	and weibo.USER_USERNAME = #{userUsername,jdbcType=VARCHAR}
+	 </if>
+	 order by weibo.PUBLISH_TIME desc
+	 <if test="pagesize &gt; 0 ">
+	   limit #{offset}, #{pagesize}
+	</if>
+  </select>
+  
+  <select id="countByWeiboCriteria" parameterType="com.mxh.weibo.common.dto.criteria.WeiboCriteria" resultType="java.lang.Integer">
+  	select
+	   count(0)
+	 from weibo_weibo weibo
+	 where 1=1 
+	 <if test="userUsername != null and '' != userUsername">
+	 	and weibo.USER_USERNAME = #{userUsername,jdbcType=VARCHAR}
+	 </if>
+  </select>
 </mapper>
