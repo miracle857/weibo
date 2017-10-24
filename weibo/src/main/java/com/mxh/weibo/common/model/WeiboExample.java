@@ -759,6 +759,66 @@ public class WeiboExample {
 			addCriterion("weibo.REPLY_UUID not between", value1, value2, "replyUuid");
 			return (Criteria) this;
 		}
+
+		public Criteria andDeletedIsNull() {
+			addCriterion("weibo.DELETED is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedIsNotNull() {
+			addCriterion("weibo.DELETED is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedEqualTo(Byte value) {
+			addCriterion("weibo.DELETED =", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedNotEqualTo(Byte value) {
+			addCriterion("weibo.DELETED <>", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedGreaterThan(Byte value) {
+			addCriterion("weibo.DELETED >", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedGreaterThanOrEqualTo(Byte value) {
+			addCriterion("weibo.DELETED >=", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedLessThan(Byte value) {
+			addCriterion("weibo.DELETED <", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedLessThanOrEqualTo(Byte value) {
+			addCriterion("weibo.DELETED <=", value, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedIn(List<Byte> values) {
+			addCriterion("weibo.DELETED in", values, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedNotIn(List<Byte> values) {
+			addCriterion("weibo.DELETED not in", values, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedBetween(Byte value1, Byte value2) {
+			addCriterion("weibo.DELETED between", value1, value2, "deleted");
+			return (Criteria) this;
+		}
+
+		public Criteria andDeletedNotBetween(Byte value1, Byte value2) {
+			addCriterion("weibo.DELETED not between", value1, value2, "deleted");
+			return (Criteria) this;
+		}
 	}
 
 	/**

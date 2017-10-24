@@ -15,6 +15,7 @@
     <result column="weibo_PRAISE" jdbcType="INTEGER" property="praise" />
     <result column="weibo_LIKED" jdbcType="INTEGER" property="liked" />
     <result column="weibo_REPLY_UUID" jdbcType="VARCHAR" property="replyUuid" />
+    <result column="weibo_DELETED" jdbcType="TINYINT" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -90,7 +91,7 @@
     weibo.UUID as weibo_UUID, weibo.USER_USERNAME as weibo_USER_USERNAME, weibo.USER_NICKNAME as weibo_USER_NICKNAME, 
     weibo.USER_HEADIMG as weibo_USER_HEADIMG, weibo.PUBLISH_TIME as weibo_PUBLISH_TIME, 
     weibo.CONTENT as weibo_CONTENT, weibo.PRAISE as weibo_PRAISE, weibo.LIKED as weibo_LIKED, 
-    weibo.REPLY_UUID as weibo_REPLY_UUID
+    weibo.REPLY_UUID as weibo_REPLY_UUID, weibo.DELETED as weibo_DELETED
   </sql>
   <select id="selectByExample" parameterType="com.mxh.weibo.common.model.WeiboExample" resultMap="BaseResultMap">
     <!--
@@ -145,12 +146,12 @@
     -->
     insert into weibo_weibo (UUID, USER_USERNAME, USER_NICKNAME, 
       USER_HEADIMG, PUBLISH_TIME, CONTENT, 
-      PRAISE, LIKED, REPLY_UUID
-      )
+      PRAISE, LIKED, REPLY_UUID, 
+      DELETED)
     values (#{uuid,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
       #{userHeadimg,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
-      #{praise,jdbcType=INTEGER}, #{liked,jdbcType=INTEGER}, #{replyUuid,jdbcType=VARCHAR}
-      )
+      #{praise,jdbcType=INTEGER}, #{liked,jdbcType=INTEGER}, #{replyUuid,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Weibo">
     <!--
@@ -186,6 +187,9 @@
       <if test="replyUuid != null">
         REPLY_UUID,
       </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uuid != null">
@@ -214,6 +218,9 @@
       </if>
       <if test="replyUuid != null">
         #{replyUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -261,6 +268,9 @@
       <if test="record.replyUuid != null">
         weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR},
       </if>
+      <if test="record.deleted != null">
+        weibo.DELETED = #{record.deleted,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -280,7 +290,8 @@
       weibo.CONTENT = #{record.content,jdbcType=VARCHAR},
       weibo.PRAISE = #{record.praise,jdbcType=INTEGER},
       weibo.LIKED = #{record.liked,jdbcType=INTEGER},
-      weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR}
+      weibo.REPLY_UUID = #{record.replyUuid,jdbcType=VARCHAR},
+      weibo.DELETED = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +327,9 @@
       <if test="replyUuid != null">
         REPLY_UUID = #{replyUuid,jdbcType=VARCHAR},
       </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
     </set>
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
@@ -332,7 +346,8 @@
       CONTENT = #{content,jdbcType=VARCHAR},
       PRAISE = #{praise,jdbcType=INTEGER},
       LIKED = #{liked,jdbcType=INTEGER},
-      REPLY_UUID = #{replyUuid,jdbcType=VARCHAR}
+      REPLY_UUID = #{replyUuid,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=TINYINT}
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
   

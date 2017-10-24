@@ -11,45 +11,50 @@ public class Weibo implements Serializable {
 	 */
 	private String uuid;
 	/**
-	 * ï¿½Ã»ï¿½ï¿½ï¿½. Column: weibo_weibo.USER_USERNAME
+	 * ÓÃ»§Ãû. Column: weibo_weibo.USER_USERNAME
 	 * @mbggenerated
 	 */
 	private String userUsername;
 	/**
-	 * ï¿½Ã»ï¿½ï¿½Ç³ï¿½. Column: weibo_weibo.USER_NICKNAME
+	 * ÓÃ»§êÇ³Æ. Column: weibo_weibo.USER_NICKNAME
 	 * @mbggenerated
 	 */
 	private String userNickname;
 	/**
-	 * ï¿½Ã»ï¿½Í·ï¿½ï¿½. Column: weibo_weibo.USER_HEADIMG
+	 * ÓÃ»§Í·Ïñ. Column: weibo_weibo.USER_HEADIMG
 	 * @mbggenerated
 	 */
 	private String userHeadimg;
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½. Column: weibo_weibo.PUBLISH_TIME
+	 * ·¢²¼Ê±¼ä. Column: weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
 	 */
 	private Date publishTime;
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½. Column: weibo_weibo.CONTENT
+	 * ÄÚÈÝ. Column: weibo_weibo.CONTENT
 	 * @mbggenerated
 	 */
 	private String content;
 	/**
-	 * ï¿½ï¿½. Column: weibo_weibo.PRAISE
+	 * ÔÞ. Column: weibo_weibo.PRAISE
 	 * @mbggenerated
 	 */
 	private Integer praise;
 	/**
-	 * ï¿½Õ²ï¿½. Column: weibo_weibo.LIKED
+	 * ÊÕ²Ø. Column: weibo_weibo.LIKED
 	 * @mbggenerated
 	 */
 	private Integer liked;
 	/**
-	 * ï¿½Ø¸ï¿½UUID. Column: weibo_weibo.REPLY_UUID
+	 * »Ø¸´UUID. Column: weibo_weibo.REPLY_UUID
 	 * @mbggenerated
 	 */
 	private String replyUuid;
+	/**
+	 * Column: weibo_weibo.DELETED
+	 * @mbggenerated
+	 */
+	private Byte deleted;
 	/**
 	 * @mbggenerated
 	 */
@@ -197,5 +202,21 @@ public class Weibo implements Serializable {
 	 */
 	public void setReplyUuid(String replyUuid) {
 		this.replyUuid = replyUuid;
+	}
+
+	/**
+	 * @return  the value of weibo_weibo.DELETED
+	 * @mbggenerated
+	 */
+	public Byte getDeleted() {
+		return deleted;
+	}
+
+	/**
+	 * @param deleted  the value for weibo_weibo.DELETED
+	 * @mbggenerated
+	 */
+	public void setDeleted(Byte deleted) {
+		this.deleted = deleted;
 	}
 }
