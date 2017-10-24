@@ -11,42 +11,42 @@ public class Weibo implements Serializable {
 	 */
 	private String uuid;
 	/**
-	 * ÓÃ»§Ãû. Column: weibo_weibo.USER_USERNAME
+	 * ç”¨æˆ·å. Column: weibo_weibo.USER_USERNAME
 	 * @mbggenerated
 	 */
 	private String userUsername;
 	/**
-	 * ÓÃ»§êÇ³Æ. Column: weibo_weibo.USER_NICKNAME
+	 * ç”¨æˆ·æ˜µç§°. Column: weibo_weibo.USER_NICKNAME
 	 * @mbggenerated
 	 */
 	private String userNickname;
 	/**
-	 * ÓÃ»§Í·Ïñ. Column: weibo_weibo.USER_HEADIMG
+	 * ç”¨æˆ·å¤´åƒ. Column: weibo_weibo.USER_HEADIMG
 	 * @mbggenerated
 	 */
 	private String userHeadimg;
 	/**
-	 * ·¢²¼Ê±¼ä. Column: weibo_weibo.PUBLISH_TIME
+	 * å‘å¸ƒæ—¶é—´. Column: weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
 	 */
 	private Date publishTime;
 	/**
-	 * ÄÚÈİ. Column: weibo_weibo.CONTENT
+	 * å†…å®¹. Column: weibo_weibo.CONTENT
 	 * @mbggenerated
 	 */
 	private String content;
 	/**
-	 * ÔŞ. Column: weibo_weibo.PRAISE
+	 * èµ. Column: weibo_weibo.PRAISE
 	 * @mbggenerated
 	 */
 	private Integer praise;
 	/**
-	 * ÊÕ²Ø. Column: weibo_weibo.LIKED
+	 * æ”¶è—. Column: weibo_weibo.LIKED
 	 * @mbggenerated
 	 */
 	private Integer liked;
 	/**
-	 * »Ø¸´UUID. Column: weibo_weibo.REPLY_UUID
+	 * å›å¤UUID. Column: weibo_weibo.REPLY_UUID
 	 * @mbggenerated
 	 */
 	private String replyUuid;

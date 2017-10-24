@@ -4,72 +4,62 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Reply implements Serializable {
+
 	/**
 	 * Column: weibo_reply.UUID
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private String uuid;
-
 	/**
 	 * 对应微博的UUID. Column: weibo_reply.WEIBO_UUID
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private String weiboUuid;
-
 	/**
 	 * 用户名. Column: weibo_reply.USER_USERNAME
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private String userUsername;
-
 	/**
 	 * 用户昵称. Column: weibo_reply.USER_NICKNAME
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private String userNickname;
-
 	/**
+	 * 发布时间. Column: weibo_reply.PUBLISHTIME
 	 * 
-	 * Column: weibo_reply.PUBLISHTIME
-	 *
 	 * @mbggenerated
 	 */
 	private Date publishtime;
-
 	/**
 	 * 内容. Column: weibo_reply.CONTENT
 	 *
 	 * @mbggenerated
 	 */
 	private String content;
-
 	/**
 	 * Column: weibo_reply.DELETED
 	 *
 	 * @mbggenerated
 	 */
 	private Byte deleted;
-
 	/**
-	 * Column: weibo_reply.REPLY_WHO
-	 *
+	 * 回复谁. Column: weibo_reply.REPLY_WHO
+	 * 
 	 * @mbggenerated
 	 */
 	private String replyWho;
-
 	/**
-	 *
 	 * @mbggenerated
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @return the value of weibo_reply.UUID
-	 *
 	 * @mbggenerated
 	 */
 	public String getUuid() {
@@ -77,10 +67,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param uuid
 	 *            the value for weibo_reply.UUID
-	 *
 	 * @mbggenerated
 	 */
 	public void setUuid(String uuid) {
@@ -89,7 +77,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.WEIBO_UUID
-	 *
 	 * @mbggenerated
 	 */
 	public String getWeiboUuid() {
@@ -97,10 +84,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param weiboUuid
 	 *            the value for weibo_reply.WEIBO_UUID
-	 *
 	 * @mbggenerated
 	 */
 	public void setWeiboUuid(String weiboUuid) {
@@ -109,7 +94,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.USER_USERNAME
-	 *
 	 * @mbggenerated
 	 */
 	public String getUserUsername() {
@@ -117,10 +101,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param userUsername
 	 *            the value for weibo_reply.USER_USERNAME
-	 *
 	 * @mbggenerated
 	 */
 	public void setUserUsername(String userUsername) {
@@ -129,7 +111,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.USER_NICKNAME
-	 *
 	 * @mbggenerated
 	 */
 	public String getUserNickname() {
@@ -137,10 +118,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param userNickname
 	 *            the value for weibo_reply.USER_NICKNAME
-	 *
 	 * @mbggenerated
 	 */
 	public void setUserNickname(String userNickname) {
@@ -149,7 +128,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.PUBLISHTIME
-	 *
 	 * @mbggenerated
 	 */
 	public Date getPublishtime() {
@@ -157,10 +135,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param publishtime
 	 *            the value for weibo_reply.PUBLISHTIME
-	 *
 	 * @mbggenerated
 	 */
 	public void setPublishtime(Date publishtime) {
@@ -169,7 +145,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.CONTENT
-	 *
 	 * @mbggenerated
 	 */
 	public String getContent() {
@@ -177,10 +152,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param content
 	 *            the value for weibo_reply.CONTENT
-	 *
 	 * @mbggenerated
 	 */
 	public void setContent(String content) {
@@ -189,7 +162,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.DELETED
-	 *
 	 * @mbggenerated
 	 */
 	public Byte getDeleted() {
@@ -197,10 +169,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param deleted
 	 *            the value for weibo_reply.DELETED
-	 *
 	 * @mbggenerated
 	 */
 	public void setDeleted(Byte deleted) {
@@ -209,7 +179,6 @@ public class Reply implements Serializable {
 
 	/**
 	 * @return the value of weibo_reply.REPLY_WHO
-	 *
 	 * @mbggenerated
 	 */
 	public String getReplyWho() {
@@ -217,10 +186,8 @@ public class Reply implements Serializable {
 	}
 
 	/**
-	 *
 	 * @param replyWho
 	 *            the value for weibo_reply.REPLY_WHO
-	 *
 	 * @mbggenerated
 	 */
 	public void setReplyWho(String replyWho) {
