@@ -37,13 +37,13 @@ public class Reply implements Serializable {
 	private Date publishtime;
 	/**
 	 * 内容. Column: weibo_reply.CONTENT
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private String content;
 	/**
 	 * Column: weibo_reply.DELETED
-	 *
+	 * 
 	 * @mbggenerated
 	 */
 	private Byte deleted;

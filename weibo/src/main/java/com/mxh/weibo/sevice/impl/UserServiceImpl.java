@@ -84,4 +84,16 @@ public class UserServiceImpl implements IUserService {
 			throw new WeiboException("该邮箱已经被注册");
 		}
 	}
+
+	@Override
+	public User changeUserInfo(User user) throws WeiboException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User changeUserPassword(UserToken userToken) throws WeiboException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

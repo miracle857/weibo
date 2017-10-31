@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<description>== Shiro Components ==</description>
+
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="sampleRealm" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+
+	<!-- 静态注入，相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+		<property name="arguments" ref="securityManager"/>
+	</bean>
+
+	<!-- 授权 认证 -->
+	<bean id="sampleRealm" class="com.sojson.core.shiro.token.SampleRealm"></bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.do" />
+		<property name="successUrl" value="/" />
+		<property name="unauthorizedUrl" value="/401.html" />
+		<property name="filters">
+            <util:map>
+                <entry key="urlfilter">
+                    <bean class="tdh.thunderframework.aa.filter.ShiroUrlFilter">
+                    </bean>
+                </entry>
+            </util:map>
+        </property>
+		<property name="filterChainDefinitions">
+		    <value>
+		    	/ = anon
+		    	/index.html = anon
+ 		    	/css/** = anon 
+ 		    	/download/** = anon
+ 		    	/images/** = anon
+ 		    	/js/** = anon  
+ 		    	/login.do = anon 
+ 		    	/logout.do = anon 
+ 		    	/dologin.do = anon
+				/login-select-branch.do = anon
+				/login-to-branch.do = anon
+				/org/listTree.do = anon
+				/org/listOrgScheme.do = anon
+				/repwd.do = anon
+				/expenseadjustorder/list.do=anon
+				/expenseadjustorder/listAdjustInfoByOrderType.do=anon
+				/expenseadjustorder/queryExpenseInfo.do=anon
+				/api/tdpay/notify.do=anon				
+				/api/tdpay/receipt/notify.do=anon
+				/route/list.do=anon
+				/shipment/totmsshipment.do=anon 
+				/shipmentLog/shipmentloglist.do=anon 
+				
+				/** = urlfilter
+		    </value>
+		</property>
+	</bean>
+	
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+
+</beans>
+

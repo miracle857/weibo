@@ -114,16 +114,37 @@
 
 
 		<!-- shiro -->
-		<!-- <dependency> <groupId>org.apache.shiro</groupId> <artifactId>shiro-core</artifactId> 
-			<version>1.2.5</version> </dependency> <dependency> <groupId>org.apache.shiro</groupId> 
-			<artifactId>shiro-web</artifactId> <version>1.2.5</version> </dependency> 
-			<dependency> <groupId>org.apache.shiro</groupId> <artifactId>shiro-spring</artifactId> 
-			<version>1.2.5</version> </dependency> <dependency> <artifactId>quartz</artifactId> 
-			<groupId>org.opensymphony.quartz</groupId> <version>1.6.1</version> </dependency> 
-			<dependency> <groupId>org.apache.shiro</groupId> <artifactId>shiro-all</artifactId> 
-			<version>1.2.5</version> </dependency> <dependency> <groupId>org.apache.shiro</groupId> 
-			<artifactId>shiro-quartz</artifactId> <version>1.2.5</version> </dependency> 
-			shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<artifactId>quartz</artifactId>
+			<groupId>org.opensymphony.quartz</groupId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-quartz</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<!-- shiro -->
 		<!-- redis begin -->
 		<dependency>
 			<groupId>redis.clients</groupId>

@@ -1,7 +1,5 @@
 package com.mxh.weibo.sevice;
 
-import java.util.List;
-
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
