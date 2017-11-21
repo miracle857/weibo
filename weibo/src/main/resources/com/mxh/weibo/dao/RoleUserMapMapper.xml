@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mxh.weibo.dao.RoleUserMapMapper">
+  <resultMap id="BaseResultMap" type="com.mxh.weibo.common.model.RoleUserMapKey">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="roleUserMap_ROLE_ID" jdbcType="INTEGER" property="roleId" />
+    <id column="roleUserMap_USER_ID" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    roleUserMap.ROLE_ID as roleUserMap_ROLE_ID, roleUserMap.USER_ID as roleUserMap_USER_ID
+  </sql>
+  <select id="selectByExample" parameterType="com.mxh.weibo.common.model.RoleUserMapExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from aa_role_user roleUserMap
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.mxh.weibo.common.model.RoleUserMapKey">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from aa_role_user
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and USER_ID = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mxh.weibo.common.model.RoleUserMapExample">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from aa_role_user roleUserMap
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mxh.weibo.common.model.RoleUserMapKey">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into aa_role_user (ROLE_ID, USER_ID)
+    values (#{roleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.RoleUserMapKey">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into aa_role_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mxh.weibo.common.model.RoleUserMapExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from aa_role_user roleUserMap
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update aa_role_user roleUserMap
+    <set>
+      <if test="record.roleId != null">
+        roleUserMap.ROLE_ID = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        roleUserMap.USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update aa_role_user roleUserMap
+    set roleUserMap.ROLE_ID = #{record.roleId,jdbcType=INTEGER},
+      roleUserMap.USER_ID = #{record.userId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

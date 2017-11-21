@@ -3,6 +3,8 @@ package com.mxh.weibo.web.controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.model.User;
-import com.mxh.weibo.sevice.IUserService;
+import com.mxh.weibo.core.shiro.token.ShiroToken;
+import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.web.BaseResponse;
 
 @Controller
@@ -21,7 +24,7 @@ public class UserController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	IUserService userService;
+	UserService userService;
 
 	@RequestMapping({ "/main", "" })
 	public String toLogin(HttpServletRequest request) {
@@ -48,14 +51,17 @@ public class UserController {
 	public BaseResponse<User> login(UserToken user, HttpServletRequest request) {
 		BaseResponse<User> res = new BaseResponse<>();
 		try {
-			User login = userService.login(user);
-			request.getSession().setAttribute("user", login);
-			res.setBody(login);
+			ShiroToken token = new ShiroToken(user.getUsername(), user.getPassword());
+			Subject currentUser = SecurityUtils.getSubject();   
+			currentUser.login(token);
+			//request.getSession().setAttribute("user", login);
+			//res.setBody(login);
 			res.setSuccess(true);
 		} catch (Exception e) {
+			e.printStackTrace();
 			res.setSuccess(false);
 			res.setMessage(e.getMessage());
-			LOGGER.info(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return res;
 	}

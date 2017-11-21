@@ -13,10 +13,10 @@ import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.dao.WeiboMapper;
-import com.mxh.weibo.sevice.IWeiboService;
+import com.mxh.weibo.sevice.WeiboService;
 
 @Service
-public class WeiboServiceImpl implements IWeiboService {
+public class WeiboServiceImpl implements WeiboService {
 
 	@Autowired
 	private WeiboMapper weiboMapper;

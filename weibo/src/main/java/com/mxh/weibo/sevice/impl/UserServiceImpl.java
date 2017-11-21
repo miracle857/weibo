@@ -12,10 +12,10 @@ import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.util.MD5;
 import com.mxh.weibo.dao.UserMapper;
-import com.mxh.weibo.sevice.IUserService;
+import com.mxh.weibo.sevice.UserService;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	public UserMapper userMapper;
@@ -43,12 +43,12 @@ public class UserServiceImpl implements IUserService {
 		userMapper.insertSelective(user);
 	}
 
-	public User login(UserToken userToken) throws WeiboException {
-		if(StringUtils.isBlank(userToken.getUsername())){
+	public User login(String username,String password) throws WeiboException {
+		if(StringUtils.isBlank(username)){
 			throw new WeiboException("用户名不能为空");
 		}
-		User user = userMapper.selectByEmailOrUsername(null, userToken.getUsername());
-		if(user == null || !(user.getPassword().equals(MD5.getMD5(userToken.getPassword())))){
+		User user = userMapper.selectByEmailOrUsername(null, username);
+		if(user == null || !(user.getPassword().equals(MD5.getMD5(password)))){
 			throw new WeiboException("用户名或者密码错误");
 		}
 		return user;

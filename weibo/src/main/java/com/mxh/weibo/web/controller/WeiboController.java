@@ -11,7 +11,7 @@ import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.Pagination;
 import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
-import com.mxh.weibo.sevice.IWeiboService;
+import com.mxh.weibo.sevice.WeiboService;
 import com.mxh.weibo.web.BaseResponse;
 import com.mxh.weibo.web.response.ResponsePageVo;
 
@@ -20,7 +20,7 @@ import com.mxh.weibo.web.response.ResponsePageVo;
 public class WeiboController {
 	
 	@Autowired
-	private IWeiboService weiboService;
+	private WeiboService weiboService;
 	
 	@RequestMapping("/publish")
 	@ResponseBody

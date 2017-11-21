@@ -4,7 +4,7 @@ import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
 
-public interface IUserService {
+public interface UserService {
 
 	/**
 	 * 注册
@@ -21,7 +21,7 @@ public interface IUserService {
 	 * @return
 	 * @throws WeiboException
 	 */
-	User login(UserToken user) throws WeiboException;
+	User login(String username,String password) throws WeiboException;
 
 	/**
 	 * 找回密码操作
