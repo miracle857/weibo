@@ -9,7 +9,7 @@ public class ShiroToken extends UsernamePasswordToken  implements java.io.Serial
 	public ShiroToken(){}
 	
 	public ShiroToken(String username, String pswd) {
-		super(username,pswd);
+		super(username, pswd);
 		this.pswd = pswd ;
 	}
 	

@@ -15,7 +15,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.core.shiro.token.ShiroToken;
 import com.mxh.weibo.sevice.PermissionService;
@@ -48,13 +47,14 @@ public class SampleRealm extends AuthorizingRealm {
 			AuthenticationToken authcToken) throws AuthenticationException {
 		
 		ShiroToken token = (ShiroToken) authcToken;
+		User user = null;
 		try {
-			userService.login(token.getUsername(),token.getPswd());
+			user = userService.login(token.getUsername(), token.getPswd());
 		} catch (Exception e) {
 			throw new AccountException(e);
 		}
 
-		return new SimpleAuthenticationInfo(token.getUsername(),token.getPswd(), getName());
+		return new SimpleAuthenticationInfo(user, token.getPswd(), getName());
     }
 
 	 /** 

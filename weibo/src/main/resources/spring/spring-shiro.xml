@@ -34,12 +34,12 @@
 		
 		<property name="filterChainDefinitions">
 		    <value>
-		    	/index.htm = anon
-                /logout = anon
-                /unauthed = anon
+		    	/index.html = anon
                 /css/** = anon
                 /js/** = anon
-                /lib/** = anon
+                /img/** = anon
+                /3rd/** = anon
+                /font-awesome-4.7.0/** = anon
 
 		    </value>
 		</property>
