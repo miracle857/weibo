@@ -47,6 +47,9 @@ public class WeiboServiceImpl implements WeiboService {
 		user.setWeibo(user.getWeibo() + 1);
 
 		weiboMapper.insertSelective(weibo);
+		// TODO 打算用消息队列，做异步消息推送，有难度，待定..
+
+
 		userMapper.updateByPrimaryKeySelective(user);
 
 		return weibo;
@@ -54,7 +57,7 @@ public class WeiboServiceImpl implements WeiboService {
 
 	@Override
 	public void deleteWeibo(Weibo weibo) {
-		// TODO Auto-generated method stub
+		// 1.删除 微博。2.账号下 微博条数-1 。 3.改微博下的所有回复删除
 
 	}
 
