@@ -1,6 +1,7 @@
 package com.mxh.weibo.common.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**]
  * <pre>

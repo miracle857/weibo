@@ -18,7 +18,7 @@ import com.mxh.weibo.sevice.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	public UserMapper userMapper;
+	private UserMapper userMapper;
 
 	public void register(UserToken userToken) throws Exception {
 
