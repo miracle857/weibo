@@ -8,7 +8,7 @@ public class User implements Serializable {
 	 * Column: weibo_user.UUID
 	 * @mbggenerated
 	 */
-	private Integer uuid;
+	private String uuid;
 	/**
 	 * 登录用户名. Column: weibo_user.USERNAME
 	 * @mbggenerated
@@ -73,7 +73,7 @@ public class User implements Serializable {
 	 * @return  the value of weibo_user.UUID
 	 * @mbggenerated
 	 */
-	public Integer getUuid() {
+	public String getUuid() {
 		return uuid;
 	}
 
@@ -81,7 +81,7 @@ public class User implements Serializable {
 	 * @param uuid  the value for weibo_user.UUID
 	 * @mbggenerated
 	 */
-	public void setUuid(Integer uuid) {
+	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 

@@ -23,7 +23,7 @@ public interface UserMapper {
 	 * This method corresponds to the database table weibo_user
 	 * @mbggenerated
 	 */
-	int deleteByPrimaryKey(Integer uuid);
+	int deleteByPrimaryKey(String uuid);
 
 	/**
 	 * This method corresponds to the database table weibo_user
@@ -47,7 +47,7 @@ public interface UserMapper {
 	 * This method corresponds to the database table weibo_user
 	 * @mbggenerated
 	 */
-	User selectByPrimaryKey(Integer uuid);
+	User selectByPrimaryKey(String uuid);
 
 	/**
 	 * This method corresponds to the database table weibo_user
