@@ -7,8 +7,8 @@
       auto generated, do not modify.
     -->
     <id column="followFollower_ID" jdbcType="INTEGER" property="id" />
-    <result column="followFollower_FOLLOW" jdbcType="INTEGER" property="follow" />
-    <result column="followFollower_FOLLOWER" jdbcType="INTEGER" property="follower" />
+    <result column="followFollower_FOLLOW" jdbcType="VARCHAR" property="follow" />
+    <result column="followFollower_FOLLOWER" jdbcType="VARCHAR" property="follower" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -137,7 +137,7 @@
     -->
     insert into weibo_follow_follower (ID, FOLLOW, FOLLOWER
       )
-    values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=INTEGER}, #{follower,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=VARCHAR}, #{follower,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.FollowFollower">
@@ -162,10 +162,10 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="follow != null">
-        #{follow,jdbcType=INTEGER},
+        #{follow,jdbcType=VARCHAR},
       </if>
       <if test="follower != null">
-        #{follower,jdbcType=INTEGER},
+        #{follower,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -190,10 +190,10 @@
         followFollower.ID = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.follow != null">
-        followFollower.FOLLOW = #{record.follow,jdbcType=INTEGER},
+        followFollower.FOLLOW = #{record.follow,jdbcType=VARCHAR},
       </if>
       <if test="record.follower != null">
-        followFollower.FOLLOWER = #{record.follower,jdbcType=INTEGER},
+        followFollower.FOLLOWER = #{record.follower,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -207,8 +207,8 @@
     -->
     update weibo_follow_follower followFollower
     set followFollower.ID = #{record.id,jdbcType=INTEGER},
-      followFollower.FOLLOW = #{record.follow,jdbcType=INTEGER},
-      followFollower.FOLLOWER = #{record.follower,jdbcType=INTEGER}
+      followFollower.FOLLOW = #{record.follow,jdbcType=VARCHAR},
+      followFollower.FOLLOWER = #{record.follower,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -221,10 +221,10 @@
     update weibo_follow_follower
     <set>
       <if test="follow != null">
-        FOLLOW = #{follow,jdbcType=INTEGER},
+        FOLLOW = #{follow,jdbcType=VARCHAR},
       </if>
       <if test="follower != null">
-        FOLLOWER = #{follower,jdbcType=INTEGER},
+        FOLLOWER = #{follower,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -235,8 +235,8 @@
       auto generated, do not modify.
     -->
     update weibo_follow_follower
-    set FOLLOW = #{follow,jdbcType=INTEGER},
-      FOLLOWER = #{follower,jdbcType=INTEGER}
+    set FOLLOW = #{follow,jdbcType=VARCHAR},
+      FOLLOWER = #{follower,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

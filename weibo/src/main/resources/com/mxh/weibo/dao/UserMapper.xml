@@ -6,7 +6,7 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    <id column="user_UUID" jdbcType="INTEGER" property="uuid" />
+    <id column="user_UUID" jdbcType="VARCHAR" property="uuid" />
     <result column="user_USERNAME" jdbcType="VARCHAR" property="username" />
     <result column="user_NICKNAME" jdbcType="VARCHAR" property="nickname" />
     <result column="user_PASSWORD" jdbcType="VARCHAR" property="password" />
@@ -113,7 +113,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--
       WARNING - @mbggenerated
       auto generated, do not modify.
@@ -121,15 +121,15 @@
     select 
     <include refid="Base_Column_List" />
     from weibo_user user
-    where user.UUID = #{uuid,jdbcType=INTEGER}
+    where user.UUID = #{uuid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
     delete from weibo_user
-    where UUID = #{uuid,jdbcType=INTEGER}
+    where UUID = #{uuid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.mxh.weibo.common.model.UserExample">
     <!--
@@ -151,7 +151,7 @@
       EMAIL, DELETED, HEADIMG, 
       WEIBO, FOLLOW, FOLLOWER
       )
-    values (#{uuid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+    values (#{uuid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{headimg,jdbcType=VARCHAR}, 
       #{weibo,jdbcType=INTEGER}, #{follow,jdbcType=INTEGER}, #{follower,jdbcType=INTEGER}
@@ -203,7 +203,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uuid != null">
-        #{uuid,jdbcType=INTEGER},
+        #{uuid,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -258,7 +258,7 @@
     update weibo_user user
     <set>
       <if test="record.uuid != null">
-        user.UUID = #{record.uuid,jdbcType=INTEGER},
+        user.UUID = #{record.uuid,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null">
         user.USERNAME = #{record.username,jdbcType=VARCHAR},
@@ -304,7 +304,7 @@
       auto generated, do not modify.
     -->
     update weibo_user user
-    set user.UUID = #{record.uuid,jdbcType=INTEGER},
+    set user.UUID = #{record.uuid,jdbcType=VARCHAR},
       user.USERNAME = #{record.username,jdbcType=VARCHAR},
       user.NICKNAME = #{record.nickname,jdbcType=VARCHAR},
       user.PASSWORD = #{record.password,jdbcType=VARCHAR},
@@ -361,7 +361,7 @@
         FOLLOWER = #{follower,jdbcType=INTEGER},
       </if>
     </set>
-    where UUID = #{uuid,jdbcType=INTEGER}
+    where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mxh.weibo.common.model.User">
     <!--
@@ -380,7 +380,7 @@
       WEIBO = #{weibo,jdbcType=INTEGER},
       FOLLOW = #{follow,jdbcType=INTEGER},
       FOLLOWER = #{follower,jdbcType=INTEGER}
-    where UUID = #{uuid,jdbcType=INTEGER}
+    where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
   
   <select id="selectByEmailOrUsername" resultMap="BaseResultMap">
