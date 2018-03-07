@@ -289,66 +289,127 @@ public class FollowFollowerExample {
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedIsNull() {
 			addCriterion("followFollower.FOLLOWED is null");
+=======
+		public Criteria andFollowerIsNull() {
+			addCriterion("followFollower.FOLLOWER is null");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedIsNotNull() {
 			addCriterion("followFollower.FOLLOWED is not null");
+=======
+		public Criteria andFollowerIsNotNull() {
+			addCriterion("followFollower.FOLLOWER is not null");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedEqualTo(String value) {
 			addCriterion("followFollower.FOLLOWED =", value, "followed");
+=======
+		public Criteria andFollowerEqualTo(String value) {
+			addCriterion("followFollower.FOLLOWER =", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedNotEqualTo(String value) {
 			addCriterion("followFollower.FOLLOWED <>", value, "followed");
+=======
+		public Criteria andFollowerNotEqualTo(String value) {
+			addCriterion("followFollower.FOLLOWER <>", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedGreaterThan(String value) {
 			addCriterion("followFollower.FOLLOWED >", value, "followed");
+=======
+		public Criteria andFollowerGreaterThan(String value) {
+			addCriterion("followFollower.FOLLOWER >", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedGreaterThanOrEqualTo(String value) {
 			addCriterion("followFollower.FOLLOWED >=", value, "followed");
+=======
+		public Criteria andFollowerGreaterThanOrEqualTo(String value) {
+			addCriterion("followFollower.FOLLOWER >=", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedLessThan(String value) {
 			addCriterion("followFollower.FOLLOWED <", value, "followed");
+=======
+		public Criteria andFollowerLessThan(String value) {
+			addCriterion("followFollower.FOLLOWER <", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedLessThanOrEqualTo(String value) {
 			addCriterion("followFollower.FOLLOWED <=", value, "followed");
+=======
+		public Criteria andFollowerLessThanOrEqualTo(String value) {
+			addCriterion("followFollower.FOLLOWER <=", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedLike(String value) {
 			addCriterion("followFollower.FOLLOWED like", value, "followed");
+=======
+		public Criteria andFollowerLike(String value) {
+			addCriterion("followFollower.FOLLOWER like", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedNotLike(String value) {
 			addCriterion("followFollower.FOLLOWED not like", value, "followed");
+=======
+		public Criteria andFollowerNotLike(String value) {
+			addCriterion("followFollower.FOLLOWER not like", value, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedIn(List<String> values) {
 			addCriterion("followFollower.FOLLOWED in", values, "followed");
+=======
+		public Criteria andFollowerIn(List<String> values) {
+			addCriterion("followFollower.FOLLOWER in", values, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedNotIn(List<String> values) {
 			addCriterion("followFollower.FOLLOWED not in", values, "followed");
+=======
+		public Criteria andFollowerNotIn(List<String> values) {
+			addCriterion("followFollower.FOLLOWER not in", values, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 
+<<<<<<< HEAD
 		public Criteria andFollowedBetween(String value1, String value2) {
 			addCriterion("followFollower.FOLLOWED between", value1, value2, "followed");
 			return (Criteria) this;
@@ -356,6 +417,15 @@ public class FollowFollowerExample {
 
 		public Criteria andFollowedNotBetween(String value1, String value2) {
 			addCriterion("followFollower.FOLLOWED not between", value1, value2, "followed");
+=======
+		public Criteria andFollowerBetween(String value1, String value2) {
+			addCriterion("followFollower.FOLLOWER between", value1, value2, "follower");
+			return (Criteria) this;
+		}
+
+		public Criteria andFollowerNotBetween(String value1, String value2) {
+			addCriterion("followFollower.FOLLOWER not between", value1, value2, "follower");
+>>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
 			return (Criteria) this;
 		}
 	}
