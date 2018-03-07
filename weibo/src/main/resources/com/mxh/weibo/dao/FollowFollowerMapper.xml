@@ -8,11 +8,7 @@
     -->
     <id column="followFollower_ID" jdbcType="INTEGER" property="id" />
     <result column="followFollower_FOLLOW" jdbcType="VARCHAR" property="follow" />
-<<<<<<< HEAD
     <result column="followFollower_FOLLOWED" jdbcType="VARCHAR" property="followed" />
-=======
-    <result column="followFollower_FOLLOWER" jdbcType="VARCHAR" property="follower" />
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -141,11 +137,7 @@
     -->
     insert into weibo_follow_follower (ID, FOLLOW, FOLLOWED
       )
-<<<<<<< HEAD
     values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=VARCHAR}, #{followed,jdbcType=VARCHAR}
-=======
-    values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=VARCHAR}, #{follower,jdbcType=VARCHAR}
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.FollowFollower">
@@ -172,13 +164,8 @@
       <if test="follow != null">
         #{follow,jdbcType=VARCHAR},
       </if>
-<<<<<<< HEAD
       <if test="followed != null">
         #{followed,jdbcType=VARCHAR},
-=======
-      <if test="follower != null">
-        #{follower,jdbcType=VARCHAR},
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
       </if>
     </trim>
   </insert>
@@ -205,13 +192,8 @@
       <if test="record.follow != null">
         followFollower.FOLLOW = #{record.follow,jdbcType=VARCHAR},
       </if>
-<<<<<<< HEAD
       <if test="record.followed != null">
         followFollower.FOLLOWED = #{record.followed,jdbcType=VARCHAR},
-=======
-      <if test="record.follower != null">
-        followFollower.FOLLOWER = #{record.follower,jdbcType=VARCHAR},
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
       </if>
     </set>
     <if test="_parameter != null">
@@ -226,11 +208,7 @@
     update weibo_follow_follower followFollower
     set followFollower.ID = #{record.id,jdbcType=INTEGER},
       followFollower.FOLLOW = #{record.follow,jdbcType=VARCHAR},
-<<<<<<< HEAD
       followFollower.FOLLOWED = #{record.followed,jdbcType=VARCHAR}
-=======
-      followFollower.FOLLOWER = #{record.follower,jdbcType=VARCHAR}
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -245,13 +223,8 @@
       <if test="follow != null">
         FOLLOW = #{follow,jdbcType=VARCHAR},
       </if>
-<<<<<<< HEAD
       <if test="followed != null">
         FOLLOWED = #{followed,jdbcType=VARCHAR},
-=======
-      <if test="follower != null">
-        FOLLOWER = #{follower,jdbcType=VARCHAR},
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -263,11 +236,8 @@
     -->
     update weibo_follow_follower
     set FOLLOW = #{follow,jdbcType=VARCHAR},
-<<<<<<< HEAD
       FOLLOWED = #{followed,jdbcType=VARCHAR}
-=======
-      FOLLOWER = #{follower,jdbcType=VARCHAR}
->>>>>>> branch 'master' of https://github.com/LzVae/WeiBo.git
     where ID = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>
