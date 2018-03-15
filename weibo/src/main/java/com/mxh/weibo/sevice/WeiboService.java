@@ -1,8 +1,8 @@
 package com.mxh.weibo.sevice;
 
 import com.mxh.weibo.common.PaginatedList;
-import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
+import com.mxh.weibo.common.o.WeiboCriteria;
 
 public interface WeiboService {
 	

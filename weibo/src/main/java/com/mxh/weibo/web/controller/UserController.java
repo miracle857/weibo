@@ -1,7 +1,7 @@
 package com.mxh.weibo.web.controller;
 
-import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.core.shiro.token.ShiroToken;
 import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.web.BaseResponse;

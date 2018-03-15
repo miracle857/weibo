@@ -1,8 +1,8 @@
 package com.mxh.weibo.sevice.impl;
 
 import com.mxh.weibo.common.PaginatedList;
-import com.mxh.weibo.common.dto.criteria.ReplyCriterua;
 import com.mxh.weibo.common.model.Reply;
+import com.mxh.weibo.common.o.ReplyCriterua;
 import com.mxh.weibo.sevice.ReplyService;
 
 public class ReplyServiceImpl implements ReplyService{

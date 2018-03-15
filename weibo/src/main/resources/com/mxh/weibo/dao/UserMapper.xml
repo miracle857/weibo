@@ -442,4 +442,15 @@
     </set>
     where USERNAME = #{username,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectByUuids" resultType="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List" />
+  	from weibo_user user
+  	where user.deleted = '0'
+  	and user.uuid in
+  	<foreach collection="list" close=")" item="item" open="(" separator=",">
+  		#{item}
+  	</foreach>
+  </select>
 </mapper>

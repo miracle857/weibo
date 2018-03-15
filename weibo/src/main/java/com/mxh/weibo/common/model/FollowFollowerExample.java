@@ -359,15 +359,65 @@ public class FollowFollowerExample {
 			addCriterion("followFollower.FOLLOWED not between", value1, value2, "followed");
 			return (Criteria) this;
 		}
-	}
 
-	/**
-	 * This class corresponds to the database table weibo_follow_follower
-	 * @mbggenerated  do_not_delete_during_merge
-	 */
-	public static class Criteria extends GeneratedCriteria {
-		protected Criteria() {
-			super();
+		public Criteria andMutualIsNull() {
+			addCriterion("followFollower.MUTUAL is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualIsNotNull() {
+			addCriterion("followFollower.MUTUAL is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualEqualTo(Byte value) {
+			addCriterion("followFollower.MUTUAL =", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualNotEqualTo(Byte value) {
+			addCriterion("followFollower.MUTUAL <>", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualGreaterThan(Byte value) {
+			addCriterion("followFollower.MUTUAL >", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualGreaterThanOrEqualTo(Byte value) {
+			addCriterion("followFollower.MUTUAL >=", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualLessThan(Byte value) {
+			addCriterion("followFollower.MUTUAL <", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualLessThanOrEqualTo(Byte value) {
+			addCriterion("followFollower.MUTUAL <=", value, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualIn(List<Byte> values) {
+			addCriterion("followFollower.MUTUAL in", values, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualNotIn(List<Byte> values) {
+			addCriterion("followFollower.MUTUAL not in", values, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualBetween(Byte value1, Byte value2) {
+			addCriterion("followFollower.MUTUAL between", value1, value2, "mutual");
+			return (Criteria) this;
+		}
+
+		public Criteria andMutualNotBetween(Byte value1, Byte value2) {
+			addCriterion("followFollower.MUTUAL not between", value1, value2, "mutual");
+			return (Criteria) this;
 		}
 	}
 
@@ -451,6 +501,16 @@ public class FollowFollowerExample {
 
 		protected Criterion(String condition, Object value, Object secondValue) {
 			this(condition, value, secondValue, null);
+		}
+	}
+
+	/**
+	 * This class corresponds to the database table weibo_follow_follower
+	 * @mbggenerated  do_not_delete_during_merge
+	 */
+	public static class Criteria extends GeneratedCriteria {
+		protected Criteria() {
+			super();
 		}
 	}
 

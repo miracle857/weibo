@@ -20,6 +20,11 @@ public class FollowFollower implements Serializable {
 	 */
 	private String followed;
 	/**
+	 * 互相关注（1.互相 0.不）. Column: weibo_follow_follower.MUTUAL
+	 * @mbggenerated
+	 */
+	private Byte mutual;
+	/**
 	 * @mbggenerated
 	 */
 	private static final long serialVersionUID = 1L;
@@ -70,6 +75,22 @@ public class FollowFollower implements Serializable {
 	 */
 	public void setFollowed(String followed) {
 		this.followed = followed;
+	}
+
+	/**
+	 * @return  the value of weibo_follow_follower.MUTUAL
+	 * @mbggenerated
+	 */
+	public Byte getMutual() {
+		return mutual;
+	}
+
+	/**
+	 * @param mutual  the value for weibo_follow_follower.MUTUAL
+	 * @mbggenerated
+	 */
+	public void setMutual(Byte mutual) {
+		this.mutual = mutual;
 	}
 
 

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.Pagination;
-import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.Weibo;
+import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.sevice.WeiboService;
 import com.mxh.weibo.web.BaseResponse;
 import com.mxh.weibo.web.response.ResponsePageVo;

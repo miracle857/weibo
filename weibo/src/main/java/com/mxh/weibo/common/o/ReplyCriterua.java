@@ -1,4 +1,4 @@
-package com.mxh.weibo.common.dto.criteria;
+package com.mxh.weibo.common.o;
 
 import com.mxh.weibo.common.Pagination;
 

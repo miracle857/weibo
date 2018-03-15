@@ -1,16 +1,24 @@
 package com.mxh.weibo.sevice.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.DC;
-import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.email.Mail;
 import com.mxh.weibo.common.exception.WeiboException;
+import com.mxh.weibo.common.model.FollowFollower;
+import com.mxh.weibo.common.model.FollowFollowerExample;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.UserToken;
+import com.mxh.weibo.common.o.vo.UserVo;
+import com.mxh.weibo.common.util.CollectionUtil;
 import com.mxh.weibo.common.util.MD5;
+import com.mxh.weibo.dao.FollowFollowerMapper;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.sevice.UserService;
 
@@ -19,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+
+	@Autowired
+	private FollowFollowerMapper followFollowerMapper;
 
 	public void register(UserToken userToken) throws Exception {
 
@@ -96,4 +107,37 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<UserVo> getFans(String uuid) throws Exception {
+		// 获取粉丝ids列表
+		FollowFollowerExample example = new FollowFollowerExample();
+		example.createCriteria().andFollowedEqualTo(uuid);
+		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
+
+		// 获取粉丝详细信息
+		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "followed", String.class));
+
+		// 封装信息
+		List<UserVo> resu = new ArrayList<>();
+		for (User user : users) {
+			UserVo vo = new UserVo();
+			PropertyUtils.copyProperties(vo, user);
+			for (FollowFollower f : list) {
+				if (f.getFollowed().equals(vo.getUuid())) {
+					vo.setMutual(f.getMutual());
+				}
+			}
+			resu.add(vo);
+		}
+
+		return resu;
+	}
+
+	@Override
+	public List<UserVo> getFollower(String uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
