@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -123,11 +124,15 @@ public class UserServiceImpl implements UserService {
 		for (User user : users) {
 			UserVo vo = new UserVo();
 			PropertyUtils.copyProperties(vo, user);
-			for (FollowFollower f : list) {
-				if (f.getFollowed().equals(vo.getUuid())) {
-					vo.setMutual(f.getMutual());
-				}
+
+			// 我是否关注我的粉丝
+			FollowFollowerExample example2 = new FollowFollowerExample();
+			example.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(uuid);
+			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
+			if (CollectionUtils.isNotEmpty(list2)) {
+				vo.setMutual((byte) 1);
 			}
+
 			resu.add(vo);
 		}
 
@@ -138,6 +143,27 @@ public class UserServiceImpl implements UserService {
 	public List<UserVo> getFollower(String uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void unFollow(String follower, String followered) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void follow(String follower, String followered) throws Exception {
+		FollowFollowerExample example = new FollowFollowerExample();
+		example.createCriteria().andFollowEqualTo(follower).andFollowedEqualTo(followered);
+		List<FollowFollower> select1 = followFollowerMapper.selectByExample(example);
+		if (CollectionUtils.isNotEmpty(select1)) {
+			throw new Exception("不能重复关注。");
+		}
+
+		FollowFollower record = new FollowFollower();
+		record.setFollow(follower);
+		record.setFollowed(followered);
+		followFollowerMapper.insertSelective(record);
 	}
 
 }

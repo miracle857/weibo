@@ -68,7 +68,27 @@ public interface UserService {
 	 */
 	User changeUserPassword(UserToken userToken) throws WeiboException;
 
+	/**
+	 * 获取粉丝列表
+	 * 
+	 * @param uuid
+	 * @return
+	 * @throws Exception
+	 */
 	List<UserVo> getFans(String uuid) throws Exception;
 
 	List<UserVo> getFollower(String uuid) throws Exception;
+
+	/**
+	 * 关注 or 取消关注
+	 * 
+	 * @param follower
+	 * @param followered
+	 * @param f
+	 *            true：关注操作。 false：取消关注操作
+	 * @throws Exception
+	 */
+	void unFollow(String follower, String followered) throws Exception;
+
+	void follow(String follower, String followered) throws Exception;
 }
