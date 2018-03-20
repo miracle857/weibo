@@ -56,6 +56,11 @@ public class Weibo implements Serializable {
 	 */
 	private Byte deleted;
 	/**
+	 * 微博回复数目. Column: weibo_weibo.REPLY_NUM
+	 * @mbggenerated
+	 */
+	private Integer replyNum;
+	/**
 	 * @mbggenerated
 	 */
 	private static final long serialVersionUID = 1L;
@@ -218,5 +223,21 @@ public class Weibo implements Serializable {
 	 */
 	public void setDeleted(Byte deleted) {
 		this.deleted = deleted;
+	}
+
+	/**
+	 * @return  the value of weibo_weibo.REPLY_NUM
+	 * @mbggenerated
+	 */
+	public Integer getReplyNum() {
+		return replyNum;
+	}
+
+	/**
+	 * @param replyNum  the value for weibo_weibo.REPLY_NUM
+	 * @mbggenerated
+	 */
+	public void setReplyNum(Integer replyNum) {
+		this.replyNum = replyNum;
 	}
 }

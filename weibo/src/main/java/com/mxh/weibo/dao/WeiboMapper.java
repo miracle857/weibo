@@ -79,4 +79,6 @@ public interface WeiboMapper {
 	List<Weibo> selectByWeiboCriteria(WeiboCriteria criteria);
 
 	int countByWeiboCriteria(WeiboCriteria criteria);
+
+	void updateReplyNumPlus1(Weibo record);
 }

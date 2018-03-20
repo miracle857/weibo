@@ -8,7 +8,7 @@ public interface ReplyService {
 
     PaginatedList<Reply> getReplyByWBID(ReplyCriterua criterua);
 
-    Reply publishReply(Reply reply);
+	Reply publishReply(Reply reply) throws Exception;
 
     void deleteReply(Reply reply);
 

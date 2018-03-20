@@ -1,7 +1,6 @@
 package com.mxh.weibo.common.o;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**]
  * <pre>

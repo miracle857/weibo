@@ -819,6 +819,66 @@ public class WeiboExample {
 			addCriterion("weibo.DELETED not between", value1, value2, "deleted");
 			return (Criteria) this;
 		}
+
+		public Criteria andReplyNumIsNull() {
+			addCriterion("weibo.REPLY_NUM is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumIsNotNull() {
+			addCriterion("weibo.REPLY_NUM is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumEqualTo(Integer value) {
+			addCriterion("weibo.REPLY_NUM =", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumNotEqualTo(Integer value) {
+			addCriterion("weibo.REPLY_NUM <>", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumGreaterThan(Integer value) {
+			addCriterion("weibo.REPLY_NUM >", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumGreaterThanOrEqualTo(Integer value) {
+			addCriterion("weibo.REPLY_NUM >=", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumLessThan(Integer value) {
+			addCriterion("weibo.REPLY_NUM <", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumLessThanOrEqualTo(Integer value) {
+			addCriterion("weibo.REPLY_NUM <=", value, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumIn(List<Integer> values) {
+			addCriterion("weibo.REPLY_NUM in", values, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumNotIn(List<Integer> values) {
+			addCriterion("weibo.REPLY_NUM not in", values, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumBetween(Integer value1, Integer value2) {
+			addCriterion("weibo.REPLY_NUM between", value1, value2, "replyNum");
+			return (Criteria) this;
+		}
+
+		public Criteria andReplyNumNotBetween(Integer value1, Integer value2) {
+			addCriterion("weibo.REPLY_NUM not between", value1, value2, "replyNum");
+			return (Criteria) this;
+		}
 	}
 
 	/**
