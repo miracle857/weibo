@@ -10,7 +10,11 @@
 
 	<properties>
 		<tomcat.port>8080</tomcat.port>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -207,15 +211,7 @@
 				</dependencies>
 			</plugin>
 
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
