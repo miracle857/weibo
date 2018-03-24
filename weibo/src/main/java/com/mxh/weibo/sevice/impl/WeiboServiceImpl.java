@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.PaginatedList;
-import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.Weibo;
+import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.dao.WeiboMapper;

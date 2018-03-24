@@ -9,6 +9,7 @@
     <id column="followFollower_ID" jdbcType="INTEGER" property="id" />
     <result column="followFollower_FOLLOW" jdbcType="VARCHAR" property="follow" />
     <result column="followFollower_FOLLOWED" jdbcType="VARCHAR" property="followed" />
+    <result column="followFollower_MUTUAL" jdbcType="TINYINT" property="mutual" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -82,7 +83,7 @@
       auto generated, do not modify.
     -->
     followFollower.ID as followFollower_ID, followFollower.FOLLOW as followFollower_FOLLOW, 
-    followFollower.FOLLOWED as followFollower_FOLLOWED
+    followFollower.FOLLOWED as followFollower_FOLLOWED, followFollower.MUTUAL as followFollower_MUTUAL
   </sql>
   <select id="selectByExample" parameterType="com.mxh.weibo.common.model.FollowFollowerExample" resultMap="BaseResultMap">
     <!--
@@ -135,10 +136,10 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    insert into weibo_follow_follower (ID, FOLLOW, FOLLOWED
-      )
-    values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=VARCHAR}, #{followed,jdbcType=VARCHAR}
-      )
+    insert into weibo_follow_follower (ID, FOLLOW, FOLLOWED, 
+      MUTUAL)
+    values (#{id,jdbcType=INTEGER}, #{follow,jdbcType=VARCHAR}, #{followed,jdbcType=VARCHAR}, 
+      #{mutual,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.FollowFollower">
     <!--
@@ -156,6 +157,9 @@
       <if test="followed != null">
         FOLLOWED,
       </if>
+      <if test="mutual != null">
+        MUTUAL,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -166,6 +170,9 @@
       </if>
       <if test="followed != null">
         #{followed,jdbcType=VARCHAR},
+      </if>
+      <if test="mutual != null">
+        #{mutual,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -195,6 +202,9 @@
       <if test="record.followed != null">
         followFollower.FOLLOWED = #{record.followed,jdbcType=VARCHAR},
       </if>
+      <if test="record.mutual != null">
+        followFollower.MUTUAL = #{record.mutual,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -208,7 +218,8 @@
     update weibo_follow_follower followFollower
     set followFollower.ID = #{record.id,jdbcType=INTEGER},
       followFollower.FOLLOW = #{record.follow,jdbcType=VARCHAR},
-      followFollower.FOLLOWED = #{record.followed,jdbcType=VARCHAR}
+      followFollower.FOLLOWED = #{record.followed,jdbcType=VARCHAR},
+      followFollower.MUTUAL = #{record.mutual,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -226,6 +237,9 @@
       <if test="followed != null">
         FOLLOWED = #{followed,jdbcType=VARCHAR},
       </if>
+      <if test="mutual != null">
+        MUTUAL = #{mutual,jdbcType=TINYINT},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -236,7 +250,8 @@
     -->
     update weibo_follow_follower
     set FOLLOW = #{follow,jdbcType=VARCHAR},
-      FOLLOWED = #{followed,jdbcType=VARCHAR}
+      FOLLOWED = #{followed,jdbcType=VARCHAR},
+      MUTUAL = #{mutual,jdbcType=TINYINT}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 

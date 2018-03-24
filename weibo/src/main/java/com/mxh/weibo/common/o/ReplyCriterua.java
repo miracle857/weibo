@@ -1,15 +1,19 @@
-package com.mxh.weibo.common.dto.criteria;
-
-import com.mxh.weibo.common.Pagination;
+package com.mxh.weibo.common.o;
 
 import java.util.Date;
 
+import com.mxh.weibo.common.Pagination;
+
 public class ReplyCriterua extends Pagination{
     /**
-     * Column: weibo_reply.UUID
-     *
-     * @mbggenerated
-     */
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Column: weibo_reply.UUID
+	 *
+	 * @mbggenerated
+	 */
     private String uuid;
     /**
      * 对应微博的UUID. Column: weibo_reply.WEIBO_UUID

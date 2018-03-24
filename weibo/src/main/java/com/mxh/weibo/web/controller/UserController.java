@@ -1,5 +1,6 @@
 package com.mxh.weibo.web.controller;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mxh.weibo.common.dto.UserToken;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.web.BaseResponse;
 

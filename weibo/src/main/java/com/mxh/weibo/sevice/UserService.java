@@ -1,8 +1,11 @@
 package com.mxh.weibo.sevice;
 
-import com.mxh.weibo.common.dto.UserToken;
+import java.util.List;
+
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.UserToken;
+import com.mxh.weibo.common.o.vo.UserVo;
 
 public interface UserService {
 
@@ -64,4 +67,28 @@ public interface UserService {
 	 * @throws WeiboException
 	 */
 	User changeUserPassword(UserToken userToken) throws WeiboException;
+
+	/**
+	 * 获取粉丝列表
+	 * 
+	 * @param uuid
+	 * @return
+	 * @throws Exception
+	 */
+	List<UserVo> getFans(String uuid) throws Exception;
+
+	List<UserVo> getFollower(String uuid) throws Exception;
+
+	/**
+	 * 关注 or 取消关注
+	 * 
+	 * @param follower
+	 * @param followered
+	 * @param f
+	 *            true：关注操作。 false：取消关注操作
+	 * @throws Exception
+	 */
+	void unFollow(String follower, String followered) throws Exception;
+
+	void follow(String follower, String followered) throws Exception;
 }

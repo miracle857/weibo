@@ -1,10 +1,12 @@
 package com.mxh.weibo.dao;
 
-import com.mxh.weibo.common.dto.criteria.WeiboCriteria;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.model.WeiboExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.mxh.weibo.common.o.WeiboCriteria;
 
 public interface WeiboMapper {
 
@@ -77,4 +79,6 @@ public interface WeiboMapper {
 	List<Weibo> selectByWeiboCriteria(WeiboCriteria criteria);
 
 	int countByWeiboCriteria(WeiboCriteria criteria);
+
+	void updateReplyNumPlus1(Weibo record);
 }

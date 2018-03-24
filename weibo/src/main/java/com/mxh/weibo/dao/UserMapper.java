@@ -1,9 +1,11 @@
 package com.mxh.weibo.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.UserExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
 
@@ -78,4 +80,6 @@ public interface UserMapper {
 	int updateByUserName(User user);
 	
 	int updateByUsernameSelective(User user);
+
+	List<User> selectByUuids(List<String> list);
 }
