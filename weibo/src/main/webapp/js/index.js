@@ -1,7 +1,38 @@
-$(document).ready(function(){
-	listWeibo(1);
-})
+/**
+ * 保存每条微博回复框子的 开闭情况。
+ */
+var _map = new Map();
 
+$(document).ready(function(){
+	//listWeibo(1);
+	
+	$("#container").empty();
+	
+		$.ajax({
+			url : "/w/list.do",
+			type : "post",
+			data : {
+				page:1,
+				pagesize:10
+			},
+			datatype : "json",
+			success : function(data){
+				
+				// 到时候删除分页。。。先这样用着
+				createPage(data);
+				
+				$(data.rows).each(function(idx,item){
+					_map.put(item.uuid,'close');
+					$("#container").append(getWeibo(item));
+					
+					$(".shown").show();
+				});
+			},
+			error : function(){
+				
+			}
+		});
+})
 
 
 
@@ -45,7 +76,8 @@ $(".btn-reply").click(function() {
 	});
 });
 
-function listWeibo(page){
+function listWeibo(page,event){
+	//event.preventDefault();
 	
 	$("#container").empty();
 	
@@ -59,13 +91,13 @@ function listWeibo(page){
 		datatype : "json",
 		success : function(data){
 			
+			// 到时候删除分页。。。先这样用着
 			createPage(data);
 			
 			$(data.rows).each(function(idx,item){
-				
-				
+				_map.put(item.uuid,'close');
 				$("#container").append(getWeibo(item));
-
+				
 				$(".shown").show();
 			});
 		},
@@ -78,10 +110,11 @@ function listWeibo(page){
 
 function getWeibo(data){
 	var time = FormatDateTime(data.publishTime);
+	var uuid = data.uuid;
 	var name = data.userNickname;
 	var content = data.content;
 	var img = data.userHeadimg;
-	var body = "<div class='weibo-body shown' style='display:none'>"
+	var body = "<div class='weibo-body shown' style='display:none' id="+uuid+">"
 		+ "<div class='inner'>"
 		+ "<div class='head-img'>"
 		+ "<img src='/img/logo.jpg' alt='none' class='img-circle body-img'>"
@@ -102,7 +135,7 @@ function getWeibo(data){
 		+ "<ul>"
 		+ "<li> <a href=''><i class='fa fa-star-o'></i><i class='fa fa-star'></i>收藏</a></li>"
 		+ "<li> <a href=''><i class='fa fa-share'></i>转发</a></li>"
-		+ "<li> <a href=''><i class='fa fa-commenting-o'></i> 回复</a></li>"
+		+ "<li> <a href='javascript:getReply("+uuid+")'><i class='fa fa-commenting-o'></i> 回复</a></li>"
 		+ "<li> <a href=''><i class='fa fa-thumbs-o-up'></i><i class='fa fa-thumbs-up'></i>点赞</a></li>"
 		+ "</ul>" + "</div>" + "</div>" + "</div>";
 	
@@ -161,3 +194,23 @@ function createLi(z,page){
 		$(".pagination").append($("<li><a href='javascript:listWeibo("+z+")'>"+z+"</a></li>"));
 	}
 }
+
+
+
+function getReply(uuid){
+	if(_map.get(uuid) == 'close'){
+		// 1.打开回复框，同时请求回复信息
+		// 2. 设置为打开
+		_map.removeByKey(uuid);
+		_map.put(uuid,'open');
+	}else{
+		// 1.删除回复框
+		// 2.设置为关闭
+		_map.removeByKey(uuid);
+		_map.put(uuid,'close');
+	}
+	
+}
+
+
+

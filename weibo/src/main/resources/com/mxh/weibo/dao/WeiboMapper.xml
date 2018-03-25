@@ -366,7 +366,7 @@
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
   
-  <select id="selectByWeiboCriteria" parameterType="com.mxh.weibo.common.dto.criteria.WeiboCriteria" resultMap="BaseResultMap">
+  <select id="selectByWeiboCriteria" parameterType="com.mxh.weibo.common.o.WeiboCriteria" resultMap="BaseResultMap">
 	 select
 	   <include refid="Base_Column_List" />
 	 from weibo_weibo weibo
@@ -380,7 +380,7 @@
 	</if>
   </select>
   
-  <select id="countByWeiboCriteria" parameterType="com.mxh.weibo.common.dto.criteria.WeiboCriteria" resultType="java.lang.Integer">
+  <select id="countByWeiboCriteria" parameterType="com.mxh.weibo.common.o.WeiboCriteria" resultType="java.lang.Integer">
   	select
 	   count(0)
 	 from weibo_weibo weibo

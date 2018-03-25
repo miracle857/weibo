@@ -75,12 +75,116 @@
             <!-- weibo内容区 -->
             <div id="container">
             
+
+ 				<div class="weibo-body">
+                    <div class="inner">
+                        <div class="head-img">
+                            <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle body-img">
+                        </div>
+                        <div class="other" style="display: block; margin-left: 40px;">
+                            <div class="_username">
+                                name
+                            </div>
+                            <div class="time">
+                                今天19：00
+                            </div>
+                            <div class="area">
+                                这里是weibo内容区
+                                <br><br><br><br><br>
+                                1
+                            </div>
+                        </div>
+                         <div class="menu">
+                            <ul>
+                                <li> <a href=""><i class="fa fa-star-o"></i><i class="fa fa-star"></i>收藏</a></li>
+                                <li> <a href=""><i class="fa fa-share"></i>转发</a></li>
+                                <li> <a href=""><i class="fa fa-commenting-o"></i> 回复</a></li>
+                                <li> <a href=""><i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up"></i>点赞</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--  回复区域 -->
+                    
+
+                    <style type="text/css">
+                    	.replyArea{
+                    		border-top: 1px solid #ccc;
+                    	}
+                    	.reply-img{
+                    		width: 30px;
+                    		height: 30px;
+                    	}
+                    	.btn-reply_2{
+                    		
+							top: -10px;
+							left: -10px;
+							position: relative;
+							background-color: #FFC09F;
+							border-radius: 5px;
+							height: 25px;
+							width: 60px;
+							color: white;
+							border: none;
+							margin-left: 530px;
+                    	}
+                    </style>
+           			<div class='replyArea'>
+           			
+           				<!-- 回复区 -->
+           				<div>
+           					<!-- 头像 -->
+           					<div style="float: left; margin-top: 10px;margin-left: 10px;">
+           						<img src="${ctx}/img/logo.jpg" alt="none" class="img-circle reply-img">
+           					</div>
+           					<!-- input -->
+           					<div style="">
+           						<textarea name="" id="reply-content" style="height:40px;width:520px; margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
+
+           					</div>
+           					<div style="display: block; ">
+           						<button type="button" class="btn-reply_2">发布</button>
+           					</div>
+           					<!-- div style="height: 5px;"></div> -->
+           				</div>
+           				<div style="padding-left: 5%;padding-right: 5%;">
+           					<hr style="text-align: center; border:0;background-color:#87BADB;height:1px;" >
+           				</div>
+           				<!-- 展示区域 -->
+           				<div>
+           					<div></div>
+           					<div>
+           						<!-- 头像 -->
+           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
+           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+           							<div style="clear: both;"></div>
+           						</div>
+           						<!-- 评论内容 -->
+           						<div style="height: 50px;">
+           							maoxinhuan:今天天气很好。
+           						</div>
+           					</div>
+           					<div>
+           						<!-- 头像 -->
+           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
+           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+           							<div style="clear: both;"></div>
+           						</div>
+           						<!-- 评论内容 -->
+           						<div style="height: 50px;">
+           							maoxinhuan:今天dsads 天气很好。
+           						</div>
+           					</div>
+           				</div>
+           			</div>
+                   
+                </div>
                 
          
-            </div>
+            </div><!-- weibo内容区 container-->
+
             
             <div class="pagination">
-            <li><a href='javascript:to_page(1)'>首页</a></li>
+            <li><a href='javascript:listWeibo(1)'>首页</a></li>
         	<!--  <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-6">
         	  <a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">
         		<em>←</em>
@@ -100,7 +204,10 @@
         	</div> -->
         </div>
             
-       	</div>
+       	</div><!-- 中间 -->
+
+
+
 		<!-- 右侧边栏 -->
         
         <div class="side-right">
@@ -158,6 +265,7 @@
 
             <br>
 </body>
+<script src="${ctx}/js/utils/map.js"></script>
 <script src="${ctx}/js/utils/utils-date.js"></script>
 <script src="${ctx}/js/index.js"></script>
 <script>
@@ -175,35 +283,3 @@
 </script>
 </html>
 
-
-
-   <!--  <div class="weibo-body">
-                    <div class="inner">
-                        <div class="head-img">
-                            <img src="${ctx}/img/logo.jpg" alt="none" class="img-circle body-img">
-                        </div>
-                        <div class="other" style="display: block; margin-left: 40px;">
-                            <div class="_username">
-                                name
-                            </div>
-                            <div class="time">
-                                今天19：00
-                            </div>
-                            <div class="area">
-                                这里是weibo内容区
-                                <br><br><br><br><br>
-                                1
-                            </div>
-                        </div>
-                         <div class="menu">
-                            <ul>
-                                <li> <a href=""><i class="fa fa-star-o"></i><i class="fa fa-star"></i>收藏</a></li>
-                                <li> <a href=""><i class="fa fa-share"></i>转发</a></li>
-                                <li> <a href=""><i class="fa fa-commenting-o"></i> 回复</a></li>
-                                <li> <a href=""><i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up"></i>点赞</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    底部菜单栏
-                   
-                </div> -->
