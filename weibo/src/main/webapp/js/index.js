@@ -133,10 +133,10 @@ function getWeibo(data){
 		+ "</div>"
 		+ "<div class='menu'>"
 		+ "<ul>"
-		+ "<li> <a href=''><i class='fa fa-star-o'></i><i class='fa fa-star'></i>收藏</a></li>"
-		+ "<li> <a href=''><i class='fa fa-share'></i>转发</a></li>"
-		+ "<li> <a href='javascript:getReply("+uuid+")'><i class='fa fa-commenting-o'></i> 回复</a></li>"
-		+ "<li> <a href=''><i class='fa fa-thumbs-o-up'></i><i class='fa fa-thumbs-up'></i>点赞</a></li>"
+		+ "<li> <a href='' class='four_a'><i class='fa fa-star-o'></i><i class='fa fa-star'></i>收藏</a></li>"
+		+ "<li> <a href='' class='four_a'><i class='fa fa-share'></i>转发</a></li>"
+		+ "<li> <a href='javascript:getReply(\""+uuid+"\")' class='four_a'><i class='fa fa-commenting-o'></i> 回复</a></li>"
+		+ "<li> <a href=''><i class='fa fa-thumbs-o-up' class='four_a'></i><i class='fa fa-thumbs-up'></i>点赞</a></li>"
 		+ "</ul>" + "</div>" + "</div>" + "</div>";
 	
 	return body;
@@ -198,19 +198,94 @@ function createLi(z,page){
 
 
 function getReply(uuid){
+	console.log(uuid)
+	console.log(_map)
+	console.log(_map.get(uuid));
 	if(_map.get(uuid) == 'close'){
 		// 1.打开回复框，同时请求回复信息
 		// 2. 设置为打开
 		_map.removeByKey(uuid);
 		_map.put(uuid,'open');
+		var x = $("#"+uuid);
+		console.log(x);
 	}else{
 		// 1.删除回复框
 		// 2.设置为关闭
 		_map.removeByKey(uuid);
 		_map.put(uuid,'close');
+		var x = $("#"+uuid);
+		console.log(x);
 	}
 	
 }
 
+function getReplyHtml(){
+	var body = `           			<div class='replyArea'>
+           			
+           				<!-- 回复区 -->
+           				<div>
+           					<!-- 头像 -->
+           					<div style="float: left; margin-top: 10px;margin-left: 10px;">
+           						<img src="${ctx}/img/logo.jpg" alt="none" class="img-circle reply-img">
+           					</div>
+           					<!-- input -->
+           					<div style="">
+           						<textarea name="" id="reply-content" style="height:40px;width:520px; margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
 
+           					</div>
+           					<div style="display: block; ">
+           						<button type="button" class="btn-reply_2">评论</button>
+           					</div>
+           					
+           				</div>
+           				<div style="padding-left: 5%;padding-right: 5%;">
+           					<hr style="text-align: center; border:0;background-color:#87BADB;height:1px;" >
+           				</div>
+           				<!-- 展示区域 -->
+           				<div>
+                   			<!-- head，预留区域 -->
+           					<div></div>
+           					<div>
+           						<!-- 头像 -->
+           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
+           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+           							<div style="clear: both;"></div>
+           						</div>
+           						<!-- 评论内容 -->
+           						<div style="height: 50px;">
+                        <a href="" class="username_a">
+                          maoxinhuan
+                        </a>
+                        <span>
+                          :今天天气很好。
+                        </span>
+                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+                          	今天 7:00
+                        </div>
+           						</div>
+
+           					</div>
+           					<div>
+           						<!-- 头像 -->
+           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
+           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+           							<div style="clear: both;"></div>
+           						</div>
+           						<!-- 评论内容 -->
+           						<div style="height: 50px;">
+           						 <a href="" class="username_a">
+                          maoxinhuan
+                        </a>
+                        <span>
+                          :今天dsads 天气很好。
+                        </span>
+                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+                         	 今天 7:00
+                        </div>
+           						</div>
+                     
+           					</div>
+           				</div>
+           			</div>`
+}
 

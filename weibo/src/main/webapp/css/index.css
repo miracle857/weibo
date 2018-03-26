@@ -205,3 +205,27 @@ a {
 	 display: block; 
 	 margin-left: 40px;
 }
+
+.replyArea{
+	border-top: 1px solid #ccc;
+}
+.reply-img{
+    width: 30px;
+    height: 30px;
+}
+.btn-reply_2{	
+	top: -10px;
+	left: -10px;
+	position: relative;
+	background-color: #FFC09F;
+	border-radius: 5px;
+	height: 20px;
+	width: 45px;
+	color: white;
+	border: none;
+	margin-left: 530px;
+}
+.username_a{
+	color: #EB7350;
+	margin-left: 10px;
+}

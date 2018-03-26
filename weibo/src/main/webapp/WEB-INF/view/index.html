@@ -96,38 +96,15 @@
                         </div>
                          <div class="menu">
                             <ul>
-                                <li> <a href=""><i class="fa fa-star-o"></i><i class="fa fa-star"></i>收藏</a></li>
-                                <li> <a href=""><i class="fa fa-share"></i>转发</a></li>
-                                <li> <a href=""><i class="fa fa-commenting-o"></i> 回复</a></li>
-                                <li> <a href=""><i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up"></i>点赞</a></li>
+                                <li> <a href="" class="four_a"><i class="fa fa-star-o"></i><i class="fa fa-star"></i>收藏</a></li>
+                                <li> <a href="" class="four_a"><i class="fa fa-share"></i>转发</a></li>
+                                <li> <a href="" class="four_a"><i class="fa fa-commenting-o"></i> 回复</a></li>
+                                <li> <a href="" class="four_a"><i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up"></i>点赞</a></li>
                             </ul>
                         </div>
                     </div>
                     <!--  回复区域 -->
                     
-
-                    <style type="text/css">
-                    	.replyArea{
-                    		border-top: 1px solid #ccc;
-                    	}
-                    	.reply-img{
-                    		width: 30px;
-                    		height: 30px;
-                    	}
-                    	.btn-reply_2{
-                    		
-							top: -10px;
-							left: -10px;
-							position: relative;
-							background-color: #FFC09F;
-							border-radius: 5px;
-							height: 25px;
-							width: 60px;
-							color: white;
-							border: none;
-							margin-left: 530px;
-                    	}
-                    </style>
            			<div class='replyArea'>
            			
            				<!-- 回复区 -->
@@ -142,15 +119,16 @@
 
            					</div>
            					<div style="display: block; ">
-           						<button type="button" class="btn-reply_2">发布</button>
+           						<button type="button" class="btn-reply_2">评论</button>
            					</div>
-           					<!-- div style="height: 5px;"></div> -->
+           					
            				</div>
            				<div style="padding-left: 5%;padding-right: 5%;">
            					<hr style="text-align: center; border:0;background-color:#87BADB;height:1px;" >
            				</div>
            				<!-- 展示区域 -->
            				<div>
+                   			<!-- head，预留区域 -->
            					<div></div>
            					<div>
            						<!-- 头像 -->
@@ -160,8 +138,17 @@
            						</div>
            						<!-- 评论内容 -->
            						<div style="height: 50px;">
-           							maoxinhuan:今天天气很好。
+                        <a href="" class="username_a">
+                          maoxinhuan
+                        </a>
+                        <span>
+                          :今天天气很好。
+                        </span>
+                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+                          	今天 7:00
+                        </div>
            						</div>
+
            					</div>
            					<div>
            						<!-- 头像 -->
@@ -171,8 +158,17 @@
            						</div>
            						<!-- 评论内容 -->
            						<div style="height: 50px;">
-           							maoxinhuan:今天dsads 天气很好。
+           						 <a href="" class="username_a">
+                          maoxinhuan
+                        </a>
+                        <span>
+                          :今天dsads 天气很好。
+                        </span>
+                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+                         	 今天 7:00
+                        </div>
            						</div>
+                     
            					</div>
            				</div>
            			</div>
@@ -274,10 +270,10 @@
         var x = parseInt(a)+window.pageYOffset;
         $(".side-nav").css("top",x+"px");
 　　}
-    $("a").mouseover(function(){
+    $(".four_a").mouseover(function(){
          $(this).css("color","#FF3366");
     });
-    $("a").mouseout(function(){
+    $(".four_a").mouseout(function(){
          $(this).css("color","black");
     });
 </script>

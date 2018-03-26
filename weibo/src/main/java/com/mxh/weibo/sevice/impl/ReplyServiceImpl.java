@@ -27,6 +27,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public PaginatedList<Reply> getReplyByWBID(ReplyCriterua criterua) {
 
 		ReplyExample example = new ReplyExample();
+		//example.setOrderByClause(orderByClause);
 		example.createCriteria().andWeiboUuidEqualTo(criterua.getWeiboUuid()).andDeletedEqualTo((byte) 0);
 		List<Reply> list = replyMapper.selectByExample(example);
 
