@@ -198,43 +198,136 @@ function createLi(z,page){
 
 
 function getReply(uuid){
-	console.log(uuid)
-	console.log(_map)
-	console.log(_map.get(uuid));
 	if(_map.get(uuid) == 'close'){
 		// 1.打开回复框，同时请求回复信息
 		// 2. 设置为打开
 		_map.removeByKey(uuid);
 		_map.put(uuid,'open');
-		var x = $("#"+uuid);
-		console.log(x);
+		
+		
+		
+		$.ajax({
+			url : "/w/list.do",
+			type : "post",
+			data : {
+				page:page,
+				pagesize:10
+			},
+			datatype : "json",
+			success : function(data){
+				
+				// 不分頁了先
+				//createPage(data);
+				
+				$(data.rows).each(function(idx,item){
+					
+					// TODO 先这样粗糙解决一下
+					if(idx==0){
+						// item 为 Reply
+						$("#"+uuid).append(getReplyHtml(item));
+					}
+					
+					
+					// TODO
+					//$("#"+uuid+" .replyArea .replyShow").append(getReplyContenet(item));
+					
+					//$(".shown").show();
+				});
+			},
+			error : function(){
+				
+			}
+		});
+		
+		
 	}else{
 		// 1.删除回复框
 		// 2.设置为关闭
 		_map.removeByKey(uuid);
 		_map.put(uuid,'close');
-		var x = $("#"+uuid);
-		console.log(x);
+		$("#"+uuid+" .replyArea").remove();
 	}
 	
 }
 
-function getReplyHtml(){
-	var body = `           			<div class='replyArea'>
+
+function getReplyContenet(data){
+	var uuid = data.uuid;
+	var name = data.userNickname;
+	var content = data.content;
+	var date = data.publishtime;
+	var body = `<div id=`+uuid+`>
+					<!-- 头像 -->
+					<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
+						<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+						<div style="clear: both;"></div>
+					</div>
+					<!-- 评论内容 -->
+					<div style="height: 50px;">
+                        <a href="" class="username_a">`
+							+name+
+                        `</a>
+                        <span>
+                          :`+content+`
+                        </span>
+                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+                          	`+date+`
+                        </div>
+					</div>
+				</div>`;
+}
+
+
+
+// 每个微博下的评论按钮调用
+// 参数为 weiboUuid
+function replyWeibo(uuid){
+	// 1.取对应button的textarea
+	var content = $("textarea[id="+weiboUuid+"]").val();
+	// 2.判空
+	
+	// ajax给后台传数据
+	$.ajax({
+		url : "/w/publish.do",
+		type : "post",
+		data : {
+			userUsername:$("#s-username").val(),
+			userNickname:name,
+			content:content
+		},
+		datatype : "json",
+		success : function(data){
+			// 3.日期处理，并展示内容
+			
+			
+			// 4.判断长度，如果>10 ， 则删除最后一个元素
+		},
+		error : function(){
+			
+		}
+	});
+}
+
+
+
+function getReplyHtml(data){
+	// data 为 Reply
+	var weiboUuid = data.weiboUuid;
+	var body = ` <div class='replyArea'>
            			
            				<!-- 回复区 -->
            				<div>
            					<!-- 头像 -->
            					<div style="float: left; margin-top: 10px;margin-left: 10px;">
-           						<img src="${ctx}/img/logo.jpg" alt="none" class="img-circle reply-img">
+           						<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
            					</div>
            					<!-- input -->
            					<div style="">
-           						<textarea name="" id="reply-content" style="height:40px;width:520px; margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
+           						<textarea name="" id=\"`+weiboUuid+`\" style="height:40px;width:520px; margin: 9px; resize: none; border: 1px solid #FFC09F;"></textarea>
 
            					</div>
            					<div style="display: block; ">
-           						<button type="button" class="btn-reply_2">评论</button>
+           						<button id=\"`+weiboUuid+`\" type="button" class="btn-reply_2" onclick='replyWeibo(\"`+weiboUuid+`\")'>评论</button>
            					</div>
            					
            				</div>
@@ -242,7 +335,7 @@ function getReplyHtml(){
            					<hr style="text-align: center; border:0;background-color:#87BADB;height:1px;" >
            				</div>
            				<!-- 展示区域 -->
-           				<div>
+           				<div class='replyShow'>
                    			<!-- head，预留区域 -->
            					<div></div>
            					<div>
@@ -253,39 +346,20 @@ function getReplyHtml(){
            						</div>
            						<!-- 评论内容 -->
            						<div style="height: 50px;">
-                        <a href="" class="username_a">
-                          maoxinhuan
-                        </a>
-                        <span>
-                          :今天天气很好。
-                        </span>
-                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
-                          	今天 7:00
-                        </div>
+			                        <a href="" class="username_a">
+			                          maoxinhuan
+			                        </a>
+			                        <span>
+			                          :今天天气很好。
+			                        </span>
+			                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
+			                          	今天 7:00
+			                        </div>
            						</div>
-
            					</div>
-           					<div>
-           						<!-- 头像 -->
-           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
-           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
-           							<div style="clear: both;"></div>
-           						</div>
-           						<!-- 评论内容 -->
-           						<div style="height: 50px;">
-           						 <a href="" class="username_a">
-                          maoxinhuan
-                        </a>
-                        <span>
-                          :今天dsads 天气很好。
-                        </span>
-                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
-                         	 今天 7:00
-                        </div>
-           						</div>
-                     
-           					</div>
+           					
            				</div>
            			</div>`
+	return body;
 }
 
