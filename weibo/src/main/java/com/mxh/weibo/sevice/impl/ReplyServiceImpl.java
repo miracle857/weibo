@@ -2,19 +2,23 @@ package com.mxh.weibo.sevice.impl;
 
 import static com.mxh.weibo.common.util.CheckNullable.checkNull;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.model.Reply;
 import com.mxh.weibo.common.model.ReplyExample;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.ReplyCriterua;
+import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.ReplyMapper;
 import com.mxh.weibo.dao.WeiboMapper;
 import com.mxh.weibo.sevice.ReplyService;
 
+@Service
 public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired
@@ -43,12 +47,13 @@ public class ReplyServiceImpl implements ReplyService {
 		// Optional<Reply> op = Optional.of(reply);
 		// op.map(x -> x.getUuid()).orElseThrow(Exception::new);
 
-		checkNull(reply.getUuid(), "不存在此微博。");
+		checkNull(reply.getWeiboUuid(), "不存在此微博。");
 		checkNull(reply.getContent(), "内容不能为空");
-		// if(StringUtils.isBlank( reply.getUuid() )){
-		// throw new WeiboException("不存在此微博。");
-		// }
+
     	
+		reply.setUuid(UUIDUtils.getUUID());
+		reply.setDeleted((byte) 0);
+		reply.setPublishtime(new Date());
 		int insertSelective = replyMapper.insertSelective(reply);
 		if (insertSelective > 0) {
 			Weibo record = new Weibo();

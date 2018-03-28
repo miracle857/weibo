@@ -76,7 +76,7 @@ $(".btn-reply").click(function() {
 	});
 });
 
-function listWeibo(page,event){
+function listWeibo(page){
 	//event.preventDefault();
 	
 	$("#container").empty();
@@ -204,34 +204,25 @@ function getReply(uuid){
 		_map.removeByKey(uuid);
 		_map.put(uuid,'open');
 		
-		
+		$("#"+uuid).append(getReplyHtml(uuid));
 		
 		$.ajax({
-			url : "/w/list.do",
+			url : "/r/getReply.do",
 			type : "post",
 			data : {
-				page:page,
-				pagesize:10
+				page:1,
+				pagesize:10,
+				weiboUuid:uuid
 			},
 			datatype : "json",
 			success : function(data){
 				
 				// 不分頁了先
 				//createPage(data);
-				
 				$(data.rows).each(function(idx,item){
 					
-					// TODO 先这样粗糙解决一下
-					if(idx==0){
-						// item 为 Reply
-						$("#"+uuid).append(getReplyHtml(item));
-					}
+					$("#"+uuid+" .replyArea .replyShow").append(getReplyContenet(item));
 					
-					
-					// TODO
-					//$("#"+uuid+" .replyArea .replyShow").append(getReplyContenet(item));
-					
-					//$(".shown").show();
 				});
 			},
 			error : function(){
@@ -255,7 +246,7 @@ function getReplyContenet(data){
 	var uuid = data.uuid;
 	var name = data.userNickname;
 	var content = data.content;
-	var date = data.publishtime;
+	var date = FormatDateTime(data.publishtime);
 	var body = `<div id=`+uuid+`>
 					<!-- 头像 -->
 					<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
@@ -275,30 +266,36 @@ function getReplyContenet(data){
                         </div>
 					</div>
 				</div>`;
+	return body;
 }
 
 
 
 // 每个微博下的评论按钮调用
 // 参数为 weiboUuid
-function replyWeibo(uuid){
+function replyWeibo(weiboUuid){
 	// 1.取对应button的textarea
 	var content = $("textarea[id="+weiboUuid+"]").val();
 	// 2.判空
-	
+	var name =  "mxh";
 	// ajax给后台传数据
 	$.ajax({
-		url : "/w/publish.do",
+		url : "/r/replyWeibo.do",
 		type : "post",
 		data : {
 			userUsername:$("#s-username").val(),
 			userNickname:name,
+			weiboUuid:weiboUuid,
 			content:content
 		},
 		datatype : "json",
 		success : function(data){
 			// 3.日期处理，并展示内容
-			
+			if(data.success == true){
+				console.log($("#"+weiboUuid+" .replyArea .replyShow"));
+				console.log(getReplyContenet(data.body));
+				$("#"+weiboUuid+" .replyArea .replyShow").append(getReplyContenet(data.body));
+			}
 			
 			// 4.判断长度，如果>10 ， 则删除最后一个元素
 		},
@@ -310,9 +307,9 @@ function replyWeibo(uuid){
 
 
 
-function getReplyHtml(data){
+function getReplyHtml(uuid){
 	// data 为 Reply
-	var weiboUuid = data.weiboUuid;
+	var weiboUuid = uuid;
 	var body = ` <div class='replyArea'>
            			
            				<!-- 回复区 -->
