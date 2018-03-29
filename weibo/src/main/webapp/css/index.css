@@ -45,7 +45,7 @@
 }
 
 .body {
-	background-image: url(1img/background.png);
+	background-image: url(1img/120.jpg);
 }
 
 @media screen and (max-width: 1500px) {
@@ -61,7 +61,7 @@ a {
 }
 
 .side-nav {
-	position: relative; /* 绝对定位，fixed是相对于浏览器窗口定位。 */
+	position: relative; 
 	top: 40px; /* 距离窗口顶部距离 */
 	left: 18%; /* 距离窗口左边的距离 */
 	width: 150px; /* 宽度设置为100% */

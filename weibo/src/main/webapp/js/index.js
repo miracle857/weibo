@@ -204,7 +204,20 @@ function getReply(uuid){
 		_map.removeByKey(uuid);
 		_map.put(uuid,'open');
 		
+		// 补上 回复小版块
 		$("#"+uuid).append(getReplyHtml(uuid));
+		
+		// 监听textarea 输入框内容，判定是否开放按钮
+		$("textarea[id="+uuid+"]").on('input', function() {
+		    if ($.trim($("textarea[id="+uuid+"]").val()).length == 0) {
+		        $("button[id="+uuid+"]").attr({"disabled":"disabled"});
+		        $("button[id="+uuid+"]").css("background-color","#FFC09F");
+		    }else{
+		    	$("button[id="+uuid+"]").removeAttr("disabled");
+		    	$("button[id="+uuid+"]").css("background-color","#FF8140");
+		    }
+		});
+		
 		
 		$.ajax({
 			url : "/r/getReply.do",
@@ -276,7 +289,7 @@ function getReplyContenet(data){
 function replyWeibo(weiboUuid){
 	// 1.取对应button的textarea
 	var content = $("textarea[id="+weiboUuid+"]").val();
-	// 2.判空
+	// TODO 2.判空
 	var name =  "mxh";
 	// ajax给后台传数据
 	$.ajax({
@@ -292,9 +305,12 @@ function replyWeibo(weiboUuid){
 		success : function(data){
 			// 3.日期处理，并展示内容
 			if(data.success == true){
-				console.log($("#"+weiboUuid+" .replyArea .replyShow"));
-				console.log(getReplyContenet(data.body));
 				$("#"+weiboUuid+" .replyArea .replyShow").append(getReplyContenet(data.body));
+				
+				// 清空内容，关闭按钮
+				$("textarea[id="+weiboUuid+"]").val('');
+				$("button[id="+weiboUuid+"]").attr({"disabled":"disabled"});
+		        $("button[id="+weiboUuid+"]").css("background-color","#FFC09F");
 			}
 			
 			// 4.判断长度，如果>10 ， 则删除最后一个元素
@@ -335,26 +351,7 @@ function getReplyHtml(uuid){
            				<div class='replyShow'>
                    			<!-- head，预留区域 -->
            					<div></div>
-           					<div>
-           						<!-- 头像 -->
-           						<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
-           							<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
-           							<div style="clear: both;"></div>
-           						</div>
-           						<!-- 评论内容 -->
-           						<div style="height: 50px;">
-			                        <a href="" class="username_a">
-			                          maoxinhuan
-			                        </a>
-			                        <span>
-			                          :今天天气很好。
-			                        </span>
-			                        <div style="font-size: 10px;color: #CC33FF;margin-left: 50px;">
-			                          	今天 7:00
-			                        </div>
-           						</div>
-           					</div>
-           					
+
            				</div>
            			</div>`
 	return body;
