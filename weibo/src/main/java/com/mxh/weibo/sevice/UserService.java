@@ -2,8 +2,11 @@ package com.mxh.weibo.sevice;
 
 import java.util.List;
 
+import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.model.Weibo;
+import com.mxh.weibo.common.o.UserCriterua;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
 
@@ -91,4 +94,6 @@ public interface UserService {
 	void unFollow(String follower, String followered) throws Exception;
 
 	void follow(String follower, String followered) throws Exception;
+	
+	PaginatedList<User> userList(UserCriterua criterua);
 }

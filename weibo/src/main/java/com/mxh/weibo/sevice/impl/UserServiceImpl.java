@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.DC;
+import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.email.Mail;
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.FollowFollower;
 import com.mxh.weibo.common.model.FollowFollowerExample;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.UserCriterua;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.common.util.CollectionUtil;
@@ -164,6 +166,12 @@ public class UserServiceImpl implements UserService {
 		record.setFollow(follower);
 		record.setFollowed(followered);
 		followFollowerMapper.insertSelective(record);
+	}
+
+	@Override
+	public PaginatedList<User> userList(UserCriterua criterua) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
