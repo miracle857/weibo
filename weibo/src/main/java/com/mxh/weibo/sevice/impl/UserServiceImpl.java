@@ -143,14 +143,44 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserVo> getFollower(String uuid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// 获取关注者ids列表
+		FollowFollowerExample example = new FollowFollowerExample();
+		example.createCriteria().andFollowEqualTo(uuid);
+		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
+
+		// 获取关注者详细信息
+		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "follow", String.class));
+
+		// 封装信息
+		List<UserVo> resu = new ArrayList<>();
+		for (User user : users) {
+			UserVo vo = new UserVo();
+			PropertyUtils.copyProperties(vo, user);
+
+			// 我的关注 是否关注我
+			FollowFollowerExample example2 = new FollowFollowerExample();
+			example.createCriteria().andFollowedEqualTo(uuid).andFollowEqualTo(user.getUuid());
+			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
+			if (CollectionUtils.isNotEmpty(list2)) {
+				vo.setMutual((byte) 1);
+			}
+
+			resu.add(vo);
+		}
+
+		return resu;
 	}
 
 	@Override
-	public void unFollow(String follower, String followered) throws Exception {
-		// TODO Auto-generated method stub
+	public void unFollow(String me, String he) throws Exception {
+		FollowFollowerExample example = new FollowFollowerExample();
+		example.createCriteria().andFollowEqualTo(me).andFollowedEqualTo(he);
+		List<FollowFollower> select1 = followFollowerMapper.selectByExample(example);
+		if (CollectionUtils.isNotEmpty(select1)) {
+			throw new Exception("您未关注TA。");
+		}
 
+		followFollowerMapper.deleteByExample(example );
 	}
 
 	@Override

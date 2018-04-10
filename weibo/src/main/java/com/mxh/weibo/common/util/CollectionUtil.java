@@ -7,6 +7,13 @@ import org.apache.commons.collections.CollectionUtils;
 
 public class CollectionUtil {
 
+	/**
+	 * 将一个集合中的某个字段 转化为List返回。支持Integer 和 String 类型
+	 * @param list
+	 * @param filed
+	 * @param clazz
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public static <V, T> List<T> FiledToList(List<V> list, String filed, Class<T> clazz) {
 		if (CollectionUtils.isEmpty(list)) {
