@@ -1,55 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
     <!--  fontawesome -->
     <link href="./font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
 
-	<!-- jquery -->
-	<script src="./3rd/jquery/jquery3.2.1.js"></script>
+  <!-- jquery -->
+  <script src="./3rd/jquery/jquery3.2.1.js"></script>
 
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
-	<script src="./3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+  <link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
 
-	<link href="./css/index.css" rel="stylesheet" /> 
-	<title>weibo</title>
-	
+  <link rel="stylesheet" href="./3rd/layui/css/layui.css" >
+  <script src="./3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+  <script src="./3rd/layui/layui.all.js" ></script>
+  <link href="./css/index.css" rel="stylesheet" /> 
+  <title>weibo</title>
+  
 </head>
 
 <body>
     <!--  顶部导航栏 -->
-	<div class="nav">
-		<div class="nav-container">
-			<!-- logo -->
-			<div>
-				<img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
-				<div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
-			</div>
-			<!-- 搜索栏 -->
-			<div class="nav-search" >
-				<div><input type="text" class="" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
-				<a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
-			</div>
-			<!-- 选项栏 -->
-			<div class="nav-option">
-			<ul>
-				<li><i class="glyphicon glyphicon-home"></i>首页</li>
-				<li><i class="glyphicon glyphicon-envelope">消息</i></li>
-				<li><i class="glyphicon glyphicon-cog"></i>设置 </li>
-				<li><i class="glyphicon glyphicon-cog"></i>发现 </li>
-				<li><i class="glyphicon glyphicon-edit"></i>发微博</li>
-			</ul>
-				
-			</div>
-		</div>
-	</div>
-	<div class="body" style="height: 1000px;">
-		
-
-
+  <div class="nav">
+    <div class="nav-container">
+      <!-- logo -->
+      <div>
+        <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
+        <div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
+      </div>
+      <!-- 搜索栏 -->
+      <div class="nav-search" >
+        <div><input type="text" class="" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
+        <a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
+      </div>
+      <!-- 选项栏 -->
+      <div class="nav-option">
+      <ul>
+        <li><i class="glyphicon glyphicon-home"></i>首页</li>
+        <li><i class="glyphicon glyphicon-envelope">消息</i></li>
+        <li><i class="glyphicon glyphicon-cog"></i>设置 </li>
+        <li><i class="glyphicon glyphicon-cog"></i>发现 </li>
+        <li><i class="glyphicon glyphicon-edit"></i>发微博</li>
+      </ul>
+        
+      </div>
+    </div>
   </div>
+  <style type="text/css">
+    .red{
+      background-color: red;
+    }
+    .green{
+      background-color: green;
+    }
+    .detail_img{
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      margin: 10px;
+    }
+
+    .detail_top{
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .tb_counter td{
+      padding: 10px;
+      cursor: pointer;
+    }
+    .detial_msg{
+      border:1px solid #ccc;
+      margin-top: 20px;
+    }
+    .block_{
+      display: block;
+    }
+    ._buttonXX{
+      padding-right: 20px;
+    }
+    ._button2{
+      font-size:15px;
+      font-weight: bold;
+      border:1px solid #ccc; padding:5px;
+    }
+    .font_normal{
+      color: #FA7D3C;
+      font-style: normal;
+    }
+  </style>
+  <div class="body" style="height: 1000px;">
+    <div class="container" style="margin-top: 40px; width: 1000px;">
+      <div style="text-align: center;" class="detail_top">
+
+        <!-- 头像 -->
+        <div style="margin: 20px auto 0">
+          <p class="">
+            <img src="img/logo.jpg" class="detail_img">
+          </p>
+        </div> 
+        <!-- 用户名 -->
+        <div>
+          <h1>miracle</h1>
+        </div> 
+        <!-- 个人签名 -->
+        <div>
+          Apple Ceo
+        </div>
+        <div style="height: 10px;"></div> 
+
+      </div>
+
+      <div class="col-md-4" style="padding: 0px;">
+        <div class=""> 
+          <table class="tb_counter" style="width: 100%;text-align: center; border: 1px solid #ccc;">
+            <tr>
+              <td>
+                <a href="javascript:void(0);" style="font-weight: bold;">2</a>
+                <span class="block_">关注</span>
+              </td>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">25</a>
+                <span class="block_">粉丝</span>
+              </td>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">22</a>
+                <span class="block_">微博</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="detial_msg">
+          
+          <div>浙江湖州</div>
+          <div>1995年1月1日</div>
+        </div>
+      </div>
+
+      <div class="col-md-8" style="padding: 0px 0px 10px 10px;">
+        <div style="border: 0px solid #ccc; height: 40px">
+            <div class="">
+              <table>
+                <tr>
+                  <td class="_buttonXX">
+                    <div class="_button2">微博</div>
+                  </td>
+                  <td class="_buttonXX">
+                    <div class="_button2">关注</div>
+                  </td>
+                  <td class="_buttonXX">
+                    <div class="_button2">粉丝</div>
+                  </td>
+                </tr>
+              </table>
+              
+            </div>
+        </div>
+
+        <!-- 好友，关注，微博等DIV块 -->
+        <div>
+            <div class="fans_div" style="border: 1px solid #ccc;">
+                <div id="1">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">2</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">10</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">10</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
+                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+                      <a href="">关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>
+                <div id="2">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">2</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">10</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">10</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
+                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+
+                      <a href="">关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>
+                <div id="3">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">2</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">10</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">10</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
+                      <i class="glyphicon glyphicon-sort" style="color: black;transform:rotate(90deg);
+-ms-transform:rotate(90deg);   /* IE 9 */
+-moz-transform:rotate(90deg);  /* Firefox */
+-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+-o-transform:rotate(90deg);  /* Opera */"></i>
+                      <a href="">互相关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
 
 </body>
 

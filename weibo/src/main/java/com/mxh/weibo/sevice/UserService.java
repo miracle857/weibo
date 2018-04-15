@@ -78,9 +78,9 @@ public interface UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<UserVo> getFans(String uuid) throws Exception;
+	List<UserVo> getFans(String login,String uuid) throws Exception;
 
-	List<UserVo> getFollower(String uuid) throws Exception;
+	List<UserVo> getFollower(String login,String uuid) throws Exception;
 
 	/**
 	 * 关注 or 取消关注

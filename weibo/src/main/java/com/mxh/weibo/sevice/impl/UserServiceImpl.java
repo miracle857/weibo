@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVo> getFans(String uuid) throws Exception {
+	public List<UserVo> getFans(String login,String uuid) throws Exception {
 		// 获取粉丝ids列表
 		FollowFollowerExample example = new FollowFollowerExample();
 		example.createCriteria().andFollowedEqualTo(uuid);
@@ -127,9 +127,9 @@ public class UserServiceImpl implements UserService {
 			UserVo vo = new UserVo();
 			PropertyUtils.copyProperties(vo, user);
 
-			// 我是否关注我的粉丝
+			// 我是否关注 此人
 			FollowFollowerExample example2 = new FollowFollowerExample();
-			example.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(uuid);
+			example.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(login);
 			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
 			if (CollectionUtils.isNotEmpty(list2)) {
 				vo.setMutual((byte) 1);
@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVo> getFollower(String uuid) throws Exception {
+	public List<UserVo> getFollower(String login,String uuid) throws Exception {
 		// 获取关注者ids列表
 		FollowFollowerExample example = new FollowFollowerExample();
 		example.createCriteria().andFollowEqualTo(uuid);
