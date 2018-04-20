@@ -112,10 +112,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVo> getFans(String login,String uuid) throws Exception {
+	public PaginatedList<UserVo> getFans(String login,UserCriterua criterua) throws Exception {
 		// 获取粉丝ids列表
 		FollowFollowerExample example = new FollowFollowerExample();
-		example.createCriteria().andFollowedEqualTo(uuid);
+		example.createCriteria().andFollowedEqualTo(criterua.getUuid());
 		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
 
 		// 获取粉丝详细信息
@@ -138,14 +138,18 @@ public class UserServiceImpl implements UserService {
 			resu.add(vo);
 		}
 
-		return resu;
+		PaginatedList<UserVo> result = new PaginatedList<>();
+		result.setPagination(criterua);
+		result.setResult(resu);
+
+		return result;
 	}
 
 	@Override
-	public List<UserVo> getFollower(String login,String uuid) throws Exception {
-		// 获取关注者ids列表
+	public PaginatedList<UserVo> getFollower(String login,UserCriterua criterua) throws Exception {
+		// 获取关注ids列表
 		FollowFollowerExample example = new FollowFollowerExample();
-		example.createCriteria().andFollowEqualTo(uuid);
+		example.createCriteria().andFollowEqualTo(criterua.getUuid());
 		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
 
 		// 获取关注者详细信息
@@ -159,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
 			// 我的关注 是否关注我
 			FollowFollowerExample example2 = new FollowFollowerExample();
-			example.createCriteria().andFollowedEqualTo(uuid).andFollowEqualTo(user.getUuid());
+			example.createCriteria().andFollowedEqualTo(login).andFollowEqualTo(user.getUuid());
 			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
 			if (CollectionUtils.isNotEmpty(list2)) {
 				vo.setMutual((byte) 1);
@@ -167,8 +171,13 @@ public class UserServiceImpl implements UserService {
 
 			resu.add(vo);
 		}
+		
+		
+		PaginatedList<UserVo> result = new PaginatedList<>();
+		result.setPagination(criterua);
+		result.setResult(resu);
 
-		return resu;
+		return result;
 	}
 
 	@Override

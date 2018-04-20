@@ -1,7 +1,5 @@
 package com.mxh.weibo.common.o.vo;
 
-import java.io.Serializable;
-
 import com.mxh.weibo.common.Pagination;
 
 public class FriendVo extends Pagination {

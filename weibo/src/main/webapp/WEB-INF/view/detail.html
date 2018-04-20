@@ -16,6 +16,7 @@
   <script src="./3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
   <script src="./3rd/layui/layui.all.js" ></script>
   <link href="./css/index.css" rel="stylesheet" /> 
+
   <title>weibo</title>
   
 </head>
@@ -158,89 +159,27 @@
 
         <!-- 好友，关注，微博等DIV块 -->
         <div>
-            <div class="fans_div" style="border: 1px solid #ccc;">
-                <div id="1">
-                  <div class="col-md-2">
-                    <p style="text-align: center; margin-top: 20px;">
-                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
-                    </p>
-                  </div>
-                  <div class="col-md-6" style="">
-                    <div>
-                      <h1 style="font-size: 20px;">miracle2</h1>
-                    </div>
-                    <div>
-                      <span style="font-size: 12px;">关注
-                          <em class="font_normal">2</em>
-                      </span>
-                      <span style="font-size: 12px;">粉丝
-                          <em class="font_normal">10</em>
-                      </span>
-                      <span style="font-size: 12px;">微博
-                          <em class="font_normal">10</em>
-                      </span>
-                    </div>
-                    <div style="font-size: 12px;margin-top: 5px;">
-                      <span style="color: #808080">
-                        签名: 
-                      </span>
-                      dasd 
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
-                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
-                      <a href="">关注</a>
-                    </span>
-                  </div>
-                
-                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
-                    <div style="border-top:1px  dashed #ccc; ">
-                    </div>
-                  </div>
-                </div>
-                <div id="2">
-                  <div class="col-md-2">
-                    <p style="text-align: center; margin-top: 20px;">
-                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
-                    </p>
-                  </div>
-                  <div class="col-md-6" style="">
-                    <div>
-                      <h1 style="font-size: 20px;">miracle2</h1>
-                    </div>
-                    <div>
-                      <span style="font-size: 12px;">关注
-                          <em class="font_normal">2</em>
-                      </span>
-                      <span style="font-size: 12px;">粉丝
-                          <em class="font_normal">10</em>
-                      </span>
-                      <span style="font-size: 12px;">微博
-                          <em class="font_normal">10</em>
-                      </span>
-                    </div>
-                    <div style="font-size: 12px;margin-top: 5px;">
-                      <span style="color: #808080">
-                        签名: 
-                      </span>
-                      dasd 
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
-                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+            <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
+            <my-fans-template v-for="user in users" v-bind:obj="user"> 
+             
+             </my-fans-template>
 
-                      <a href="">关注</a>
-                    </span>
-                  </div>
-                
-                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
-                    <div style="border-top:1px  dashed #ccc; ">
-                    </div>
-                  </div>
-                </div>
-                <div id="3">
+
+              
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+  Vue.component('my-fans-template', {
+    props: ['obj'],
+    template: `<div id="3">
                   <div class="col-md-2">
                     <p style="text-align: center; margin-top: 20px;">
                       <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
@@ -252,13 +191,13 @@
                     </div>
                     <div>
                       <span style="font-size: 12px;">关注
-                          <em class="font_normal">2</em>
+                          <em class="font_normal">{{obj.text}}</em>
                       </span>
                       <span style="font-size: 12px;">粉丝
-                          <em class="font_normal">10</em>
+                          <em class="font_normal">3</em>
                       </span>
                       <span style="font-size: 12px;">微博
-                          <em class="font_normal">10</em>
+                          <em class="font_normal">4</em>
                       </span>
                     </div>
                     <div style="font-size: 12px;margin-top: 5px;">
@@ -283,17 +222,22 @@
                     <div style="border-top:1px  dashed #ccc; ">
                     </div>
                   </div>
-                </div>
+                </div>`
+  }); // Vue.component
 
-            </div>
-        </div>
-      </div>
-    </div>
+  var vm1 = new Vue({
+    el: '#fans_div',
+    data: {
+      users: [{
+        text: 'Learn Vue',
+        isComplete: false
+      },{
+        text: 'Learn Vue2',
+        isComplete: true
+      }]
+    }
+  })
 
-
-    </div>
-
-</body>
-
+</script>
 </html>
 
