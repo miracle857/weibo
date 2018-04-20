@@ -160,11 +160,8 @@
         <!-- 好友，关注，微博等DIV块 -->
         <div>
             <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
-            <my-fans-template v-for="user in users" v-bind:obj="user"> 
-             
-             </my-fans-template>
-
-
+              <my-fans-template v-for="user in users" v-bind:obj="user"> 
+              </my-fans-template>
               
             </div>
         </div>
@@ -208,13 +205,19 @@
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <span style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
+                    <span v-if="obj.isComplete" style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
                       <i class="glyphicon glyphicon-sort" style="color: black;transform:rotate(90deg);
--ms-transform:rotate(90deg);   /* IE 9 */
--moz-transform:rotate(90deg);  /* Firefox */
--webkit-transform:rotate(90deg); /* Safari 和 Chrome */
--o-transform:rotate(90deg);  /* Opera */"></i>
-                      <a href="">互相关注</a>
+                        -ms-transform:rotate(90deg);   /* IE 9 */
+                        -moz-transform:rotate(90deg);  /* Firefox */
+                        -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+                        -o-transform:rotate(90deg);  /* Opera */">
+                      </i>
+                      <a href="" v-on:click.prevent="unFollow">互相关注</a>
+                    </span>
+                    <span v-else style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
+                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+
+                      <a href="" @click.prevent='follow'>关注</a>
                     </span>
                   </div>
                 
@@ -222,7 +225,16 @@
                     <div style="border-top:1px  dashed #ccc; ">
                     </div>
                   </div>
-                </div>`
+                </div>`,
+      methods:{
+        unFollow: function () {
+          alert(1)
+        },
+        follow: function () {
+          alert(2)
+        }
+      }
+
   }); // Vue.component
 
   var vm1 = new Vue({
@@ -235,6 +247,9 @@
         text: 'Learn Vue2',
         isComplete: true
       }]
+    },
+    methods:{
+      
     }
   })
 
