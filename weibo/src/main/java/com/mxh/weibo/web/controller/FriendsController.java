@@ -18,6 +18,7 @@ import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.web.response.ResponsePageVo;
 
 @Controller
+@RequestMapping("/fri")
 public class FriendsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FriendsController.class);

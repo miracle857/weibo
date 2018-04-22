@@ -84,6 +84,7 @@
       font-size:15px;
       font-weight: bold;
       border:1px solid #ccc; padding:5px;
+      cursor: pointer;
     }
     .font_normal{
       color: #FA7D3C;
@@ -136,20 +137,25 @@
           <div>1995年1月1日</div>
         </div>
       </div>
-
+      <style type="text/css">
+      	.choiced{
+      		background-color: #ccc;
+      		box-shadow: 1px 2px 5px #888888;
+      	}
+      </style>
       <div class="col-md-8" style="padding: 0px 0px 10px 10px;">
         <div style="border: 0px solid #ccc; height: 40px">
-            <div class="">
+            <div class="" id="buttons">
               <table>
                 <tr>
                   <td class="_buttonXX">
-                    <div class="_button2">微博</div>
+                    <div class="_button2" @click="wb_btn" v-bind:class="{choiced: wbChoiced}">微博</div>
                   </td>
                   <td class="_buttonXX">
-                    <div class="_button2">关注</div>
+                    <div class="_button2" @click="gz_btn" v-bind:class="{choiced: gzChoiced}">关注</div>
                   </td>
                   <td class="_buttonXX">
-                    <div class="_button2">粉丝</div>
+                    <div class="_button2" @click="fs_btn" v-bind:class="{choiced: fsChoiced}">粉丝</div>
                   </td>
                 </tr>
               </table>
@@ -161,9 +167,9 @@
         <div>
             <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
               <my-fans-template v-for="user in users" v-bind:obj="user"> 
-              </my-fans-template>
-              
+              </my-fans-template>  
             </div>
+
         </div>
       </div>
     </div>
@@ -174,6 +180,60 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script>
+	var btnVue = new Vue({
+		el: '#buttons',
+	    data: {
+	    	wbChoiced:false,
+	    	gzChoiced:false,
+	    	fsChoiced:false
+	    },
+	    methods:{
+	      wb_btn:function(){
+	      	this.wbChoiced = true;
+			this.gzChoiced = false;
+			this.fsChoiced = false;
+	      	console.log(vm1.users)
+	      },
+	      gz_btn:function(){
+	      	this.wbChoiced = false;
+			this.gzChoiced = true;
+			this.fsChoiced = false;
+	      	console.log("sss");
+	      },
+	      fs_btn:function(){
+			this.wbChoiced = false;
+			this.gzChoiced = false;
+			this.fsChoiced = true;
+			$.ajax({
+				url : "/fri/fans.do",
+				type : "post",
+				data : {
+					page:1,
+					pagesize:10
+				},
+				datatype : "json",
+				success : function(data){
+					
+					// 到时候删除分页。。。先这样用着
+					createPage(data);
+					
+					$(data.rows).each(function(idx,item){
+						_map.put(item.uuid,'close');
+						$("#container").append(getWeibo(item));
+						
+						$(".shown").show();
+					});
+				},
+				error : function(){
+					
+				}
+			});// ajax
+	      }// fs_btn
+	    }// methods
+	});
+
+
+
   Vue.component('my-fans-template', {
     props: ['obj'],
     template: `<div id="3">
@@ -212,7 +272,7 @@
                         -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
                         -o-transform:rotate(90deg);  /* Opera */">
                       </i>
-                      <a href="" v-on:click.prevent="unFollow">互相关注</a>
+                      <a href="" @click.prevent="unFollow">互相关注</a>
                     </span>
                     <span v-else style="border: 1px solid #ccc; top: 20px; position: absolute;right: 20px;box-shadow: 1px 1px 1px #ccc; border-radius: 10%;padding: 3px;">
                       <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
