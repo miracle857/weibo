@@ -80,5 +80,11 @@ public class UserController {
         }
         return res;
     }
+    
+    @RequestMapping("/set/photo")
+    public String toSetting() {
+    	
+    	return "my-message";
+    }
 
 }

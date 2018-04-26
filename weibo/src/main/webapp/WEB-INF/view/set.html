@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- jquery -->
+  <script src="${ctx}/3rd/jquery/jquery3.2.1.js"></script>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+
+  <script src="${ctx}/3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+  <title>个人设置</title>
+  <style>
+  	* {
+	margin: 0;
+	padding: 0;
+	}
+
+	.nav {
+		position: fixed; /* 绝对定位，fixed是相对于浏览器窗口定位。 */
+		top: 0; /* 距离窗口顶部距离 */
+		left: 0; /* 距离窗口左边的距离 */
+		width: 100%; /* 宽度设置为100% */
+		height: 40px; /* 高度 */
+		z-index: 99; /* 层叠顺序，数值越大就越高。页面滚动的时候就不会被其他内容所遮挡。 */
+		border: 1px solid #ccc;
+		background-color: white;
+	}
+
+	.nav-container {
+		margin: 0 auto;
+		width: 60%; /*  这里有问题，需要 @media*/
+		height: 40px;
+	}
+
+	.nav-container div {
+		float: left;
+	}
+
+	.nav-search {
+		height: 30px;
+		width: 200px;
+		border: 1px solid #ccc;
+		margin-top: 5px;
+		margin-left: 10%;
+	}
+
+	.nav-option {
+		margin-left: 10%;
+	}
+
+	.nav-option ul li {
+		list-style: none;
+		float: left;
+		margin-top: 10px;
+		margin-left: 20px;
+		cursor: pointer;
+	}
+  </style>
+</head>
+<body>
+  <!--  顶部导航栏 -->
+  <div class="nav">
+    <div class="nav-container">
+      <!-- logo -->
+      <div>
+        <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
+        <div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
+      </div>
+      <!-- 搜索栏 -->
+      <div class="nav-search" >
+        <div><input type="text" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
+        <a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
+      </div>
+      <!-- 选项栏 -->
+      <div class="nav-option">
+      <ul>
+        <li><i class="glyphicon glyphicon-home"></i>首页</li>
+        <li><i class="glyphicon glyphicon-envelope">消息</i></li>
+        <li><i class="glyphicon glyphicon-cog"></i>设置 </li>
+        <li><i class="glyphicon glyphicon-cog"></i>发现 </li>
+        <li><i class="glyphicon glyphicon-edit"></i>发微博</li>
+      </ul>
+        
+      </div>
+    </div>
+  </div> 
+
+	<style>
+		.over{
+			background-color: #C7BDBD;
+		}
+		a{
+			text-decoration: none !important;
+			color: black;
+		}
+		a:hover {
+		 	color: black; /*鼠标经过的颜色变化*/
+		}		
+
+	</style>
+
+  <div class="container" style="margin-top: 50px;width: 60%;border:1px solid #ccc;height: 500px;">
+  	<div class="row">
+  		<div class="col-md-2" style="border:1px solid #ccc;background-color: #F0F0F0;padding: 0;height: 500px;">
+			<div style="padding:15px 8px 8px 15px;font-size: 10px;color: #ccc;font-weight: bold;">
+				账号设置
+			</div>
+
+  			<div class="category" style="">
+  				<div style="padding: 5px 0px 5px 15px;">
+  					<i class="glyphicon glyphicon-user" style="color: #8F9094;"></i>
+  					<a href="">我的信息</a>
+  				</div>
+  			</div>
+  			<div class="category">
+  				<div style="padding: 5px 0px 5px 15px;">
+  					<i class="glyphicon glyphicon-camera" style="color: #8F9094;"></i>
+  					<a href="">头像</a>
+  				</div>
+  			</div>
+  		</div>
+
+  		<div class="col-md-10">
+  			<div style="padding: 20px 20px 0 0px;font-weight: bold;">头像</div>
+  			<hr>
+  			<div style="font-weight: bold;font-size: 12px;">我的头像</div>
+  			<img alt="" src="${ctx}/img/logo.jpg" style="height: 180px;width: 180px;padding-top: 10px;float: left;">
+  			<input type="file" style="padding-left: 30px;margin-top: 100px;">
+  		</div>
+  	</div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+	$(".category").mouseover(function(){
+	  $(this).addClass("over");
+	});
+	$(".category").mouseout(function(){
+	  $(this).removeClass("over");
+	});
+</script>
+</html>
