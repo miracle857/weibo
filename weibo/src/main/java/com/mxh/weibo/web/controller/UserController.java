@@ -82,9 +82,9 @@ public class UserController {
     }
     
     @RequestMapping("/set/photo")
-    public String toSetting() {
-    	
-    	return "my-message";
+    public String toSetting(HttpServletRequest request) {
+    	User user =  (User)request.getSession().getAttribute("user");
+    	return "set";
     }
 
 }

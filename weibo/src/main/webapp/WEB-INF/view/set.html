@@ -60,32 +60,8 @@
   </style>
 </head>
 <body>
-  <!--  顶部导航栏 -->
-  <div class="nav">
-    <div class="nav-container">
-      <!-- logo -->
-      <div>
-        <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
-        <div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
-      </div>
-      <!-- 搜索栏 -->
-      <div class="nav-search" >
-        <div><input type="text" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
-        <a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
-      </div>
-      <!-- 选项栏 -->
-      <div class="nav-option">
-      <ul>
-        <li><i class="glyphicon glyphicon-home"></i>首页</li>
-        <li><i class="glyphicon glyphicon-envelope">消息</i></li>
-        <li><i class="glyphicon glyphicon-cog"></i>设置 </li>
-        <li><i class="glyphicon glyphicon-cog"></i>发现 </li>
-        <li><i class="glyphicon glyphicon-edit"></i>发微博</li>
-      </ul>
-        
-      </div>
-    </div>
-  </div> 
+ 	 <!--  顶部导航栏 -->
+	<#include "/header/header.html">
 
 	<style>
 		.over{
@@ -126,8 +102,11 @@
   			<div style="padding: 20px 20px 0 0px;font-weight: bold;">头像</div>
   			<hr>
   			<div style="font-weight: bold;font-size: 12px;">我的头像</div>
-  			<img alt="" src="${ctx}/img/logo.jpg" style="height: 180px;width: 180px;padding-top: 10px;float: left;">
-  			<input type="file" style="padding-left: 30px;margin-top: 100px;">
+  			<img alt="" src="${Session.user.headimg!"666"}" style="height: 180px;width: 180px;padding-top: 10px;float: left;">
+  			<form action="" id="file" enctype="multipart/form-data">
+  				<input type="file" style="padding-left: 30px;margin-top: 100px;" name="file">
+  			</form>
+  			<button onclick="uploadPic()" class="button">上传</button>
   		</div>
   	</div>
   </div>
@@ -140,5 +119,27 @@
 	$(".category").mouseout(function(){
 	  $(this).removeClass("over");
 	});
+	
+	function uploadPic() { 
+		var data = new FormData($('#file')[0]);
+		$.ajax({ 
+		   url:"/upload.do", 
+		   type:"post", 
+		   data:data, 
+		   processData:false, 
+		   contentType:false, 
+		   success:function(res){ 
+		     if(res.success){ 
+		       	alert("上传成功！"); 
+		     }else{
+		    	alert(res.message); 
+		     } 
+		    
+		   }, 
+		   error:function(err){ 
+		    alert("网络连接失败,稍后重试",err); 
+		   } 
+		}) 
+} 
 </script>
 </html>
