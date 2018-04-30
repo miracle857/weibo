@@ -42,4 +42,11 @@ public class WeiboController {
 		response.setPageSize(pagination.getPagesize());
 		return response;
 	}
+	
+	@RequestMapping("/like")
+	@ResponseBody
+	public BaseResponse<String> like(String operate,String weiboUuid){
+		// TODO
+		return null;
+	}
 }

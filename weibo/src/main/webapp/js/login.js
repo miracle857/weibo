@@ -56,7 +56,9 @@ function login(){
 function register() {
 	
 	//TODO  表单数据校验  1.密码长度  2.用户名长度  3.密码是否相同  4.邮箱是否格式正确
-	
+	console.log("注册--------");
+	let x = $('#register-form').serialize();
+	console.log(x)
 	$.ajax({
 		url : "/register.do",
 		type : 'post',
@@ -75,10 +77,38 @@ function register() {
 			}
 		},
 		error : function(e) {
-
+			console.log(e);
 		}
 	});
 }
+
+function findPassword(){
+	$("#findPwdInput").val();
+	$.ajax({
+		url : "/findPwd.do",
+		type : 'post',
+		data : {
+			username:$("#findPwdInput").val()
+		},
+		dataType : 'json',
+		success : function(data) {
+			if (data.success) {
+				layer.msg('密码已发送到您的邮箱！', {icon: 1});
+				/*setTimeout(function(){
+					location.reload();
+				},2000);*/
+			} else {
+				/*$("input[name=password]").val('');
+				$("input[name=rpassword]").val('');*/
+				layer.msg(data.message, {icon: 5});
+			}
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+}
+
 
 $(".back-btn").click(backToLogin);
 $("#register-submit-btn").click(register);

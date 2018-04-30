@@ -30,6 +30,7 @@
 					<list>
 						<value>/login</value>
 						<value>/main.do</value>
+						<value>/findPwd.do</value>
 					</list>
 				</property>
 			</bean>

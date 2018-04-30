@@ -86,5 +86,27 @@ public class UserController {
     	User user =  (User)request.getSession().getAttribute("user");
     	return "set";
     }
+    
+    @RequestMapping("/exit")
+    public String exit(HttpServletRequest request) {
+    	request.getSession().removeAttribute("user");
+    	return "redirect:main.do";
+    }
+    
+    @RequestMapping("/findPwd")
+    @ResponseBody
+    public BaseResponse<Void> findPwd(HttpServletRequest request,User token) {
+    	BaseResponse<Void> res = new BaseResponse<>();
+    	try {
+			userService.findPassword(token);
+			res.setSuccess(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+		}
+    	return res;
+    }
 
 }

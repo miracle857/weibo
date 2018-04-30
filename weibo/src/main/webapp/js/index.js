@@ -136,10 +136,49 @@ function getWeibo(data){
 		+ "<li> <a href='' class='four_a'><i class='fa fa-star-o'></i><i class='fa fa-star'></i>收藏</a></li>"
 		+ "<li> <a href='' class='four_a'><i class='fa fa-share'></i>转发</a></li>"
 		+ "<li> <a href='javascript:getReply(\""+uuid+"\")' class='four_a'><i class='fa fa-commenting-o'></i> 回复</a></li>"
-		+ "<li> <a href=''><i class='fa fa-thumbs-o-up' class='four_a'></i><i class='fa fa-thumbs-up'></i>点赞</a></li>"
+		+ "<li> <a href='javascript:likeMethod(\""+uuid+"\")' class='four_a'><i class='fa fa-thumbs-o-up' name='like'></i>点赞</a></li>"
 		+ "</ul>" + "</div>" + "</div>" + "</div>";
-	
+	 
 	return body;
+}
+
+function likeMethod(uuid){
+	let operate="unLike";
+	let like = $("#"+uuid+" li i[name=like]");
+	if(like.hasClass("fa-thumbs-o-up")){
+		// 允许点赞
+		operate="like";
+	}else{
+		// 允许取消赞
+		operate="unLike";
+	}
+	
+	$.ajax({
+		url : "/w/like.do",
+		type : "post",
+		data : {
+			operate:operate,
+			weiboUuid:uuid
+		},
+		datatype : "json",
+		success : function(data){
+			if(data.success){
+				if(operate=="like"){
+					like.removeClass("fa-thumbs-o-up");
+					like.addClass("fa-thumbs-up");
+				}else{
+					like.removeClass("fa-thumbs-up");
+					like.addClass("fa-thumbs-o-up");
+				}
+			}else{
+				alert(data.message)
+			}
+		},
+		error : function(e){
+			console.log(e);
+		}
+	});
+	
 }
 
 
