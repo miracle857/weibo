@@ -96,11 +96,25 @@
         </div> 
         <!-- 用户名 -->
         <div>
-          <h1>miracle</h1>
+          <h1>${detUser.username}</h1>
         </div> 
         <!-- 个人签名 -->
         <div>
-          Apple Ceo
+          ${detUser.comment}
+        </div>
+        <div>
+        <#if detUser.mutual == 1>
+	        <span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
+	              <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
+	              <a href="/unfollow/"+${detUser.uuid}+".do" >已关注</a>
+	        </span>
+        <#else>  
+    		<span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
+              <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+              <a href="/follow/"+${detUser.uuid}+".do" >关注</a>
+        	</span>
+		</#if>  
+        
         </div>
         <div style="height: 10px;"></div> 
 
@@ -111,13 +125,13 @@
           <table class="tb_counter" style="width: 100%;text-align: center; border: 1px solid #ccc;">
             <tr>
               <td>
-                <a href="javascript:void(0);" style="font-weight: bold;">2</a>
+                <a href="javascript:void(0);" style="font-weight: bold;">${detUser.follow}</a>
                 <span class="block_">关注</span>
               </td>
-              <td><a href="javascript:void(0);" style="font-weight: bold;">25</a>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.follower}</a>
                 <span class="block_">粉丝</span>
               </td>
-              <td><a href="javascript:void(0);" style="font-weight: bold;">22</a>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.weibo}</a>
                 <span class="block_">微博</span>
               </td>
             </tr>

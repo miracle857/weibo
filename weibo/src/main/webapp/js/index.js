@@ -117,7 +117,7 @@ function getWeibo(data){
 	var body = "<div class='weibo-body shown' style='display:none' id="+uuid+">"
 		+ "<div class='inner'>"
 		+ "<div class='head-img'>"
-		+ "<img src='/img/logo.jpg' alt='none' class='img-circle body-img'>"
+		+ "<img src='"+img+"' alt='none' class='img-circle body-img'>"
 		+ "</div>"
 		+ "<div class='other'>"
 		+ "<div class='_username'>"

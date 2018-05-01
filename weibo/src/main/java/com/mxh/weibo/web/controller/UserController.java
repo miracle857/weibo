@@ -8,16 +8,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.o.UserToken;
+import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.web.BaseResponse;
 
 @Controller
-public class UserController {
+public class UserController extends BaseController{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -81,12 +84,6 @@ public class UserController {
         return res;
     }
     
-    @RequestMapping("/set/photo")
-    public String toSetting(HttpServletRequest request) {
-    	User user =  (User)request.getSession().getAttribute("user");
-    	return "set";
-    }
-    
     @RequestMapping("/exit")
     public String exit(HttpServletRequest request) {
     	request.getSession().removeAttribute("user");
@@ -108,5 +105,42 @@ public class UserController {
 		}
     	return res;
     }
+    
+    @RequestMapping("/set/{set}")
+    public String toSetting(HttpServletRequest request,@PathVariable String set) {
+    	//User user =  (User)request.getSession().getAttribute("user");
+    	return set;
+    }
+    
+    @RequestMapping("/set/detail/{id}")
+    public String toDetail(HttpServletRequest request,@PathVariable String id) {
+    	
+    	// TODO ，这里要提防 ID 不存在的情况，以后再补
+    	
+    	UserVo user = userService.getUserById(id,this.getLogin(request).getUuid());
+    	request.setAttribute("detUser", user);
+    	return "detail";
+    }
+    
+    @RequestMapping("/save")
+    public BaseResponse<User> save(HttpServletRequest request,User user) {
+    	
+    	BaseResponse<User> res = new BaseResponse<>();
+    	try {
+			userService.changeUserInfo(user);
+			res.setBody(user);
+			res.setSuccess(true);
+		} catch (WeiboException e) {
+			res.setMessage(e.getMessage());
+			e.printStackTrace();
+		}
+    	return res;
+    }
+    
+/*    @RequestMapping("/set/info")
+    public String toInfo(HttpServletRequest request) {
+    	User user =  (User)request.getSession().getAttribute("user");
+    	return "info";
+    }*/
 
 }

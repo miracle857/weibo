@@ -1,34 +1,20 @@
 package com.mxh.weibo.web.controller;
 
 import java.io.File;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.mxh.weibo.common.PaginatedList;
-import com.mxh.weibo.common.Pagination;
 import com.mxh.weibo.common.model.User;
-import com.mxh.weibo.common.model.Weibo;
-import com.mxh.weibo.common.o.WeiboCriteria;
-import com.mxh.weibo.sevice.WeiboService;
 import com.mxh.weibo.web.BaseResponse;
-import com.mxh.weibo.web.response.ResponsePageVo;
 
 @Controller
-public class CommonController {
+public class CommonController extends BaseController{
 	
     //上传图片
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -48,7 +34,7 @@ public class CommonController {
         	 res.setMessage("文件后缀必须为jpg");
         	 return res;
         }
-        User user =  (User)request.getSession().getAttribute("user");
+        User user =  this.getLogin(request);
         String newName = user.getUuid()+extName;
         File tempFile = new File(realPath+"img"+File.separator+"headImg"+File.separator+newName);
         file.transferTo(tempFile);

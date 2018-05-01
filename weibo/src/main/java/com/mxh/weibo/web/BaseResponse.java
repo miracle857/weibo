@@ -23,6 +23,7 @@ public class BaseResponse<T> implements Serializable {
 
 	public BaseResponse() {
 		super();
+		success = false;
 	}
 
 	public BaseResponse(boolean success, String message) {

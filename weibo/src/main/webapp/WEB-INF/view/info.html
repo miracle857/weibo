@@ -3,57 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <!-- jquery -->
-  <script src="./3rd/jquery/jquery3.2.1.js"></script>
+  <script src="${ctx}/3rd/jquery/jquery3.2.1.js"></script>
 
   <!-- bootstrap -->
-  <link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
-  <link rel="stylesheet" href="./3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
 
-  <script src="./3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>  
+  <script src="${ctx}/3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>  
 
-  <link href="./font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
+  <link href="${ctx}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
 
-  <link rel="stylesheet" href="./3rd/layui/css/layui.css" >
-  <script src="./3rd/layui/layui.all.js" ></script>
-  <link href="./css/index.css" rel="stylesheet" />   <title>个人设置</title>
+  <link rel="stylesheet" href="${ctx}/3rd/layui/css/layui.css" >
+  <script src="${ctx}/3rd/layui/layui.all.js" ></script>
+  <link href="${ctx}/css/index.css" rel="stylesheet" />   <title>个人设置</title>
   <style>
 
   </style>
 </head>
 <body>
  	 <!--  顶部导航栏 -->
-  <div class="nav">
-    <div class="nav-container">
-      <!-- logo -->
-      <div>
-        <img src="img/logo.jpg" alt="none" class="img-circle" style="height: 38px;width: 38px; float: left;">
-        <div style="float: left;font-size: 25px; font-weight:bold;font-style: italic;">weibo</div>
-      </div>
-      <!-- 搜索栏 -->
-      <div class="nav-search" >
-        <div><input type="text" class="" id="name" placeholder="请输入名称" style="padding-top: 5px; border: none; outline:none;"></div>
-        <a href="" class="glyphicon glyphicon-search" style="margin-top: 5px; font-size: 18px; "></a>
-      </div>
-      <!-- 选项栏 -->
-      <div class="nav-option">
-      <ul>
-        <li><i class="glyphicon glyphicon-home"></i>首页</li>
-        <li><i class="glyphicon glyphicon-envelope">消息</i></li>
-        <li><i class="glyphicon glyphicon-cog"></i>设置 </li>
-        <li><i class="glyphicon glyphicon-cog"></i>发现 </li>
-        <li><i class="glyphicon glyphicon-edit"></i>发微博</li>
-        <li style="margin-left: 50px;"><i class="glyphicon glyphicon-edit"></i><a href="/exit.do">退出</a></li>
-      </ul>
-        
-      </div>
-    </div>
-  </div>
+	<#include "/header/header.html">
 
-
-	<style>
-	
-
-	</style>
 
   <div class="container" style="margin-top: 50px;width: 60%;border:1px solid #ccc;height: 500px;">
   	<div class="row">
@@ -65,13 +35,13 @@
   			<div class="category" style="">
   				<div style="padding: 5px 0px 5px 15px;">
   					<i class="glyphicon glyphicon-user" style="color: #8F9094;"></i>
-  					<a href="">我的信息</a>
+  					<a href="/set/info.do">我的信息</a>
   				</div>
   			</div>
   			<div class="category">
   				<div style="padding: 5px 0px 5px 15px;">
   					<i class="glyphicon glyphicon-camera" style="color: #8F9094;"></i>
-  					<a href="">头像</a>
+  					<a href="/set/img.do">头像</a>
   				</div>
   			</div>
   		</div>
@@ -85,25 +55,43 @@
   			.info_fdxc{
   				width: 100px;
   				display: inline-block;
-  			}
+	          	width: 20%;
+	  		}
+	        .edit{
+	          margin-left: 220px;
+	        }
+	        .editInput{
+	          width: 30%;
+	        }
+	        .save-info{
+	          float: right;
+	          margin-right: 40px;
+	          margin-top: 20px; 
+	        }
+	        .over{
+				background-color: #C7BDBD;
+			}
   		</style>
   		<div class="col-md-10">
   			<div style="padding: 20px 20px 0 0px;font-weight: bold;">信息</div>
-  			<div class="info_div">
-  				<div class="info_fdxc">用户名</div><input type="" name="" disabled=""><span> <a href="">编辑</a></span>
-  			</div>
-  			<div class="info_div">
-  				<div class="info_fdxc">密码</div><input type="" name="" disabled=""><span> <a href="">编辑</a></span>
-  			</div>
-  			<div class="info_div">
-  				<div class="info_fdxc">邮箱</div><input type="" name="" disabled=""><span> <a href="">编辑</a></span>
-  			</div>
-  			<div class="info_div">
-  				<div class="info_fdxc">昵称</div><input type="" name="" disabled=""><span> <a href="">编辑</a></span>
-  			</div>
-  			<div class="info_div">
-  				<div class="info_fdxc">个性签名</div><input type="" name="" disabled=""><span> <a href="">编辑</a></span>
-  			</div>
+        <form action="" id="info-form">
+    			<div class="info_div">
+    				<div class="info_fdxc">用户名</div><input type="" name="" class="editInput" value="${Session.user.username}"><span> <a href="" class="edit">编辑</a></span>
+    			</div>
+    			<div class="info_div">
+    				<div class="info_fdxc">密码</div><input type="" name="" class="editInput" disabled="disabled"><span> <a href="" class="edit">编辑</a></span>
+    			</div>
+    			<div class="info_div">
+    				<div class="info_fdxc">邮箱</div><input type="" name="" class="editInput" value="${Session.user.email}"><span> <a href="" class="edit">编辑</a></span>
+    			</div>
+    			<div class="info_div">
+    				<div class="info_fdxc">昵称</div><input type="" name="" class="editInput" value="${Session.user.nickname}"><span> <a href="" class="edit">编辑</a></span>
+    			</div>
+    			<div class="info_div">
+    				<div class="info_fdxc">个性签名</div><input type="" name="" class="editInput" value="${Session.user.comment}"><span> <a href="" class="edit">编辑</a></span>
+    			</div>
+        </form>
+        <button class="btn btn-default save-info">保存</button>
   		</div>
   		<!-- <div class="col-md-10">
   			  			<hr>
@@ -125,7 +113,23 @@
 	$(".category").mouseout(function(){
 	  $(this).removeClass("over");
 	});
+	function saveInfo(set){
+		$.ajax({
+			url : "/save.do"
+			type : 'post',
+			data : $('#info-form').serialize(),
+			dataType : 'json',
+			success : function(data) {
+				if (data.success) {
+					layer.msg('保存成功！', {icon: 1});
+				} else {
+					layer.msg(data.message, {icon: 5});
+				}
+			},
+			error : function(e) {
 	
- 
+			}
+		});
+	}
 </script>
 </html>

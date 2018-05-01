@@ -101,8 +101,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User changeUserInfo(User user) throws WeiboException {
-		// TODO Auto-generated method stub
-		return null;
+		userMapper.updateByPrimaryKeySelective(user);
+		return user;
 	}
 
 	@Override
@@ -211,6 +211,27 @@ public class UserServiceImpl implements UserService {
 	public PaginatedList<User> userList(UserCriterua criterua) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UserVo getUserById(String id,String loginId)  {
+		UserVo vo = new UserVo();
+		
+		User selectByPrimaryKey = userMapper.selectByPrimaryKey(id);
+		try {
+			PropertyUtils.copyProperties(vo, selectByPrimaryKey);
+		} catch (Exception e) {
+			// 不会发生
+			e.printStackTrace();
+		}
+		
+		FollowFollowerExample example = new FollowFollowerExample();
+		example.createCriteria().andFollowedEqualTo(id).andFollowEqualTo(loginId);
+		List<FollowFollower> selectByExample = followFollowerMapper.selectByExample(example );
+		if(!CollectionUtils.isEmpty(selectByExample)) {
+			vo.setMutual((byte)1);
+		}
+		return vo;
 	}
 
 }

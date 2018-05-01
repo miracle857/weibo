@@ -93,4 +93,6 @@ public interface UserService {
 	void follow(String follower, String followered) throws Exception;
 	
 	PaginatedList<User> userList(UserCriterua criterua);
+
+	UserVo getUserById(String id,String loginId);
 }

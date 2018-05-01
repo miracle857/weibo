@@ -2,6 +2,8 @@ package com.mxh.weibo.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.Pagination;
+import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.sevice.WeiboService;
@@ -24,7 +27,11 @@ public class WeiboController {
 	
 	@RequestMapping("/publish")
 	@ResponseBody
-	public BaseResponse<Weibo> publishWeibo(Weibo weibo){
+	public BaseResponse<Weibo> publishWeibo(Weibo weibo,HttpSession session){
+		User user = (User)session.getAttribute("user");
+		weibo.setUserHeadimg(user.getHeadimg());
+		weibo.setUserNickname(user.getNickname());
+		weibo.setUserUsername(user.getUsername());
 		return new BaseResponse<>(true,"发布成功",weiboService.publishWeibo(weibo));
 	}
 	
