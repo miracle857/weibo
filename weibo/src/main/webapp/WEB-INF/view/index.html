@@ -191,20 +191,20 @@
                 	<input type="hidden" id="s-username" value="${user.username}">
                 	<input type="hidden" id="s-comment" value="${user.comment}">
                 	<input type="hidden" id="s-email" value="${user.email}">
-                    <h5 style="font-weight: bold;" id="h5-nickname"><a href="/set/detail/"+${user.uuid}+".do">${user.nickname}</a> </h5>
+                    <h5 style="font-weight: bold;" id="h5-nickname"><a href="/set/detail/${user.username}.do">${user.nickname}</a> </h5>
                 </div>
                 <div class="my-fans">
                     <ul>
                         <li>
-                            <a href="javascript:void(0);" style="font-weight: bold;">2</a>
+                            <a href="javascript:void(0);" style="font-weight: bold;">${user.follow}</a>
                             <span style="display: block;">关注</span>
                         </li>
                         <li>
-                            <a href="" style="font-weight: bold;">5</a>
+                            <a href="" style="font-weight: bold;">${user.follower}</a>
                             <span style="display: block;">粉丝</span>
                         </li>
                         <li>
-                            <a href="" style="font-weight: bold;">22</a>
+                            <a href="" style="font-weight: bold;">${user.weibo}</a>
                             <span style="display: block;">微博</span>
                         </li>
                     </ul>

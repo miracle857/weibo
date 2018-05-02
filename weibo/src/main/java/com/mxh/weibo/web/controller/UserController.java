@@ -112,12 +112,12 @@ public class UserController extends BaseController{
     	return set;
     }
     
-    @RequestMapping("/set/detail/{id}")
-    public String toDetail(HttpServletRequest request,@PathVariable String id) {
+    @RequestMapping("/set/detail/{username}")
+    public String toDetail(HttpServletRequest request,@PathVariable String username) {
     	
     	// TODO ，这里要提防 ID 不存在的情况，以后再补
     	
-    	UserVo user = userService.getUserById(id,this.getLogin(request).getUuid());
+    	UserVo user = userService.getUserById(username,this.getLogin(request).getUuid());
     	request.setAttribute("detUser", user);
     	return "detail";
     }
@@ -142,5 +142,28 @@ public class UserController extends BaseController{
     	User user =  (User)request.getSession().getAttribute("user");
     	return "info";
     }*/
+    
+    @RequestMapping("/op/{type}/id/{uuid}")
+    @ResponseBody
+    public BaseResponse<String> follow(@PathVariable String type,@PathVariable String uuid,HttpServletRequest req){
+    	BaseResponse<String> res = new BaseResponse<>();
+		try {
+			if("follow".equals(type)) {
+				userService.follow(this.getLogin(req).getUuid(), uuid);
+				res.setMessage("关注成功");
+			}else if("unfollow".equals(type)) {
+				userService.unFollow(this.getLogin(req).getUuid(), uuid);
+				res.setMessage("取消关注成功");
+			}else {
+				throw new Exception("未知的操作！");
+			}
+			res.setBody(type);
+			res.setSuccess(true);
+		} catch (Exception e) {
+			res.setMessage(e.getMessage());
+			LOGGER.error(e.getMessage());
+		}
+    	return res;
+    }
 
 }

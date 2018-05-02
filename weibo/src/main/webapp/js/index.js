@@ -111,6 +111,7 @@ function listWeibo(page){
 function getWeibo(data){
 	var time = FormatDateTime(data.publishTime);
 	var uuid = data.uuid;
+	var username = data.userUsername;
 	var name = data.userNickname;
 	var content = data.content;
 	var img = data.userHeadimg;
@@ -120,9 +121,9 @@ function getWeibo(data){
 		+ "<img src='"+img+"' alt='none' class='img-circle body-img'>"
 		+ "</div>"
 		+ "<div class='other'>"
-		+ "<div class='_username'>"
+		+ "<div class='_username'><a href='/set/detail/"+username+".do'>"
 		+ name
-		+ "</div>"
+		+ "</a></div>"
 		+ "<div class='time'>"
 		+ time
 		+ "</div>"

@@ -1,0 +1,58 @@
+<div style="text-align: center;" class="detail_top">
+
+        <!-- 头像 -->
+        <div style="margin: 20px auto 0">
+          <p class="">
+            <img src="${detUser.headimg}" class="detail_img">
+          </p>
+        </div> 
+        <!-- 用户名 -->
+        <div>
+          <h1>${detUser.username}</h1>
+        </div> 
+        <!-- 个人签名 -->
+        <div>
+          ${detUser.comment}
+        </div>
+        <div>
+        <#if detUser.mutual == 1>
+	        <span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
+	              <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
+	              <a url="/op/unfollow/id/${detUser.uuid}.do" class="op">已关注</a>
+	        </span>
+        <#elseif detUser.mutual == 0>  
+    		<span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
+              <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+              <a url="/op/follow/id/${detUser.uuid}.do" class="op">关注</a>
+        	</span>
+        <#else>
+		</#if>  
+        
+        </div>
+        <div style="height: 10px;"></div> 
+
+      </div>
+           <div class="col-md-4" style="padding: 0px;">
+        <div class=""> 
+          <table class="tb_counter" style="width: 100%;text-align: center; border: 1px solid #ccc;">
+            <tr>
+              <td>
+                <a href="javascript:void(0);" style="font-weight: bold;">${detUser.follow}</a>
+                <span class="block_">关注</span>
+              </td>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.follower}</a>
+                <span class="block_">粉丝</span>
+              </td>
+              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.weibo}</a>
+                <span class="block_">微博</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="detial_msg">
+          
+          <div>浙江湖州</div>
+          <div>1995年1月1日</div>
+        </div>
+      </div>

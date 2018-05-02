@@ -16,6 +16,7 @@ import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.FollowFollower;
 import com.mxh.weibo.common.model.FollowFollowerExample;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.model.UserExample;
 import com.mxh.weibo.common.o.UserCriterua;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
@@ -185,11 +186,11 @@ public class UserServiceImpl implements UserService {
 		FollowFollowerExample example = new FollowFollowerExample();
 		example.createCriteria().andFollowEqualTo(me).andFollowedEqualTo(he);
 		List<FollowFollower> select1 = followFollowerMapper.selectByExample(example);
-		if (CollectionUtils.isNotEmpty(select1)) {
+		if (CollectionUtils.isEmpty(select1)) {
 			throw new Exception("您未关注TA。");
 		}
-
-		followFollowerMapper.deleteByExample(example );
+		
+		followFollowerMapper.deleteByPrimaryKey(select1.get(0).getId());
 	}
 
 	@Override
@@ -214,22 +215,31 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVo getUserById(String id,String loginId)  {
+	public UserVo getUserById(String username,String loginId)  {
 		UserVo vo = new UserVo();
 		
-		User selectByPrimaryKey = userMapper.selectByPrimaryKey(id);
+		
+		UserExample uuexample = new UserExample();
+		uuexample.createCriteria().andUsernameEqualTo(username);
+		List<User> list = userMapper.selectByExample(uuexample );
+		User user = list.get(0);
 		try {
-			PropertyUtils.copyProperties(vo, selectByPrimaryKey);
+			PropertyUtils.copyProperties(vo, user);
 		} catch (Exception e) {
 			// 不会发生
 			e.printStackTrace();
 		}
 		
 		FollowFollowerExample example = new FollowFollowerExample();
-		example.createCriteria().andFollowedEqualTo(id).andFollowEqualTo(loginId);
+		example.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(loginId);
 		List<FollowFollower> selectByExample = followFollowerMapper.selectByExample(example );
 		if(!CollectionUtils.isEmpty(selectByExample)) {
 			vo.setMutual((byte)1);
+		}else {
+			vo.setMutual((byte)0);
+		}
+		if(user.getUuid().equals(loginId)) {
+			vo.setMutual((byte)9);
 		}
 		return vo;
 	}

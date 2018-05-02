@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
   <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
 
-  <link rel="stylesheet" href="./3rd/layui/css/layui.css" >
+  <link rel="stylesheet" href="${ctx}/3rd/layui/css/layui.css" >
   <script src="${ctx}/3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
   <script src="${ctx}/3rd/layui/layui.all.js" ></script>
   <link href="${ctx}/css/index.css" rel="stylesheet" /> 
@@ -86,64 +86,8 @@
   </style>
   <div class="body" style="height: 1000px;">
     <div class="container" style="margin-top: 40px; width: 1000px;">
-      <div style="text-align: center;" class="detail_top">
-
-        <!-- 头像 -->
-        <div style="margin: 20px auto 0">
-          <p class="">
-            <img src="img/logo.jpg" class="detail_img">
-          </p>
-        </div> 
-        <!-- 用户名 -->
-        <div>
-          <h1>${detUser.username}</h1>
-        </div> 
-        <!-- 个人签名 -->
-        <div>
-          ${detUser.comment}
-        </div>
-        <div>
-        <#if detUser.mutual == 1>
-	        <span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
-	              <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
-	              <a href="/unfollow/"+${detUser.uuid}+".do" >已关注</a>
-	        </span>
-        <#else>  
-    		<span style="border: 1px solid #ccc;box-shadow: 1px 1px 1px #ccc;border-radius: 10%;padding: 3px;">
-              <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
-              <a href="/follow/"+${detUser.uuid}+".do" >关注</a>
-        	</span>
-		</#if>  
-        
-        </div>
-        <div style="height: 10px;"></div> 
-
-      </div>
-
-      <div class="col-md-4" style="padding: 0px;">
-        <div class=""> 
-          <table class="tb_counter" style="width: 100%;text-align: center; border: 1px solid #ccc;">
-            <tr>
-              <td>
-                <a href="javascript:void(0);" style="font-weight: bold;">${detUser.follow}</a>
-                <span class="block_">关注</span>
-              </td>
-              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.follower}</a>
-                <span class="block_">粉丝</span>
-              </td>
-              <td><a href="javascript:void(0);" style="font-weight: bold;">${detUser.weibo}</a>
-                <span class="block_">微博</span>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="detial_msg">
-          
-          <div>浙江湖州</div>
-          <div>1995年1月1日</div>
-        </div>
-      </div>
+	<#include "/header/detail-head.html">
+ 
       <style type="text/css">
       	.choiced{
       		background-color: #ccc;
@@ -188,11 +132,12 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="${ctx}/js/detail.js"></script>
 <script>
 	var btnVue = new Vue({
 		el: '#buttons',
 	    data: {
-	    	wbChoiced:false,
+	    	wbChoiced:true,
 	    	gzChoiced:false,
 	    	fsChoiced:false
 	    },
@@ -301,55 +246,6 @@
 
   }); // Vue.component
 
-
-  Vue.component('my-follow-template', {
-    props: ['obj'],
-    template: `<div id="3">
-                  <div class="col-md-2">
-                    <p style="text-align: center; margin-top: 20px;">
-                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
-                    </p>
-                  </div>
-                  <div class="col-md-6" style="">
-                    <div>
-                      <h1 style="font-size: 20px;">miracle2</h1>
-                    </div>
-                    <div>
-                      <span style="font-size: 12px;">关注
-                          <em class="font_normal">{{obj.text}}</em>
-                      </span>
-                      <span style="font-size: 12px;">粉丝
-                          <em class="font_normal">3</em>
-                      </span>
-                      <span style="font-size: 12px;">微博
-                          <em class="font_normal">4</em>
-                      </span>
-                    </div>
-                    <div style="font-size: 12px;margin-top: 5px;">
-                      <span style="color: #808080">
-                        签名: 
-                      </span>
-                      dasd 
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <span v-if="obj.isComplete" class="follow-span">
-                      <i class="glyphicon glyphicon-sort each-follow-i">
-                      </i>
-                      <a href="" @click.prevent="unFollow">互相关注</a>
-                    </span>
-                    <span v-else class="follow-span">
-                      <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
-                      <a href="" @click.prevent='follow'>已关注</a>
-                    </span>
-                  </div>
-                
-                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
-                    <div style="border-top:1px  dashed #ccc; ">
-                    </div>
-                  </div>
-                </div>`,
-  }); // Vue.component
 
   var vm1 = new Vue({
     el: '#fans_div',

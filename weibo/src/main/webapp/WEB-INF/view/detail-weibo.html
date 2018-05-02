@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!--  fontawesome -->
+    <link href="${ctx}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
+
+  <!-- jquery -->
+  <script src="${ctx}/3rd/jquery/jquery3.2.1.js"></script>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+  <link rel="stylesheet" href="${ctx}/3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+
+  <link rel="stylesheet" href="${ctx}/3rd/layui/css/layui.css" >
+  <script src="${ctx}/3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+  <script src="${ctx}/3rd/layui/layui.all.js" ></script>
+  <link href="${ctx}/css/index.css" rel="stylesheet" /> 
+
+  <title>weibo</title>
+  
+</head>
+
+<body>
+    <!--  顶部导航栏 -->
+	<#include "/header/header.html">
+  <style type="text/css">
+    .red{
+      background-color: red;
+    }
+    .green{
+      background-color: green;
+    }
+    .detail_img{
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      margin: 10px;
+    }
+
+    .detail_top{
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .tb_counter td{
+      padding: 10px;
+      cursor: pointer;
+    }
+    .detial_msg{
+      border:1px solid #ccc;
+      margin-top: 20px;
+    }
+    .block_{
+      display: block;
+    }
+    ._buttonXX{
+      padding-right: 20px;
+    }
+    ._button2{
+      font-size:15px;
+      font-weight: bold;
+      border:1px solid #ccc; padding:5px;
+      cursor: pointer;
+    }
+    .font_normal{
+      color: #FA7D3C;
+      font-style: normal;
+    }
+    .each-follow-i{
+      color: black;transform:rotate(90deg);
+      -ms-transform:rotate(90deg);   /* IE 9 */
+      -moz-transform:rotate(90deg);  /* Firefox */
+      -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+      -o-transform:rotate(90deg);  /* Opera */
+    }
+    .follow-span{
+      border: 1px solid #ccc;
+      top: 20px;
+      position: absolute;
+      right: 20px;
+      box-shadow: 1px 1px 1px #ccc;
+      border-radius: 10%;
+      padding: 3px;
+    }
+
+  </style>
+  <div class="body" style="height: 1000px;">
+    <div class="container" style="margin-top: 40px; width: 1000px;">
+	<#include "/header/detail-head.html">
+ 
+      <style type="text/css">
+      	.choiced{
+      		background-color: #ccc;
+      		box-shadow: 1px 2px 5px #888888;
+      	}
+      </style>
+      <div class="col-md-8" style="padding: 0px 0px 10px 10px;">
+        <div style="border: 0px solid #ccc; height: 40px">
+            <div class="" id="buttons">
+              <table>
+                <tr>
+                  <td class="_buttonXX">
+                    <div class="_button2" @click="wb_btn" v-bind:class="{choiced: wbChoiced}">微博</div>
+                  </td>
+                  <td class="_buttonXX">
+                    <div class="_button2" @click="gz_btn" v-bind:class="{choiced: gzChoiced}">关注</div>
+                  </td>
+                  <td class="_buttonXX">
+                    <div class="_button2" @click="fs_btn" v-bind:class="{choiced: fsChoiced}">粉丝</div>
+                  </td>
+                </tr>
+              </table>
+              
+            </div>
+        </div>
+
+        <!-- 好友，关注，微博等DIV块 -->
+        <div>
+            <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
+              <!-- <my-fans-template v-for="user in users" v-bind:obj="user"> 
+              </my-fans-template>   -->
+              <my-follow-template v-for="user in users" v-bind:obj="user"> 
+              </my-follow-template>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="${ctx}/js/detail.js"></script>
+<script>
+	var btnVue = new Vue({
+		el: '#buttons',
+	    data: {
+	    	wbChoiced:true,
+	    	gzChoiced:false,
+	    	fsChoiced:false
+	    },
+	    methods:{
+	      wb_btn:function(){
+	      	this.wbChoiced = true;
+			this.gzChoiced = false;
+			this.fsChoiced = false;
+	      	console.log(vm1.users)
+	      },
+	      gz_btn:function(){
+	      	this.wbChoiced = false;
+			this.gzChoiced = true;
+			this.fsChoiced = false;
+	      	console.log("sss");
+	      },
+	      fs_btn:function(){
+			this.wbChoiced = false;
+			this.gzChoiced = false;
+			this.fsChoiced = true;
+			$.ajax({
+				url : "/fri/fans.do",
+				type : "post",
+				data : {
+					page:1,
+					pagesize:10
+				},
+				datatype : "json",
+				success : function(data){
+					
+					// 到时候删除分页。。。先这样用着
+					createPage(data);
+					
+					$(data.rows).each(function(idx,item){
+						_map.put(item.uuid,'close');
+						$("#container").append(getWeibo(item));
+						
+						$(".shown").show();
+					});
+				},
+				error : function(){
+					
+				}
+			});// ajax
+	      }// fs_btn
+	    }// methods
+	});
+
+
+
+  Vue.component('my-fans-template', {
+    props: ['obj'],
+    template: `<div id="3">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">{{obj.text}}</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">3</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">4</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span v-if="obj.isComplete" class="follow-span">
+                      <i class="glyphicon glyphicon-sort each-follow-i">
+                      </i>
+                      <a href="" @click.prevent="unFollow">互相关注</a>
+                    </span>
+                    <span v-else class="follow-span">
+                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
+                      <a href="" @click.prevent='follow'>关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>`,
+      methods:{
+        unFollow: function () {
+          alert(1)
+        },
+        follow: function () {
+          alert(2)
+        }
+      }
+
+  }); // Vue.component
+
+
+  Vue.component('my-follow-template', {
+    props: ['obj'],
+    template: `<div id="3">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">{{obj.text}}</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">3</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">4</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span v-if="obj.isComplete" class="follow-span">
+                      <i class="glyphicon glyphicon-sort each-follow-i">
+                      </i>
+                      <a href="" @click.prevent="unFollow">互相关注</a>
+                    </span>
+                    <span v-else class="follow-span">
+                      <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
+                      <a href="" @click.prevent='follow'>已关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>`,
+  }); // Vue.component
+
+  var vm1 = new Vue({
+    el: '#fans_div',
+    data: {
+      users: [{
+        text: 'Learn Vue',
+        isComplete: false
+      },{
+        text: 'Learn Vue2',
+        isComplete: true
+      }]
+    },
+    methods:{
+      
+    }
+  })
+
+</script>
+</html>
+
