@@ -115,7 +115,7 @@
         </div>
 
         <!-- 好友，关注，微博等DIV块 -->
-        <div>
+        <div id="three-module">
             <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
               <!-- <my-fans-template v-for="user in users" v-bind:obj="user"> 
               </my-fans-template>   -->
@@ -134,6 +134,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="${ctx}/js/detail.js"></script>
 <script>
+	var detUuid = "${detUser.uuid}"
 	var btnVue = new Vue({
 		el: '#buttons',
 	    data: {
@@ -146,19 +147,24 @@
 	      	this.wbChoiced = true;
 			this.gzChoiced = false;
 			this.fsChoiced = false;
-	      	console.log(vm1.users)
+	      	console.log(vm1.users);
+	      	
 	      },
 	      gz_btn:function(){
 	      	this.wbChoiced = false;
 			this.gzChoiced = true;
 			this.fsChoiced = false;
 	      	console.log("sss");
+	      	$("#three-module").load("/load/follow/"+detUuid+".do");
 	      },
 	      fs_btn:function(){
 			this.wbChoiced = false;
 			this.gzChoiced = false;
 			this.fsChoiced = true;
-			$.ajax({
+			
+			$("#three-module").load("/load/fans/"+detUuid+".do");
+			
+			/* $.ajax({
 				url : "/fri/fans.do",
 				type : "post",
 				data : {
@@ -181,7 +187,7 @@
 				error : function(){
 					
 				}
-			});// ajax
+			});// ajax */
 	      }// fs_btn
 	    }// methods
 	});

@@ -112,7 +112,7 @@ public class UserController extends BaseController{
     	return set;
     }
     
-    @RequestMapping("/set/detail/{username}")
+    @RequestMapping("/detail/{username}")
     public String toDetail(HttpServletRequest request,@PathVariable String username) {
     	
     	// TODO ，这里要提防 ID 不存在的情况，以后再补

@@ -121,7 +121,7 @@ function getWeibo(data){
 		+ "<img src='"+img+"' alt='none' class='img-circle body-img'>"
 		+ "</div>"
 		+ "<div class='other'>"
-		+ "<div class='_username'><a href='/set/detail/"+username+".do'>"
+		+ "<div class='_username'><a href='/detail/"+username+".do'>"
 		+ name
 		+ "</a></div>"
 		+ "<div class='time'>"
