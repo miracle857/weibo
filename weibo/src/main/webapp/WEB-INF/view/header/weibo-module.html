@@ -1,0 +1,71 @@
+<div id="weibo_div"  style="border: 1px solid #ccc;">
+              <my-follow-template v-for="user in users" v-bind:obj="user"> 
+              </my-follow-template>
+              
+</div>
+<script>
+Vue.component('my-follow-template', {
+    props: ['obj'],
+    template: `<div id="3">
+                  <div class="col-md-2">
+                    <p style="text-align: center; margin-top: 20px;">
+                      <img src="img/logo.jpg" class="img-circle" style="height: 40px;width: 40px;" alt="">
+                    </p>
+                  </div>
+                  <div class="col-md-6" style="">
+                    <div>
+                      <h1 style="font-size: 20px;">miracle2</h1>
+                    </div>
+                    <div>
+                      <span style="font-size: 12px;">关注
+                          <em class="font_normal">{{obj.text}}</em>
+                      </span>
+                      <span style="font-size: 12px;">粉丝
+                          <em class="font_normal">3</em>
+                      </span>
+                      <span style="font-size: 12px;">微博
+                          <em class="font_normal">4</em>
+                      </span>
+                    </div>
+                    <div style="font-size: 12px;margin-top: 5px;">
+                      <span style="color: #808080">
+                        签名: 
+                      </span>
+                      dasd 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <span v-if="obj.isComplete" class="follow-span">
+                      <i class="glyphicon glyphicon-sort each-follow-i">
+                      </i>
+                      <a href="" @click.prevent="unFollow">互相关注</a>
+                    </span>
+                    <span v-else class="follow-span">
+                      <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
+                      <a href="" @click.prevent='follow'>已关注</a>
+                    </span>
+                  </div>
+                
+                  <div style="text-align: center;padding-left: 30px;padding-right: 30px;" class="col-md-12">
+                    <div style="border-top:1px  dashed #ccc; ">
+                    </div>
+                  </div>
+                </div>`,
+  }); // Vue.component
+
+  var followVue = new Vue({
+    el: '#follow_div',
+    data: {
+      users: [{
+        text: 'Learn Vue33',
+        isComplete: false
+      },{
+        text: 'Learn Vue44',
+        isComplete: true
+      }]
+    },
+    methods:{
+      
+    }
+  })
+  </script>

@@ -121,7 +121,7 @@ function getWeibo(data){
 		+ "<img src='"+img+"' alt='none' class='img-circle body-img'>"
 		+ "</div>"
 		+ "<div class='other'>"
-		+ "<div class='_username'><a href='/set/detail/"+username+".do'>"
+		+ "<div class='_username'><a href='/detail/"+username+".do'>"
 		+ name
 		+ "</a></div>"
 		+ "<div class='time'>"
@@ -143,6 +143,7 @@ function getWeibo(data){
 	return body;
 }
 
+// 点赞方法
 function likeMethod(uuid){
 	let operate="unLike";
 	let like = $("#"+uuid+" li i[name=like]");
@@ -330,7 +331,7 @@ function replyWeibo(weiboUuid){
 	// 1.取对应button的textarea
 	var content = $("textarea[id="+weiboUuid+"]").val();
 	// TODO 2.判空
-	var name =  "mxh";
+	var name =  $("#s-nickname");
 	// ajax给后台传数据
 	$.ajax({
 		url : "/r/replyWeibo.do",

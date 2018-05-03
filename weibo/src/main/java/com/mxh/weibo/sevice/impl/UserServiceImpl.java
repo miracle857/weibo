@@ -114,13 +114,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public PaginatedList<UserVo> getFans(String login,UserCriterua criterua) throws Exception {
+		// TODO  分页没做
+		
 		// 获取粉丝ids列表
 		FollowFollowerExample example = new FollowFollowerExample();
 		example.createCriteria().andFollowedEqualTo(criterua.getUuid());
 		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
-
+		if(list.isEmpty()) {
+			return new PaginatedList<UserVo>();
+		}
+		
+		
 		// 获取粉丝详细信息
-		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "followed", String.class));
+		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "follow", String.class));
 
 		// 封装信息
 		List<UserVo> resu = new ArrayList<>();
@@ -154,7 +160,7 @@ public class UserServiceImpl implements UserService {
 		List<FollowFollower> list = followFollowerMapper.selectByExample(example);
 
 		// 获取关注者详细信息
-		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "follow", String.class));
+		List<User> users = userMapper.selectByUuids(CollectionUtil.FiledToList(list, "followed", String.class));
 
 		// 封装信息
 		List<UserVo> resu = new ArrayList<>();

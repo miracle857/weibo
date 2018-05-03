@@ -1,5 +1,6 @@
 package com.mxh.weibo.common.util;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,10 @@ public class CollectionUtil {
 
 		try {
 			for (V v : list) {
-				Object object = v.getClass().getDeclaredField(filed).get(v);
+				//v.getClass().getDeclaredField(filed).setAccessible(true);
+				Field declaredField = v.getClass().getDeclaredField(filed);
+				declaredField.setAccessible(true);
+				Object object = declaredField.get(v);
 				if (object instanceof String || object instanceof Integer) {
 					result.add((T) object);
 				} else {
