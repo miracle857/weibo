@@ -72,7 +72,11 @@ public class CommonController extends BaseController{
 		vo.setUuid(uuid);
 		try {
 			PaginatedList<UserVo> fans = userService.getFollower(this.getLogin(request).getUuid(), vo);
+<<<<<<< HEAD
 			request.setAttribute("reqFollows", fans.getResult());
+=======
+			request.setAttribute("reqFans", fans.getResult());
+>>>>>>> branch 'master' of https://github.com/miracle857/weibo.git
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
