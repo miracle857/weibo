@@ -91,9 +91,6 @@
     				<div class="info_fdxc">用户名</div><input type="" name="" class="editInput" value="${Session.user.username}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
     			<div class="info_div">
-    				<div class="info_fdxc">密码</div><input type="" name="" class="editInput" disabled="disabled"><span> <a href="" class="edit">编辑</a></span>
-    			</div>
-    			<div class="info_div">
     				<div class="info_fdxc">邮箱</div><input type="" name="" class="editInput" value="${Session.user.email}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
     			<div class="info_div">
@@ -103,7 +100,7 @@
     				<div class="info_fdxc">个性签名</div><input type="" name="" class="editInput" value="${Session.user.comment}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
         </form>
-        <button class="btn btn-default save-info">保存</button>
+        <button class="btn btn-default save-info" id="save-info">保存</button>
   		</div>
   		<!-- <div class="col-md-10">
   			  			<hr>
@@ -125,10 +122,11 @@
 	$(".category").mouseout(function(){
 	  $(this).removeClass("over");
 	});
-	function saveInfo(set){
+	
+	$("#save-info").click(function(){
 		$.ajax({
-			url : "/save.do"
-			type : 'post',
+			url : "/save.do",
+			type : "post",
 			data : $('#info-form').serialize(),
 			dataType : 'json',
 			success : function(data) {
@@ -142,6 +140,6 @@
 	
 			}
 		});
-	}
+	});
 </script>
 </html>

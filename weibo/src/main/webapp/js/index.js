@@ -82,9 +82,8 @@ $(".btn-reply").click(function() {
 
 function listWeibo(page){
 	//event.preventDefault();
-	
+	// 清空容器
 	$("#container").empty();
-	
 	$.ajax({
 		url : "/w/list.do",
 		type : "post",
@@ -94,14 +93,13 @@ function listWeibo(page){
 		},
 		datatype : "json",
 		success : function(data){
-			
-			// 到时候删除分页。。。先这样用着
+			// 创建分页信息
 			createPage(data);
-			
+			// 遍历数据   
 			$(data.rows).each(function(idx,item){
 				_map.put(item.uuid,'close');
+				//  拼装
 				$("#container").append(getWeibo(item));
-				
 				$(".shown").show();
 			});
 		},
@@ -228,7 +226,6 @@ function createPage(data){
 		}
 		$(".pagination").append($("<li><a href='javascript:listWeibo("+(page+1)+")' aria-label='Next'> <span aria-hidden='true'>&raquo;</span></a></li>"));
 	}
-	
 	$(".pagination").append($("<li><a href='javascript:listWeibo("+data.pageCount+")'>尾页</a></li>"));
 }
 
@@ -248,10 +245,8 @@ function getReply(uuid){
 		// 2. 设置为打开
 		_map.removeByKey(uuid);
 		_map.put(uuid,'open');
-		
 		// 补上 回复小版块
 		$("#"+uuid).append(getReplyHtml(uuid));
-		
 		// 监听textarea 输入框内容，判定是否开放按钮
 		$("textarea[id="+uuid+"]").on('input', function() {
 		    if ($.trim($("textarea[id="+uuid+"]").val()).length == 0) {
@@ -262,8 +257,6 @@ function getReply(uuid){
 		    	$("button[id="+uuid+"]").css("background-color","#FF8140");
 		    }
 		});
-		
-		
 		$.ajax({
 			url : "/r/getReply.do",
 			type : "post",
@@ -274,21 +267,15 @@ function getReply(uuid){
 			},
 			datatype : "json",
 			success : function(data){
-				
 				// 不分頁了先
 				//createPage(data);
 				$(data.rows).each(function(idx,item){
-					
 					$("#"+uuid+" .replyArea .replyShow").append(getReplyContenet(item));
-					
 				});
 			},
 			error : function(){
-				
 			}
 		});
-		
-		
 	}else{
 		// 1.删除回复框
 		// 2.设置为关闭
@@ -296,7 +283,6 @@ function getReply(uuid){
 		_map.put(uuid,'close');
 		$("#"+uuid+" .replyArea").remove();
 	}
-	
 }
 
 
@@ -305,11 +291,11 @@ function getReplyContenet(data){
 	var name = data.userNickname;
 	var content = data.content;
 	var date = FormatDateTime(data.publishtime);
-	var img = data.headimg;
+	var img = data.userHeadimg;
 	var body = `<div id=`+uuid+`>
 					<!-- 头像 -->
 					<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
-						<img src="`+img+`" alt="none" class="img-circle reply-img">
+						<img src=`+img+` alt="none" class="img-circle reply-img">
 						<div style="clear: both;"></div>
 					</div>
 					<!-- 评论内容 -->

@@ -1,6 +1,8 @@
 package com.mxh.weibo.web.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.Pagination;
 import com.mxh.weibo.common.model.Reply;
+import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.o.ReplyCriterua;
 import com.mxh.weibo.sevice.ReplyService;
 import com.mxh.weibo.web.BaseResponse;
@@ -18,7 +21,7 @@ import com.mxh.weibo.web.response.ResponsePageVo;
 
 @Controller
 @RequestMapping("/r")
-public class ReplyController {
+public class ReplyController extends BaseController{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReplyController.class);
 
@@ -42,8 +45,13 @@ public class ReplyController {
     
     @RequestMapping("/replyWeibo")
     @ResponseBody
-    public BaseResponse<Reply> replyWeibo(Reply reply){
+    public BaseResponse<Reply> replyWeibo(HttpServletRequest request,Reply reply){
     	BaseResponse<Reply> res = new BaseResponse<>();
+    	
+		User login = this.getLogin(request);
+		reply.setUserHeadimg(login.getHeadimg());
+		reply.setUserNickname(login.getNickname());
+		reply.setUserUsername(login.getUsername());
     	try {
 			Reply publishReply = replyService.publishReply(reply);
 			res.setBody(publishReply);

@@ -126,6 +126,7 @@ public class UserController extends BaseController{
     public BaseResponse<User> save(HttpServletRequest request,User user) {
     	
     	BaseResponse<User> res = new BaseResponse<>();
+    	user.setUuid(this.getLogin(request).getUuid());
     	try {
 			userService.changeUserInfo(user);
 			res.setBody(user);
