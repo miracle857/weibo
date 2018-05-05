@@ -48,6 +48,9 @@ public class CommonController extends BaseController{
         String newName = user.getUuid()+extName;
         File tempFile = new File(realPath+"img"+File.separator+"headImg"+File.separator+newName);
         file.transferTo(tempFile);
+        
+        user.setHeadimg("/img/headImg/"+user.getUuid()+".jpg");
+        userService.changeUserInfo(user);
         res.setSuccess(true);
         return res;
     }

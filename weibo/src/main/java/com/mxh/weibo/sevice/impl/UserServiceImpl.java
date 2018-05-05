@@ -49,6 +49,8 @@ public class UserServiceImpl implements UserService {
 		// 整理数据，插入数据库
 		User user = new User();
 		PropertyUtils.copyProperties(user, userToken);
+		user.setNickname("新用户");
+		user.setHeadimg("/img/headImg/def.jpg");
 		user.setWeibo(0);
 		user.setFollow(0);
 		user.setFollower(0);
@@ -59,13 +61,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User login(String username,String password) throws WeiboException {
+		
+		// 数据校验
 		if(StringUtils.isBlank(username)){
 			throw new WeiboException("用户名不能为空");
 		}
+		// 账号是否存在
 		User user = userMapper.selectByEmailOrUsername(null, username);
+		
+		// 若存在，校验密码
 		if(user == null || !(user.getPassword().equals(MD5.getMD5(password)))){
 			throw new WeiboException("用户名或者密码错误");
 		}
+		// 返回数据不为空，则校验成功
 		return user;
 	}
 	public void findPassword(User user) throws Exception {

@@ -3,6 +3,10 @@
  */
 var _map = new Map();
 
+var loginImg = $("#s-headimg").val();
+var loginNickname = $("#s-nickname").val();
+var loginUsername = $("#s-username").val();
+
 $(document).ready(function(){
 	//listWeibo(1);
 	
@@ -134,7 +138,7 @@ function getWeibo(data){
 		+ "</div>"
 		+ "<div class='menu'>"
 		+ "<ul>"
-		+ "<li> <a href='' class='four_a'><i class='fa fa-star-o'></i><i class='fa fa-star'></i>收藏</a></li>"
+		+ "<li> <a href='' class='four_a'><i class='fa fa-star-o'></i>收藏</a></li>"
 		+ "<li> <a href='' class='four_a'><i class='fa fa-share'></i>转发</a></li>"
 		+ "<li> <a href='javascript:getReply(\""+uuid+"\")' class='four_a'><i class='fa fa-commenting-o'></i> 回复</a></li>"
 		+ "<li> <a href='javascript:likeMethod(\""+uuid+"\")' class='four_a'><i class='fa fa-thumbs-o-up' name='like'></i>点赞</a></li>"
@@ -142,7 +146,7 @@ function getWeibo(data){
 	 
 	return body;
 }
-
+// <i class='fa fa-star'></i>
 // 点赞方法
 function likeMethod(uuid){
 	let operate="unLike";
@@ -301,10 +305,11 @@ function getReplyContenet(data){
 	var name = data.userNickname;
 	var content = data.content;
 	var date = FormatDateTime(data.publishtime);
+	var img = data.headimg;
 	var body = `<div id=`+uuid+`>
 					<!-- 头像 -->
 					<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
-						<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+						<img src="`+img+`" alt="none" class="img-circle reply-img">
 						<div style="clear: both;"></div>
 					</div>
 					<!-- 评论内容 -->
@@ -331,7 +336,7 @@ function replyWeibo(weiboUuid){
 	// 1.取对应button的textarea
 	var content = $("textarea[id="+weiboUuid+"]").val();
 	// TODO 2.判空
-	var name =  $("#s-nickname");
+	var name =  $("#s-nickname").val();
 	// ajax给后台传数据
 	$.ajax({
 		url : "/r/replyWeibo.do",
@@ -373,7 +378,7 @@ function getReplyHtml(uuid){
            				<div>
            					<!-- 头像 -->
            					<div style="float: left; margin-top: 10px;margin-left: 10px;">
-           						<img src="./img/logo.jpg" alt="none" class="img-circle reply-img">
+           						<img src=`+loginImg+` alt="none" class="img-circle reply-img">
            					</div>
            					<!-- input -->
            					<div style="">
