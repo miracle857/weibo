@@ -300,6 +300,76 @@ public class ReplyExample {
 			return (Criteria) this;
 		}
 
+		public Criteria andUserHeadimgIsNull() {
+			addCriterion("reply.USER_HEADIMG is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgIsNotNull() {
+			addCriterion("reply.USER_HEADIMG is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgEqualTo(String value) {
+			addCriterion("reply.USER_HEADIMG =", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgNotEqualTo(String value) {
+			addCriterion("reply.USER_HEADIMG <>", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgGreaterThan(String value) {
+			addCriterion("reply.USER_HEADIMG >", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgGreaterThanOrEqualTo(String value) {
+			addCriterion("reply.USER_HEADIMG >=", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgLessThan(String value) {
+			addCriterion("reply.USER_HEADIMG <", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgLessThanOrEqualTo(String value) {
+			addCriterion("reply.USER_HEADIMG <=", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgLike(String value) {
+			addCriterion("reply.USER_HEADIMG like", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgNotLike(String value) {
+			addCriterion("reply.USER_HEADIMG not like", value, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgIn(List<String> values) {
+			addCriterion("reply.USER_HEADIMG in", values, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgNotIn(List<String> values) {
+			addCriterion("reply.USER_HEADIMG not in", values, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgBetween(String value1, String value2) {
+			addCriterion("reply.USER_HEADIMG between", value1, value2, "userHeadimg");
+			return (Criteria) this;
+		}
+
+		public Criteria andUserHeadimgNotBetween(String value1, String value2) {
+			addCriterion("reply.USER_HEADIMG not between", value1, value2, "userHeadimg");
+			return (Criteria) this;
+		}
+
 		public Criteria andUserUsernameIsNull() {
 			addCriterion("reply.USER_USERNAME is null");
 			return (Criteria) this;

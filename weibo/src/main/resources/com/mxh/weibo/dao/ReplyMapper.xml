@@ -8,6 +8,7 @@
     -->
     <id column="reply_UUID" jdbcType="VARCHAR" property="uuid" />
     <result column="reply_WEIBO_UUID" jdbcType="VARCHAR" property="weiboUuid" />
+    <result column="reply_USER_HEADIMG" jdbcType="VARCHAR" property="userHeadimg" />
     <result column="reply_USER_USERNAME" jdbcType="VARCHAR" property="userUsername" />
     <result column="reply_USER_NICKNAME" jdbcType="VARCHAR" property="userNickname" />
     <result column="reply_PUBLISHTIME" jdbcType="TIMESTAMP" property="publishtime" />
@@ -86,9 +87,10 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    reply.UUID as reply_UUID, reply.WEIBO_UUID as reply_WEIBO_UUID, reply.USER_USERNAME as reply_USER_USERNAME, 
-    reply.USER_NICKNAME as reply_USER_NICKNAME, reply.PUBLISHTIME as reply_PUBLISHTIME, 
-    reply.CONTENT as reply_CONTENT, reply.DELETED as reply_DELETED, reply.REPLY_WHO as reply_REPLY_WHO
+    reply.UUID as reply_UUID, reply.WEIBO_UUID as reply_WEIBO_UUID, reply.USER_HEADIMG as reply_USER_HEADIMG, 
+    reply.USER_USERNAME as reply_USER_USERNAME, reply.USER_NICKNAME as reply_USER_NICKNAME, 
+    reply.PUBLISHTIME as reply_PUBLISHTIME, reply.CONTENT as reply_CONTENT, reply.DELETED as reply_DELETED, 
+    reply.REPLY_WHO as reply_REPLY_WHO
   </sql>
   <select id="selectByExample" parameterType="com.mxh.weibo.common.model.ReplyExample" resultMap="BaseResultMap">
     <!--
@@ -141,12 +143,14 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    insert into weibo_reply (UUID, WEIBO_UUID, USER_USERNAME, 
-      USER_NICKNAME, PUBLISHTIME, CONTENT, 
-      DELETED, REPLY_WHO)
-    values (#{uuid,jdbcType=VARCHAR}, #{weiboUuid,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, 
-      #{userNickname,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=TINYINT}, #{replyWho,jdbcType=VARCHAR})
+    insert into weibo_reply (UUID, WEIBO_UUID, USER_HEADIMG, 
+      USER_USERNAME, USER_NICKNAME, PUBLISHTIME, 
+      CONTENT, DELETED, REPLY_WHO
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{weiboUuid,jdbcType=VARCHAR}, #{userHeadimg,jdbcType=VARCHAR}, 
+      #{userUsername,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{replyWho,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Reply">
     <!--
@@ -160,6 +164,9 @@
       </if>
       <if test="weiboUuid != null">
         WEIBO_UUID,
+      </if>
+      <if test="userHeadimg != null">
+        USER_HEADIMG,
       </if>
       <if test="userUsername != null">
         USER_USERNAME,
@@ -186,6 +193,9 @@
       </if>
       <if test="weiboUuid != null">
         #{weiboUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadimg != null">
+        #{userHeadimg,jdbcType=VARCHAR},
       </if>
       <if test="userUsername != null">
         #{userUsername,jdbcType=VARCHAR},
@@ -230,6 +240,9 @@
       <if test="record.weiboUuid != null">
         reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
       </if>
+      <if test="record.userHeadimg != null">
+        reply.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
+      </if>
       <if test="record.userUsername != null">
         reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
       </if>
@@ -261,6 +274,7 @@
     update weibo_reply reply
     set reply.UUID = #{record.uuid,jdbcType=VARCHAR},
       reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
+      reply.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
       reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
       reply.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
       reply.PUBLISHTIME = #{record.publishtime,jdbcType=TIMESTAMP},
@@ -280,6 +294,9 @@
     <set>
       <if test="weiboUuid != null">
         WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadimg != null">
+        USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
       </if>
       <if test="userUsername != null">
         USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
@@ -309,6 +326,7 @@
     -->
     update weibo_reply
     set WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
+      USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
       USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
       USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
       PUBLISHTIME = #{publishtime,jdbcType=TIMESTAMP},
