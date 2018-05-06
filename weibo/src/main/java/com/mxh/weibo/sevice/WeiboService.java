@@ -1,5 +1,7 @@
 package com.mxh.weibo.sevice;
 
+import java.util.List;
+
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.WeiboCriteria;
@@ -25,4 +27,6 @@ public interface WeiboService {
 	 * @param weibo
 	 */
 	void deleteWeibo(Weibo weibo);
+
+	List<Weibo> listWeiboByUuid(String uuid);
 }

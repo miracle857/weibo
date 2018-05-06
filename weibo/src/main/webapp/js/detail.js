@@ -11,8 +11,8 @@ $(".op").bind("click",function(){
 		datatype : "json",
 		success : function(data){
 			if(data.success){
-				alert(data.message)
-				//layer.msg(data.message, {icon: 1});
+				//alert(data.message)
+				layer.msg(data.message, {icon: 1});
 				
 				setTimeout(function(){
 					window.location.reload();

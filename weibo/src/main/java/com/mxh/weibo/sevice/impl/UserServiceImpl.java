@@ -17,6 +17,7 @@ import com.mxh.weibo.common.model.FollowFollower;
 import com.mxh.weibo.common.model.FollowFollowerExample;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.UserExample;
+import com.mxh.weibo.common.o.ChangePwdUser;
 import com.mxh.weibo.common.o.UserCriterua;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
@@ -115,9 +116,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User changeUserPassword(UserToken userToken) throws WeiboException {
-		// TODO Auto-generated method stub
-		return null;
+	public User changeUserPassword(ChangePwdUser user) throws WeiboException {
+		User selectByPrimaryKey = userMapper.selectByPrimaryKey(user.getUuid());
+		if(selectByPrimaryKey.getPassword().equals(MD5.getMD5(user.getOldPassword()))) {
+			selectByPrimaryKey.setPassword(MD5.getMD5(user.getNewPassword()));
+			userMapper.updateByPrimaryKeySelective(selectByPrimaryKey);
+		}else {
+			throw new WeiboException("密码错误！");
+		}
+		return selectByPrimaryKey;
 	}
 
 	@Override
@@ -144,10 +151,12 @@ public class UserServiceImpl implements UserService {
 
 			// 我是否关注 此人
 			FollowFollowerExample example2 = new FollowFollowerExample();
-			example.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(login);
+			example2.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(login);
 			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
 			if (CollectionUtils.isNotEmpty(list2)) {
 				vo.setMutual((byte) 1);
+			}else {
+				vo.setMutual((byte) 0);
 			}
 
 			resu.add(vo);
@@ -178,10 +187,12 @@ public class UserServiceImpl implements UserService {
 
 			// 我的关注 是否关注我
 			FollowFollowerExample example2 = new FollowFollowerExample();
-			example.createCriteria().andFollowedEqualTo(login).andFollowEqualTo(user.getUuid());
+			example2.createCriteria().andFollowedEqualTo(login).andFollowEqualTo(user.getUuid());
 			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
 			if (CollectionUtils.isNotEmpty(list2)) {
 				vo.setMutual((byte) 1);
+			}else {
+				vo.setMutual((byte) 0);
 			}
 
 			resu.add(vo);

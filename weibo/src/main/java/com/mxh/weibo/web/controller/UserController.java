@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mxh.weibo.common.exception.WeiboException;
 import com.mxh.weibo.common.model.User;
+import com.mxh.weibo.common.o.ChangePwdUser;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.sevice.UserService;
@@ -123,6 +124,7 @@ public class UserController extends BaseController{
     }
     
     @RequestMapping("/save")
+    @ResponseBody
     public BaseResponse<User> save(HttpServletRequest request,User user) {
     	
     	BaseResponse<User> res = new BaseResponse<>();
@@ -138,12 +140,23 @@ public class UserController extends BaseController{
     	return res;
     }
     
-/*    @RequestMapping("/set/info")
-    public String toInfo(HttpServletRequest request) {
-    	User user =  (User)request.getSession().getAttribute("user");
-    	return "info";
-    }*/
+    @RequestMapping("/changePwd")
+    @ResponseBody
+    public BaseResponse<User> changePwd(HttpServletRequest request,ChangePwdUser user ) {
+    	
+    	BaseResponse<User> res = new BaseResponse<>();
+		user.setUuid(this.getLogin(request).getUuid());
+    	try {
+			userService.changeUserPassword(user);
+			res.setSuccess(true);
+		} catch (WeiboException e) {
+			res.setMessage(e.getMessage());
+			e.printStackTrace();
+		}
+    	return res;
+    }
     
+
     @RequestMapping("/op/{type}/id/{uuid}")
     @ResponseBody
     public BaseResponse<String> follow(@PathVariable String type,@PathVariable String uuid,HttpServletRequest req){

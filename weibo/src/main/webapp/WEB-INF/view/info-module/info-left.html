@@ -1,0 +1,45 @@
+
+<style>
+		.over{
+			background-color: #C7BDBD;
+		}
+		a{
+			text-decoration: none !important;
+			color: black;
+		}
+		a:hover {
+		 	color: black; /*鼠标经过的颜色变化*/
+		}
+</style>
+<div class="col-md-2" style="border:1px solid #ccc;background-color: #F0F0F0;padding: 0;height: 500px;">
+			<div style="padding:15px 8px 8px 15px;font-size: 10px;color: #ccc;font-weight: bold;">
+				账号设置
+			</div>
+
+  			<div class="category" style="">
+  				<div style="padding: 5px 0px 5px 15px;">
+  					<i class="glyphicon glyphicon-user" style="color: #8F9094;"></i>
+  					<a href="/set/info-msg.do">我的信息</a>
+  				</div>
+  			</div>
+  			<div class="category">
+  				<div style="padding: 5px 0px 5px 15px;">
+  					<i class="glyphicon glyphicon-camera" style="color: #8F9094;"></i>
+  					<a href="/set/info-img.do">头像</a>
+  				</div>
+  			</div>
+  			<div class="category">
+  				<div style="padding: 5px 0px 5px 15px;">
+  					<i class="glyphicon glyphicon-off" style="color: #8F9094;"></i>
+  					<a href="/set/info-pwd.do">密码</a>
+  				</div>
+  			</div>
+</div>
+<script>
+	$(".category").mouseover(function(){
+	  $(this).addClass("over");
+	});
+	$(".category").mouseout(function(){
+	  $(this).removeClass("over");
+	});
+</script>

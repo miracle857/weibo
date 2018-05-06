@@ -39,24 +39,7 @@
 	</style>
   <div class="container" style="margin-top: 50px;width: 60%;border:1px solid #ccc;height: 500px;">
   	<div class="row">
-  		<div class="col-md-2" style="border:1px solid #ccc;background-color: #F0F0F0;padding: 0;height: 500px;">
-			<div style="padding:15px 8px 8px 15px;font-size: 10px;color: #ccc;font-weight: bold;">
-				账号设置
-			</div>
-
-  			<div class="category" style="">
-  				<div style="padding: 5px 0px 5px 15px;">
-  					<i class="glyphicon glyphicon-user" style="color: #8F9094;"></i>
-  					<a href="/set/info.do">我的信息</a>
-  				</div>
-  			</div>
-  			<div class="category">
-  				<div style="padding: 5px 0px 5px 15px;">
-  					<i class="glyphicon glyphicon-camera" style="color: #8F9094;"></i>
-  					<a href="/set/img.do">头像</a>
-  				</div>
-  			</div>
-  		</div>
+  		<#include "/info-module/info-left.html">
 
   		<style type="text/css">
   			.info_div{
@@ -85,19 +68,19 @@
 			}
   		</style>
   		<div class="col-md-10">
-  			<div style="padding: 20px 20px 0 0px;font-weight: bold;">信息</div>
+  			<div style="padding: 20px 20px 0 0px;font-weight: bold;">修改信息</div>
         <form action="" id="info-form">
     			<div class="info_div">
     				<div class="info_fdxc">用户名</div><input type="" name="" class="editInput" value="${Session.user.username}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
     			<div class="info_div">
-    				<div class="info_fdxc">邮箱</div><input type="" name="" class="editInput" value="${Session.user.email}"><span> <a href="" class="edit">编辑</a></span>
+    				<div class="info_fdxc">邮箱</div><input type="" name="email" class="editInput" value="${Session.user.email}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
     			<div class="info_div">
-    				<div class="info_fdxc">昵称</div><input type="" name="" class="editInput" value="${Session.user.nickname}"><span> <a href="" class="edit">编辑</a></span>
+    				<div class="info_fdxc">昵称</div><input type="" name="nickname" class="editInput" value="${Session.user.nickname}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
     			<div class="info_div">
-    				<div class="info_fdxc">个性签名</div><input type="" name="" class="editInput" value="${Session.user.comment}"><span> <a href="" class="edit">编辑</a></span>
+    				<div class="info_fdxc">个性签名</div><input type="" name="comment" class="editInput" value="${Session.user.comment}"><span> <a href="" class="edit">编辑</a></span>
     			</div>
         </form>
         <button class="btn btn-default save-info" id="save-info">保存</button>
@@ -115,13 +98,9 @@
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="${ctx}/3rd/layer-v3.1.0/layer.js"></script>
 <script>
-	$(".category").mouseover(function(){
-	  $(this).addClass("over");
-	});
-	$(".category").mouseout(function(){
-	  $(this).removeClass("over");
-	});
+
 	
 	$("#save-info").click(function(){
 		$.ajax({

@@ -61,4 +61,14 @@ public class WeiboServiceImpl implements WeiboService {
 
 	}
 
+	@Override
+	public List<Weibo> listWeiboByUuid(String uuid) {
+		User user = userMapper.selectByPrimaryKey(uuid);
+		
+		WeiboCriteria criteria = new WeiboCriteria();
+		criteria.setUserUsername(user.getUsername());
+		List<Weibo> selectByWeiboCriteria = weiboMapper.selectByWeiboCriteria(criteria );
+		return selectByWeiboCriteria;
+	}
+
 }

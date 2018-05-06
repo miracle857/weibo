@@ -15,8 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.o.UserCriterua;
+import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.sevice.UserService;
+import com.mxh.weibo.sevice.WeiboService;
 import com.mxh.weibo.web.BaseResponse;
 
 @Controller
@@ -24,6 +26,9 @@ public class CommonController extends BaseController{
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+	private WeiboService weiboService;
 	
 	
     //上传图片
@@ -80,5 +85,15 @@ public class CommonController extends BaseController{
 			e.printStackTrace();
 		}
     	return "header/follow-module";
+    }
+    
+    @RequestMapping("/load/weibo/{uuid}")
+    public String loadWeibo(HttpServletRequest request,@PathVariable String uuid) {
+		try {
+			request.setAttribute("reqWeibo", weiboService.listWeiboByUuid(uuid ));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return "header/weibo-module";
     }
 }

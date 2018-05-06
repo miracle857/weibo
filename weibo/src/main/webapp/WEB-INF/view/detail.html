@@ -138,7 +138,7 @@
 	var btnVue = new Vue({
 		el: '#buttons',
 	    data: {
-	    	wbChoiced:true,
+	    	wbChoiced:false,
 	    	gzChoiced:false,
 	    	fsChoiced:false
 	    },
@@ -147,49 +147,40 @@
 	      	this.wbChoiced = true;
 			this.gzChoiced = false;
 			this.fsChoiced = false;
-	      	console.log(vm1.users);
-	      	
 	      },
 	      gz_btn:function(){
 	      	this.wbChoiced = false;
 			this.gzChoiced = true;
 			this.fsChoiced = false;
-	      	console.log("sss");
-	      	$("#three-module").load("/load/follow/"+detUuid+".do");
 	      },
 	      fs_btn:function(){
 			this.wbChoiced = false;
 			this.gzChoiced = false;
 			this.fsChoiced = true;
 			
-			$("#three-module").load("/load/fans/"+detUuid+".do");
-			
-			/* $.ajax({
-				url : "/fri/fans.do",
-				type : "post",
-				data : {
-					page:1,
-					pagesize:10
-				},
-				datatype : "json",
-				success : function(data){
-					
-					// 到时候删除分页。。。先这样用着
-					createPage(data);
-					
-					$(data.rows).each(function(idx,item){
-						_map.put(item.uuid,'close');
-						$("#container").append(getWeibo(item));
-						
-						$(".shown").show();
-					});
-				},
-				error : function(){
-					
-				}
-			});// ajax */
 	      }// fs_btn
-	    }// methods
+	    },// methods
+	    watch: {
+	        // 如果 `XX` 发生改变，这个函数就会运行
+	        wbChoiced: function (newValue, oldValue) {
+	        	if(newValue == true){
+	        		$("#three-module").load("/load/weibo/"+detUuid+".do");
+		        }
+	        },
+	        gzChoiced: function (newValue, oldValue) {
+	        	if(newValue == true){
+	        		$("#three-module").load("/load/follow/"+detUuid+".do");
+	        	}
+		    },
+		    fsChoiced: function (newValue, oldValue) {
+		    	if(newValue == true){
+		    		$("#three-module").load("/load/fans/"+detUuid+".do");
+		    	}
+		   	}
+	    },
+	    mounted:function () {
+	    	this.wbChoiced = true;
+	    }
 	});
 
 
@@ -252,7 +243,7 @@
 
   }); // Vue.component
 
-
+/* 
   var vm1 = new Vue({
     el: '#fans_div',
     data: {
@@ -267,7 +258,7 @@
     methods:{
       
     }
-  })
+  }) */
 
 </script>
 </html>
