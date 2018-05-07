@@ -178,6 +178,8 @@
 		    	}
 		   	}
 	    },
+	    // 编译好的html挂载到页面完成后执行，mounted在整个实例中仅仅执行一次
+	    // 相当于按下 微博 按钮，使watch函数 观察到其变化，然后加载页面
 	    mounted:function () {
 	    	this.wbChoiced = true;
 	    }

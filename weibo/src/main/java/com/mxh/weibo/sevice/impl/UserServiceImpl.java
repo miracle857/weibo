@@ -21,8 +21,10 @@ import com.mxh.weibo.common.o.ChangePwdUser;
 import com.mxh.weibo.common.o.UserCriterua;
 import com.mxh.weibo.common.o.UserToken;
 import com.mxh.weibo.common.o.vo.UserVo;
+import com.mxh.weibo.common.util.AccountValidatorUtil;
 import com.mxh.weibo.common.util.CollectionUtil;
 import com.mxh.weibo.common.util.MD5;
+import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.FollowFollowerMapper;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.sevice.UserService;
@@ -42,6 +44,10 @@ public class UserServiceImpl implements UserService {
 		this.chickUserNameExist(userToken.getUsername());
 		this.chickEmailExist(userToken.getEmail());
 		
+		
+		if(! AccountValidatorUtil.isEmail(userToken.getEmail())) {
+			throw new WeiboException("邮箱格式不正确");
+		}
 		// 判定密码相同与否
 		if(!(userToken.getPassword().equals(userToken.getRpassword()))){
 			throw new WeiboException("两次密码不一致");
@@ -50,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		// 整理数据，插入数据库
 		User user = new User();
 		PropertyUtils.copyProperties(user, userToken);
+		user.setUuid(UUIDUtils.getUUID());
 		user.setNickname("新用户");
 		user.setHeadimg("/img/headImg/def.jpg");
 		user.setWeibo(0);
@@ -68,19 +75,20 @@ public class UserServiceImpl implements UserService {
 			throw new WeiboException("用户名不能为空");
 		}
 		// 账号是否存在
-		User user = userMapper.selectByEmailOrUsername(null, username);
+		List<User> list = userMapper.selectByEmailOrUsername(null, username);
 		
 		// 若存在，校验密码
-		if(user == null || !(user.getPassword().equals(MD5.getMD5(password)))){
+		if(list.isEmpty() || !(list.get(0).getPassword().equals(MD5.getMD5(password)))){
 			throw new WeiboException("用户名或者密码错误");
 		}
 		// 返回数据不为空，则校验成功
-		return user;
+		return list.get(0);
 	}
 	public void findPassword(User user) throws Exception {
-		User selectByEmailOrUsername = userMapper.selectByEmailOrUsername(user.getEmail(), user.getUsername());
-		if (selectByEmailOrUsername != null) {
-			String pwd = Mail.send(user.getEmail(), user.getUsername());
+		List<User> selectByEmailOrUsername = userMapper.selectByEmailOrUsername(null, user.getUsername());
+		if (!selectByEmailOrUsername.isEmpty()) {
+			User user2 = selectByEmailOrUsername.get(0);
+			String pwd = Mail.send(user2.getEmail(), user2.getUsername());
 			user.setPassword(MD5.getMD5(pwd));
 			userMapper.updateByUserName(user);
 		} else {
@@ -93,8 +101,8 @@ public class UserServiceImpl implements UserService {
 		if(StringUtils.isBlank(username)){
 			throw new WeiboException("用户名不能为空");
 		}
-		User user = userMapper.selectByEmailOrUsername(null, username);
-		if (user != null) {
+		List<User> list = userMapper.selectByEmailOrUsername(null, username);
+		if (!list.isEmpty()) {
 			throw new WeiboException("用户名存在");
 		}
 	}
@@ -103,8 +111,8 @@ public class UserServiceImpl implements UserService {
 		if(StringUtils.isBlank(email)){
 			throw new WeiboException("邮箱不能为空");
 		}
-		User user = userMapper.selectByEmailOrUsername(email, null);
-		if (user != null) {
+		List<User> list = userMapper.selectByEmailOrUsername(email, null);
+		if (!list.isEmpty()) {
 			throw new WeiboException("该邮箱已经被注册");
 		}
 	}

@@ -53,6 +53,7 @@ function login(){
 	});
 }
 
+$("#register-submit-btn").click(register);
 function register() {
 	
 	//TODO  表单数据校验  1.密码长度  2.用户名长度  3.密码是否相同  4.邮箱是否格式正确
@@ -111,7 +112,7 @@ function findPassword(){
 
 
 $(".back-btn").click(backToLogin);
-$("#register-submit-btn").click(register);
+
 
 function setCookie(c_name,value,expiredays){
 	var exdate=new Date()

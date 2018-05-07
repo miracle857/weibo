@@ -43,11 +43,12 @@ public class WeiboServiceImpl implements WeiboService {
 		weibo.setPraise(0);
 		weibo.setPublishTime(new Date()); // 到时候传回前台会不会出问题？？？
 
-		User user = userMapper.selectByEmailOrUsername(null, weibo.getUserUsername());
+		List<User> list = userMapper.selectByEmailOrUsername(null, weibo.getUserUsername());
+		User user = list.get(0);
 		user.setWeibo(user.getWeibo() + 1);
 
 		weiboMapper.insertSelective(weibo);
-		// TODO 打算用消息队列，做异步消息推送，有难度，待定..
+		// TODO 打算用消息队列或websocket，做异步消息推送，有难度，待定..
 
 
 		userMapper.updateByPrimaryKeySelective(user);
