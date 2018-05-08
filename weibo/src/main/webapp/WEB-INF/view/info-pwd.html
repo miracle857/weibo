@@ -71,10 +71,10 @@
   			<div style="padding: 20px 20px 0 0px;font-weight: bold;">修改密码</div>
         <form action="" id="info-form">
     			<div class="info_div">
-    				<div class="info_fdxc">旧密码</div><input type="password" name="oldPassword" class="editInput" value=""><span> <a href="" class="edit">偷看</a></span>
+    				<div class="info_fdxc">旧密码</div><input type="password" name="oldPassword" class="editInput" value=""><span> <a href="javascript:void(0)" class="edit" id="look-old">偷看</a></span>
     			</div>
     			<div class="info_div">
-    				<div class="info_fdxc">新密码</div><input type="password" name="newPassword" class="editInput" value=""><span> <a href="" class="edit">偷看</a></span>
+    				<div class="info_fdxc">新密码</div><input type="password" name="newPassword" class="editInput" value=""><span> <a href="javascript:void(0)" class="edit" id="look-new">偷看</a></span>
     			</div>
         </form>
         <button class="btn btn-default save-info" id="save-info">保存</button>
@@ -85,8 +85,19 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="${ctx}/3rd/layer-v3.1.0/layer.js"></script>
+<script src="${ctx}/js/utils/common.js"></script>
 <script>
-
+	$("#look-old").mouseover(function(){
+	  	$("input[name=oldPassword]").attr("type","text");
+	}).mouseout(function(){
+		$("input[name=oldPassword]").attr("type","password");
+	});
+	
+	$("#look-new").mouseover(function(){
+	  	$("input[name=newPassword]").attr("type","text");
+	}).mouseout(function(){
+		$("input[name=newPassword]").attr("type","password");
+	});
 	
 	$("#save-info").click(function(){
 		$.ajax({

@@ -66,6 +66,7 @@ $(".btn-reply").click(function() {
 		},
 		datatype : "json",
 		success : function(data){
+			
 			// 3.日期处理，并展示内容
 			console.log(getWeibo(data.body));
 			$("#container").prepend(getWeibo(data.body));

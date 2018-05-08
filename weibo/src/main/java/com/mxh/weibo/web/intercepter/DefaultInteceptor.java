@@ -39,7 +39,7 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
 			// 判断是否是ajax请求
 			String XRequested =request.getHeader("X-Requested-With");
 			if("XMLHttpRequest".equals(XRequested)){
-                response.getWriter().write("isAjax");
+                response.getWriter().write("overdue");
             }else{
                 response.sendRedirect("/main.do");
             }
