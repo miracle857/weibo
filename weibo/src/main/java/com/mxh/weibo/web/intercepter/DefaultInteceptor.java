@@ -21,7 +21,6 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
 
 		// 获取URI后缀
 		String requestUri = request.getServletPath();
-
 		if (requestUri.equalsIgnoreCase("/"))
 			return true;
 
@@ -31,7 +30,6 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 		}
-		
 
 		User user = (User) request.getSession().getAttribute("user");
 		// session 失效

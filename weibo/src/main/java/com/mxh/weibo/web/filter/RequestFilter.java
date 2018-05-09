@@ -24,7 +24,7 @@ public class RequestFilter extends OncePerRequestFilter {
 	}
 	
 	/**
-     * 将容易引起xss漏洞的半角字符直接替换成全角字符
+     * 将容易引起xss漏洞的半角字符直接替换成全角字符或者转义
      *
      * @param s
      * @return
