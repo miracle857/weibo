@@ -1,12 +1,12 @@
 package com.mxh.weibo.common.email;
 
+import java.util.Date;
+import java.util.Properties;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
 
 /**
  * JavaMail 版本: 1.6.0 JDK 版本: JDK 1.7 以上（必须）
@@ -16,12 +16,12 @@ public class Mail {
 	// 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
 	// PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
 	// 对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
-	public static String myEmailAccount = "自己邮箱";
-	public static String myEmailPassword = "自己邮箱密码";
+	public static String myEmailAccount = "984511321@qq.com";
+	public static String myEmailPassword = "maoxinhuan";
 
 	// 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
 	// 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
-	public static String myEmailSMTPHost = "smtp.gmail.com";
+	public static String myEmailSMTPHost = "smtp.qq.com";
 
 	public static Properties props = new Properties();
 
@@ -55,10 +55,8 @@ public class Mail {
 	 * @throws Exception
 	 * @return new password
 	 */
-	public static String send(String email, String username) throws Exception {
+	public static String send(String email, String username,String pwd) throws Exception {
 
-		String pwd = getRandomString(6);
-		
 		// 2. 根据配置创建会话对象, 用于和邮件服务器交互
 		Session session = Session.getDefaultInstance(props);
 		session.setDebug(true); // 设置为debug模式, 可以查看详细的发送 log
@@ -135,17 +133,6 @@ public class Mail {
 
 	private static String getContent(String username,String pwd) {
 		return "尊敬的：" + username + " 你好,您的新密码为：" + pwd + "。" + "\r\n请及时修改密码。";
-	}
-
-	private static String string = "abcdefghijklmnopqrstuvwxyz123456789QAZWSXEDCRFVTGBYHNUJMIKLOP";
-
-	private static String getRandomString(int length) {
-		StringBuffer sb = new StringBuffer();
-		int len = string.length();
-		for (int i = 0; i < length; i++) {
-			sb.append(string.charAt(new Random().nextInt(len)));
-		}
-		return sb.toString();
 	}
 
 }

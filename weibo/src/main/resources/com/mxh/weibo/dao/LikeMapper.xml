@@ -6,9 +6,9 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    <id column="like_ID" jdbcType="INTEGER" property="id" />
-    <result column="like_LIKED_WEIBO" jdbcType="VARCHAR" property="likedWeibo" />
-    <result column="like_LIKED_USER" jdbcType="VARCHAR" property="likedUser" />
+    <id column="lik_ID" jdbcType="INTEGER" property="id" />
+    <result column="lik_LIKED_WEIBO" jdbcType="VARCHAR" property="likedWeibo" />
+    <result column="lik_LIKED_USER" jdbcType="VARCHAR" property="likedUser" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -81,7 +81,7 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    like.ID as like_ID, like.LIKED_WEIBO as like_LIKED_WEIBO, like.LIKED_USER as like_LIKED_USER
+    lik.ID as lik_ID, lik.LIKED_WEIBO as lik_LIKED_WEIBO, lik.LIKED_USER as lik_LIKED_USER
   </sql>
   <select id="selectByExample" parameterType="com.mxh.weibo.common.model.LikeExample" resultMap="BaseResultMap">
     <!--
@@ -93,7 +93,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from weibo_like like
+    from weibo_like lik
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -108,8 +108,8 @@
     -->
     select 
     <include refid="Base_Column_List" />
-    from weibo_like like
-    where like.ID = #{id,jdbcType=INTEGER}
+    from weibo_like lik
+    where lik.ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -124,7 +124,7 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    delete from weibo_like like
+    delete from weibo_like lik
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -173,7 +173,7 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    select count(*) from weibo_like like
+    select count(*) from weibo_like lik
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -183,16 +183,16 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    update weibo_like like
+    update weibo_like lik
     <set>
       <if test="record.id != null">
-        like.ID = #{record.id,jdbcType=INTEGER},
+        lik.ID = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.likedWeibo != null">
-        like.LIKED_WEIBO = #{record.likedWeibo,jdbcType=VARCHAR},
+        lik.LIKED_WEIBO = #{record.likedWeibo,jdbcType=VARCHAR},
       </if>
       <if test="record.likedUser != null">
-        like.LIKED_USER = #{record.likedUser,jdbcType=VARCHAR},
+        lik.LIKED_USER = #{record.likedUser,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -204,10 +204,10 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    update weibo_like like
-    set like.ID = #{record.id,jdbcType=INTEGER},
-      like.LIKED_WEIBO = #{record.likedWeibo,jdbcType=VARCHAR},
-      like.LIKED_USER = #{record.likedUser,jdbcType=VARCHAR}
+    update weibo_like lik
+    set lik.ID = #{record.id,jdbcType=INTEGER},
+      lik.LIKED_WEIBO = #{record.likedWeibo,jdbcType=VARCHAR},
+      lik.LIKED_USER = #{record.likedUser,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

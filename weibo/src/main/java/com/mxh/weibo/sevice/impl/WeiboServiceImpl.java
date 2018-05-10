@@ -1,5 +1,6 @@
 package com.mxh.weibo.sevice.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.PaginatedList;
+import com.mxh.weibo.common.model.Like;
+import com.mxh.weibo.common.model.LikeExample;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.WeiboCriteria;
+import com.mxh.weibo.common.o.vo.WeiboVo;
+import com.mxh.weibo.common.util.PropertyUtil;
 import com.mxh.weibo.common.util.UUIDUtils;
+import com.mxh.weibo.dao.LikeMapper;
 import com.mxh.weibo.dao.UserMapper;
 import com.mxh.weibo.dao.WeiboMapper;
 import com.mxh.weibo.sevice.WeiboService;
@@ -23,17 +29,42 @@ public class WeiboServiceImpl implements WeiboService {
 
 	@Autowired
 	public UserMapper userMapper;
+	
+	@Autowired
+	public LikeMapper likeMapper;
 
 	@Override
-	public PaginatedList<Weibo> listWeibo(WeiboCriteria criteria) {
+	public PaginatedList<WeiboVo> listWeibo(WeiboCriteria criteria,String loginUuid) {
 		int total = weiboMapper.countByWeiboCriteria(criteria);
 		criteria.setTotal(total); // 计算数量，得出分页信息
 		
 		List<Weibo> list = weiboMapper.selectByWeiboCriteria(criteria);
-		PaginatedList<Weibo> result = new PaginatedList<>();
-		result.setResult(list);
-		result.setPagination(criteria);
-		return result;
+		
+		List<WeiboVo> result = new ArrayList<>();
+		for (Weibo weibo : list) {
+			WeiboVo vo = new WeiboVo();
+			
+			PropertyUtil.copyProperties(vo, weibo);
+			
+			LikeExample example = new LikeExample();
+			example.createCriteria().andLikedUserEqualTo(loginUuid).andLikedWeiboEqualTo(weibo.getUuid());
+			List<Like> list2 = likeMapper.selectByExample(example );
+			if(!list2.isEmpty()) {
+				vo.setLike((byte)1);
+			}else {
+				vo.setLike((byte)0);
+			}
+			
+			result.add(vo);
+		}
+		
+		
+		
+		
+		PaginatedList<WeiboVo> paginatedList = new PaginatedList<>();
+		paginatedList.setResult(result);
+		paginatedList.setPagination(criteria);
+		return paginatedList;
 	}
 
 	@Override
@@ -63,13 +94,56 @@ public class WeiboServiceImpl implements WeiboService {
 	}
 
 	@Override
-	public List<Weibo> listWeiboByUuid(String uuid) {
+	public List<WeiboVo> listWeiboByUuid(String uuid) {
 		User user = userMapper.selectByPrimaryKey(uuid);
 		
 		WeiboCriteria criteria = new WeiboCriteria();
 		criteria.setUserUsername(user.getUsername());
 		List<Weibo> selectByWeiboCriteria = weiboMapper.selectByWeiboCriteria(criteria );
-		return selectByWeiboCriteria;
+		
+		List<WeiboVo> result = new ArrayList<>();
+		for (Weibo weibo : selectByWeiboCriteria) {
+			WeiboVo vo = new WeiboVo();
+			
+			PropertyUtil.copyProperties(vo, weibo);
+			
+			LikeExample example = new LikeExample();
+			example.createCriteria().andLikedUserEqualTo(uuid).andLikedWeiboEqualTo(weibo.getUuid());
+			List<Like> list = likeMapper.selectByExample(example );
+			if(!list.isEmpty()) {
+				vo.setLike((byte)1);
+			}else {
+				vo.setLike((byte)0);
+			}
+			
+			result.add(vo);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void likeWeibo(Like like) throws Exception {
+		LikeExample example = new LikeExample();
+		example.createCriteria().andLikedUserEqualTo(like.getLikedUser()).andLikedWeiboEqualTo(like.getLikedWeibo());
+		List<Like> selectByExample = likeMapper.selectByExample(example );
+		if(selectByExample.isEmpty()) {
+			likeMapper.insertSelective(like);
+		}else {
+			throw new Exception("您已经点赞！");
+		}
+	}
+
+	@Override
+	public void cancelLikeWeibo(Like like) throws Exception {
+		LikeExample example = new LikeExample();
+		example.createCriteria().andLikedUserEqualTo(like.getLikedUser()).andLikedWeiboEqualTo(like.getLikedWeibo());
+		List<Like> selectByExample = likeMapper.selectByExample(example);
+		if(!selectByExample.isEmpty()) {
+			likeMapper.deleteByPrimaryKey(selectByExample.get(0).getId());
+		}else {
+			throw new Exception("没有点赞呢！");
+		}
 	}
 
 }

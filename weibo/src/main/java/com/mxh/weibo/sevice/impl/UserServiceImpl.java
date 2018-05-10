@@ -24,6 +24,7 @@ import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.common.util.AccountValidatorUtil;
 import com.mxh.weibo.common.util.CollectionUtil;
 import com.mxh.weibo.common.util.MD5;
+import com.mxh.weibo.common.util.PasswordUtil;
 import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.FollowFollowerMapper;
 import com.mxh.weibo.dao.UserMapper;
@@ -88,9 +89,12 @@ public class UserServiceImpl implements UserService {
 		List<User> selectByEmailOrUsername = userMapper.selectByEmailOrUsername(null, user.getUsername());
 		if (!selectByEmailOrUsername.isEmpty()) {
 			User user2 = selectByEmailOrUsername.get(0);
-			String pwd = Mail.send(user2.getEmail(), user2.getUsername());
-			user.setPassword(MD5.getMD5(pwd));
-			userMapper.updateByUserName(user);
+			
+			// 获取6位长度随机密码
+			String pwd = PasswordUtil.getRandomString(6);
+			user2.setPassword(MD5.getMD5(pwd));
+			userMapper.updateByUserName(user2);
+			Mail.send(user2.getEmail(), user2.getUsername(),pwd);
 		} else {
 			throw new WeiboException("账号或邮箱错误");
 		}

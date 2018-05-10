@@ -402,8 +402,8 @@
       PASSWORD = #{password,jdbcType=VARCHAR},
       COMMENT = #{comment,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=VARCHAR},
-      EMAIL = #{email,jdbcType=VARCHAR},
-    where USERNAME = #{username,jdbcType=INTEGER}
+      EMAIL = #{email,jdbcType=VARCHAR}
+    where USERNAME = #{username,jdbcType=VARCHAR}
   </update>
   
   <update id="updateByUsernameSelective" parameterType="com.mxh.weibo.common.model.User">

@@ -3,8 +3,10 @@ package com.mxh.weibo.sevice;
 import java.util.List;
 
 import com.mxh.weibo.common.PaginatedList;
+import com.mxh.weibo.common.model.Like;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.WeiboCriteria;
+import com.mxh.weibo.common.o.vo.WeiboVo;
 
 public interface WeiboService {
 	
@@ -13,7 +15,7 @@ public interface WeiboService {
 	 * @param weibo
 	 * @return
 	 */
-	PaginatedList<Weibo> listWeibo(WeiboCriteria criteria);
+	PaginatedList<WeiboVo> listWeibo(WeiboCriteria criteria,String loginUuid);
 	
 	/**
 	 * 发布weibo
@@ -28,5 +30,9 @@ public interface WeiboService {
 	 */
 	void deleteWeibo(Weibo weibo);
 
-	List<Weibo> listWeiboByUuid(String uuid);
+	List<WeiboVo> listWeiboByUuid(String uuid);
+	
+	void likeWeibo(Like like) throws Exception;
+	
+	void cancelLikeWeibo(Like like) throws Exception;
 }
