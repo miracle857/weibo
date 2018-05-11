@@ -2,7 +2,7 @@
               <!-- <my-follow-template v-for="user in users" v-bind:obj="user"> 
               </my-follow-template> -->
               <#list reqFollows as user>
-	              <div id="3">
+	              <div id="${user.uuid}">
 	                  <div class="col-md-2">
 	                    <p style="text-align: center; margin-top: 20px;">
 	                      <img src="${user.headimg}" class="img-circle" style="height: 40px;width: 40px;" alt="">
@@ -31,16 +31,16 @@
 	                    </div>
 	                  </div>
 	                  <div class="col-md-4">
-	                  <#if user.mutual == 1>
+	                  <#if user.mutual == 0>
 	                    <span class="follow-span">
-	                      <i class="glyphicon glyphicon-sort each-follow-i">
+	                      <i class="glyphicon glyphicon-plus each-follow-i">
 	                      </i>
-	                      <a href="" @click.prevent="unFollow">互相关注</a>
+	                      <a userid="${user.uuid}" type="follow" class="fol">关注</a>
 	                    </span>
 	                  <#else>
 	                    <span class="follow-span">
-	                      <i class="glyphicon glyphicon-ok" style="color: #FA7D3C"></i>
-	                      <a href="" @click.prevent='follow'>已关注</a>
+	                      <i class="glyphicon glyphicon-remove" style="color: #ccc"></i>
+	                      <a userid="${user.uuid}" type="unfollow" class="fol">取消关注</a>
 	                    </span>
 	                  </#if>
 	                  </div>
@@ -53,6 +53,7 @@
                 </#list>
               
 </div>
+<script src="/js/detail-follow.js"></script>
 <script>
 /* Vue.component('my-follow-template', {
     props: ['obj'],

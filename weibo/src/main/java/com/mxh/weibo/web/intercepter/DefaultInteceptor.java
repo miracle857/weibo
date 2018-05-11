@@ -43,12 +43,7 @@ public class DefaultInteceptor extends HandlerInterceptorAdapter {
             }
 			return false;
 		}
-		// request.setAttribute("Dict",
-		// FreemarkerUtils.getStaticTemplateModel(DictCache.class));
 
-		// response.setHeader("Pragma", "No-cache");
-
-		// request.setAttribute("remoteIp", getRemoteIP(request));
 		return true;
 	}
 

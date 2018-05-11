@@ -197,9 +197,9 @@ public class UserServiceImpl implements UserService {
 			UserVo vo = new UserVo();
 			PropertyUtils.copyProperties(vo, user);
 
-			// 我的关注 是否关注我
+			// 我是否关注 此人
 			FollowFollowerExample example2 = new FollowFollowerExample();
-			example2.createCriteria().andFollowedEqualTo(login).andFollowEqualTo(user.getUuid());
+			example2.createCriteria().andFollowedEqualTo(user.getUuid()).andFollowEqualTo(login);
 			List<FollowFollower> list2 = followFollowerMapper.selectByExample(example2);
 			if (CollectionUtils.isNotEmpty(list2)) {
 				vo.setMutual((byte) 1);

@@ -82,7 +82,9 @@
       border-radius: 10%;
       padding: 3px;
     }
-
+	a {
+	  cursor:pointer;
+	}
   </style>
   <div class="body" style="height: 1000px;">
     <div class="container" style="margin-top: 40px; width: 1000px;">
@@ -119,8 +121,8 @@
             <div id="fans_div" class="fans_div" style="border: 1px solid #ccc;">
               <!-- <my-fans-template v-for="user in users" v-bind:obj="user"> 
               </my-fans-template>   -->
-              <my-follow-template v-for="user in users" v-bind:obj="user"> 
-              </my-follow-template>
+              <!-- <my-follow-template v-for="user in users" v-bind:obj="user"> 
+              </my-follow-template> -->
             </div>
 
         </div>

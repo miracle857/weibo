@@ -31,16 +31,16 @@
                     </div>
                   </div>
                   <div class="col-md-4">
-                  <#if user.mutual == 1>
+                  <#if user.mutual == 0>
                     <span class="follow-span">
-                      <i class="glyphicon glyphicon-sort each-follow-i">
+                      <i class="glyphicon glyphicon-plus each-follow-i" style="color: #ccc">
                       </i>
-                      <a href="" @click.prevent="unFollow">互相关注</a>
+                      <a userid="${user.uuid}" type="follow" class="fol">关注</a>
                     </span>
                   <#else>
                     <span v-else class="follow-span">
-                      <i class="glyphicon glyphicon-plus" style="color: #FA7D3C"></i>
-                      <a href="" @click.prevent='follow'>关注</a>
+                      <i class="glyphicon glyphicon-remove" style="color: #ccc"></i>
+                      <a userid="${user.uuid}" type="unfollow" class="fol">取消关注</a>
                     </span>
                    </#if>
                   </div>
@@ -53,7 +53,9 @@
               </#list>
    
 </div>
+<script src="/js/detail-follow.js"></script>
 <script>
+
 Vue.component('my-fans-template', {
     props: ['obj'],
     template: `<div id="3">
