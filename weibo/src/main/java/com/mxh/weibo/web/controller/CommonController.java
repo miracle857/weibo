@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.o.UserCriterua;
-import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.common.o.vo.UserVo;
 import com.mxh.weibo.sevice.UserService;
 import com.mxh.weibo.sevice.WeiboService;
@@ -49,7 +48,7 @@ public class CommonController extends BaseController{
         	 res.setMessage("文件后缀必须为jpg");
         	 return res;
         }
-        User user =  this.getLogin(request);
+        User user =  this.getLogin();
         String newName = user.getUuid()+extName;
         File tempFile = new File(realPath+"img"+File.separator+"headImg"+File.separator+newName);
         file.transferTo(tempFile);
@@ -66,7 +65,7 @@ public class CommonController extends BaseController{
 		UserCriterua vo = new UserCriterua();
 		vo.setUuid(uuid);
 		try {
-			PaginatedList<UserVo> fans = userService.getFans(this.getLogin(request).getUuid(), vo);
+			PaginatedList<UserVo> fans = userService.getFans(this.getLogin().getUuid(), vo);
 			request.setAttribute("reqFans", fans.getResult());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,7 +78,7 @@ public class CommonController extends BaseController{
     	UserCriterua vo = new UserCriterua();
 		vo.setUuid(uuid);
 		try {
-			PaginatedList<UserVo> fans = userService.getFollower(this.getLogin(request).getUuid(), vo);
+			PaginatedList<UserVo> fans = userService.getFollower(this.getLogin().getUuid(), vo);
 			request.setAttribute("reqFollows", fans.getResult());
 		} catch (Exception e) {
 			e.printStackTrace();

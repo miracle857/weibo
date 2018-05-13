@@ -11,20 +11,10 @@ public class Weibo implements Serializable {
 	 */
 	private String uuid;
 	/**
-	 * 用户名. Column: weibo_weibo.USER_USERNAME
+	 * 微博对于的用户ID. Column: weibo_weibo.USER_ID
 	 * @mbggenerated
 	 */
-	private String userUsername;
-	/**
-	 * 用户昵称. Column: weibo_weibo.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	private String userNickname;
-	/**
-	 * 用户头像. Column: weibo_weibo.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	private String userHeadimg;
+	private String userId;
 	/**
 	 * 发布时间. Column: weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
@@ -45,11 +35,6 @@ public class Weibo implements Serializable {
 	 * @mbggenerated
 	 */
 	private Integer liked;
-	/**
-	 * 回复UUID. Column: weibo_weibo.REPLY_UUID
-	 * @mbggenerated
-	 */
-	private String replyUuid;
 	/**
 	 * Column: weibo_weibo.DELETED
 	 * @mbggenerated
@@ -82,51 +67,19 @@ public class Weibo implements Serializable {
 	}
 
 	/**
-	 * @return  the value of weibo_weibo.USER_USERNAME
+	 * @return  the value of weibo_weibo.USER_ID
 	 * @mbggenerated
 	 */
-	public String getUserUsername() {
-		return userUsername;
+	public String getUserId() {
+		return userId;
 	}
 
 	/**
-	 * @param userUsername  the value for weibo_weibo.USER_USERNAME
+	 * @param userId  the value for weibo_weibo.USER_ID
 	 * @mbggenerated
 	 */
-	public void setUserUsername(String userUsername) {
-		this.userUsername = userUsername;
-	}
-
-	/**
-	 * @return  the value of weibo_weibo.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	public String getUserNickname() {
-		return userNickname;
-	}
-
-	/**
-	 * @param userNickname  the value for weibo_weibo.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
-	}
-
-	/**
-	 * @return  the value of weibo_weibo.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	public String getUserHeadimg() {
-		return userHeadimg;
-	}
-
-	/**
-	 * @param userHeadimg  the value for weibo_weibo.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	public void setUserHeadimg(String userHeadimg) {
-		this.userHeadimg = userHeadimg;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -191,22 +144,6 @@ public class Weibo implements Serializable {
 	 */
 	public void setLiked(Integer liked) {
 		this.liked = liked;
-	}
-
-	/**
-	 * @return  the value of weibo_weibo.REPLY_UUID
-	 * @mbggenerated
-	 */
-	public String getReplyUuid() {
-		return replyUuid;
-	}
-
-	/**
-	 * @param replyUuid  the value for weibo_weibo.REPLY_UUID
-	 * @mbggenerated
-	 */
-	public void setReplyUuid(String replyUuid) {
-		this.replyUuid = replyUuid;
 	}
 
 	/**

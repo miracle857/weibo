@@ -59,8 +59,6 @@ public class WeiboServiceImpl implements WeiboService {
 		}
 		
 		
-		
-		
 		PaginatedList<WeiboVo> paginatedList = new PaginatedList<>();
 		paginatedList.setResult(result);
 		paginatedList.setPagination(criteria);
@@ -72,10 +70,9 @@ public class WeiboServiceImpl implements WeiboService {
 		weibo.setUuid(UUIDUtils.getUUID());
 		weibo.setLiked(0);
 		weibo.setPraise(0);
-		weibo.setPublishTime(new Date()); // 到时候传回前台会不会出问题？？？
+		weibo.setPublishTime(new Date()); 
 
-		List<User> list = userMapper.selectByEmailOrUsername(null, weibo.getUserUsername());
-		User user = list.get(0);
+		User user = userMapper.selectByPrimaryKey(weibo.getUserId());
 		user.setWeibo(user.getWeibo() + 1);
 
 		weiboMapper.insertSelective(weibo);

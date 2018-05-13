@@ -118,7 +118,7 @@ public class UserController extends BaseController{
     	
     	// TODO ，这里要提防 ID 不存在的情况，以后再补
     	
-    	UserVo user = userService.getUserById(username,this.getLogin(request).getUuid());
+    	UserVo user = userService.getUserById(username,this.getLoginUuid());
     	request.setAttribute("detUser", user);
     	return "detail";
     }
@@ -128,7 +128,7 @@ public class UserController extends BaseController{
     public BaseResponse<User> save(HttpServletRequest request,User user) {
     	
     	BaseResponse<User> res = new BaseResponse<>();
-    	user.setUuid(this.getLogin(request).getUuid());
+    	user.setUuid(this.getLoginUuid());
     	try {
 			userService.changeUserInfo(user);
 			res.setBody(user);
@@ -145,7 +145,7 @@ public class UserController extends BaseController{
     public BaseResponse<User> changePwd(HttpServletRequest request,ChangePwdUser user ) {
     	
     	BaseResponse<User> res = new BaseResponse<>();
-		user.setUuid(this.getLogin(request).getUuid());
+		user.setUuid(this.getLoginUuid());
     	try {
 			userService.changeUserPassword(user);
 			res.setSuccess(true);
@@ -163,10 +163,10 @@ public class UserController extends BaseController{
     	BaseResponse<String> res = new BaseResponse<>();
 		try {
 			if("follow".equals(type)) {
-				userService.follow(this.getLogin(req).getUuid(), uuid);
+				userService.follow(this.getLoginUuid(), uuid);
 				res.setMessage("关注成功");
 			}else if("unfollow".equals(type)) {
-				userService.unFollow(this.getLogin(req).getUuid(), uuid);
+				userService.unFollow(this.getLoginUuid(), uuid);
 				res.setMessage("取消关注成功");
 			}else {
 				throw new Exception("未知的操作！");

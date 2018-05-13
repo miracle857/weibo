@@ -7,10 +7,8 @@
       auto generated, do not modify.
     -->
     <id column="reply_UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="reply_USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="reply_WEIBO_UUID" jdbcType="VARCHAR" property="weiboUuid" />
-    <result column="reply_USER_HEADIMG" jdbcType="VARCHAR" property="userHeadimg" />
-    <result column="reply_USER_USERNAME" jdbcType="VARCHAR" property="userUsername" />
-    <result column="reply_USER_NICKNAME" jdbcType="VARCHAR" property="userNickname" />
     <result column="reply_PUBLISHTIME" jdbcType="TIMESTAMP" property="publishtime" />
     <result column="reply_CONTENT" jdbcType="VARCHAR" property="content" />
     <result column="reply_DELETED" jdbcType="TINYINT" property="deleted" />
@@ -87,8 +85,7 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    reply.UUID as reply_UUID, reply.WEIBO_UUID as reply_WEIBO_UUID, reply.USER_HEADIMG as reply_USER_HEADIMG, 
-    reply.USER_USERNAME as reply_USER_USERNAME, reply.USER_NICKNAME as reply_USER_NICKNAME, 
+    reply.UUID as reply_UUID, reply.USER_ID as reply_USER_ID, reply.WEIBO_UUID as reply_WEIBO_UUID, 
     reply.PUBLISHTIME as reply_PUBLISHTIME, reply.CONTENT as reply_CONTENT, reply.DELETED as reply_DELETED, 
     reply.REPLY_WHO as reply_REPLY_WHO
   </sql>
@@ -143,14 +140,12 @@
       WARNING - @mbggenerated
       auto generated, do not modify.
     -->
-    insert into weibo_reply (UUID, WEIBO_UUID, USER_HEADIMG, 
-      USER_USERNAME, USER_NICKNAME, PUBLISHTIME, 
-      CONTENT, DELETED, REPLY_WHO
-      )
-    values (#{uuid,jdbcType=VARCHAR}, #{weiboUuid,jdbcType=VARCHAR}, #{userHeadimg,jdbcType=VARCHAR}, 
-      #{userUsername,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, 
-      #{content,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{replyWho,jdbcType=VARCHAR}
-      )
+    insert into weibo_reply (UUID, USER_ID, WEIBO_UUID, 
+      PUBLISHTIME, CONTENT, DELETED, 
+      REPLY_WHO)
+    values (#{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{weiboUuid,jdbcType=VARCHAR}, 
+      #{publishtime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, 
+      #{replyWho,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mxh.weibo.common.model.Reply">
     <!--
@@ -162,17 +157,11 @@
       <if test="uuid != null">
         UUID,
       </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
       <if test="weiboUuid != null">
         WEIBO_UUID,
-      </if>
-      <if test="userHeadimg != null">
-        USER_HEADIMG,
-      </if>
-      <if test="userUsername != null">
-        USER_USERNAME,
-      </if>
-      <if test="userNickname != null">
-        USER_NICKNAME,
       </if>
       <if test="publishtime != null">
         PUBLISHTIME,
@@ -191,17 +180,11 @@
       <if test="uuid != null">
         #{uuid,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
       <if test="weiboUuid != null">
         #{weiboUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userHeadimg != null">
-        #{userHeadimg,jdbcType=VARCHAR},
-      </if>
-      <if test="userUsername != null">
-        #{userUsername,jdbcType=VARCHAR},
-      </if>
-      <if test="userNickname != null">
-        #{userNickname,jdbcType=VARCHAR},
       </if>
       <if test="publishtime != null">
         #{publishtime,jdbcType=TIMESTAMP},
@@ -237,17 +220,11 @@
       <if test="record.uuid != null">
         reply.UUID = #{record.uuid,jdbcType=VARCHAR},
       </if>
+      <if test="record.userId != null">
+        reply.USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
       <if test="record.weiboUuid != null">
         reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userHeadimg != null">
-        reply.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userUsername != null">
-        reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userNickname != null">
-        reply.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
       </if>
       <if test="record.publishtime != null">
         reply.PUBLISHTIME = #{record.publishtime,jdbcType=TIMESTAMP},
@@ -273,10 +250,8 @@
     -->
     update weibo_reply reply
     set reply.UUID = #{record.uuid,jdbcType=VARCHAR},
+      reply.USER_ID = #{record.userId,jdbcType=VARCHAR},
       reply.WEIBO_UUID = #{record.weiboUuid,jdbcType=VARCHAR},
-      reply.USER_HEADIMG = #{record.userHeadimg,jdbcType=VARCHAR},
-      reply.USER_USERNAME = #{record.userUsername,jdbcType=VARCHAR},
-      reply.USER_NICKNAME = #{record.userNickname,jdbcType=VARCHAR},
       reply.PUBLISHTIME = #{record.publishtime,jdbcType=TIMESTAMP},
       reply.CONTENT = #{record.content,jdbcType=VARCHAR},
       reply.DELETED = #{record.deleted,jdbcType=TINYINT},
@@ -292,17 +267,11 @@
     -->
     update weibo_reply
     <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
       <if test="weiboUuid != null">
         WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userHeadimg != null">
-        USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
-      </if>
-      <if test="userUsername != null">
-        USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
-      </if>
-      <if test="userNickname != null">
-        USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
       </if>
       <if test="publishtime != null">
         PUBLISHTIME = #{publishtime,jdbcType=TIMESTAMP},
@@ -325,10 +294,8 @@
       auto generated, do not modify.
     -->
     update weibo_reply
-    set WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
-      USER_HEADIMG = #{userHeadimg,jdbcType=VARCHAR},
-      USER_USERNAME = #{userUsername,jdbcType=VARCHAR},
-      USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      WEIBO_UUID = #{weiboUuid,jdbcType=VARCHAR},
       PUBLISHTIME = #{publishtime,jdbcType=TIMESTAMP},
       CONTENT = #{content,jdbcType=VARCHAR},
       DELETED = #{deleted,jdbcType=TINYINT},

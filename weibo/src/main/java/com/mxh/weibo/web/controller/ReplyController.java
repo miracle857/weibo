@@ -1,8 +1,6 @@
 package com.mxh.weibo.web.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +43,11 @@ public class ReplyController extends BaseController{
     
     @RequestMapping("/replyWeibo")
     @ResponseBody
-    public BaseResponse<Reply> replyWeibo(HttpServletRequest request,Reply reply){
+    public BaseResponse<Reply> replyWeibo(Reply reply){
     	BaseResponse<Reply> res = new BaseResponse<>();
     	
-		User login = this.getLogin(request);
-		reply.setUserHeadimg(login.getHeadimg());
-		reply.setUserNickname(login.getNickname());
-		reply.setUserUsername(login.getUsername());
+		User login = this.getLogin();
+		reply.setUserId(login.getUuid());
     	try {
 			Reply publishReply = replyService.publishReply(reply);
 			res.setBody(publishReply);

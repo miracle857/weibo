@@ -11,25 +11,15 @@ public class Reply implements Serializable {
 	 */
 	private String uuid;
 	/**
+	 * Column: weibo_reply.USER_ID
+	 * @mbggenerated
+	 */
+	private String userId;
+	/**
 	 * 对应微博的UUID. Column: weibo_reply.WEIBO_UUID
 	 * @mbggenerated
 	 */
 	private String weiboUuid;
-	/**
-	 * 头像. Column: weibo_reply.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	private String userHeadimg;
-	/**
-	 * 用户名. Column: weibo_reply.USER_USERNAME
-	 * @mbggenerated
-	 */
-	private String userUsername;
-	/**
-	 * 用户昵称. Column: weibo_reply.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	private String userNickname;
 	/**
 	 * 发布时间. Column: weibo_reply.PUBLISHTIME
 	 * @mbggenerated
@@ -72,6 +62,22 @@ public class Reply implements Serializable {
 	}
 
 	/**
+	 * @return  the value of weibo_reply.USER_ID
+	 * @mbggenerated
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId  the value for weibo_reply.USER_ID
+	 * @mbggenerated
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
 	 * @return  the value of weibo_reply.WEIBO_UUID
 	 * @mbggenerated
 	 */
@@ -85,54 +91,6 @@ public class Reply implements Serializable {
 	 */
 	public void setWeiboUuid(String weiboUuid) {
 		this.weiboUuid = weiboUuid;
-	}
-
-	/**
-	 * @return  the value of weibo_reply.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	public String getUserHeadimg() {
-		return userHeadimg;
-	}
-
-	/**
-	 * @param userHeadimg  the value for weibo_reply.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	public void setUserHeadimg(String userHeadimg) {
-		this.userHeadimg = userHeadimg;
-	}
-
-	/**
-	 * @return  the value of weibo_reply.USER_USERNAME
-	 * @mbggenerated
-	 */
-	public String getUserUsername() {
-		return userUsername;
-	}
-
-	/**
-	 * @param userUsername  the value for weibo_reply.USER_USERNAME
-	 * @mbggenerated
-	 */
-	public void setUserUsername(String userUsername) {
-		this.userUsername = userUsername;
-	}
-
-	/**
-	 * @return  the value of weibo_reply.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	public String getUserNickname() {
-		return userNickname;
-	}
-
-	/**
-	 * @param userNickname  the value for weibo_reply.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
 	}
 
 	/**

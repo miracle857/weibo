@@ -230,213 +230,73 @@ public class WeiboExample {
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameIsNull() {
-			addCriterion("weibo.USER_USERNAME is null");
+		public Criteria andUserIdIsNull() {
+			addCriterion("weibo.USER_ID is null");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameIsNotNull() {
-			addCriterion("weibo.USER_USERNAME is not null");
+		public Criteria andUserIdIsNotNull() {
+			addCriterion("weibo.USER_ID is not null");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameEqualTo(String value) {
-			addCriterion("weibo.USER_USERNAME =", value, "userUsername");
+		public Criteria andUserIdEqualTo(String value) {
+			addCriterion("weibo.USER_ID =", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameNotEqualTo(String value) {
-			addCriterion("weibo.USER_USERNAME <>", value, "userUsername");
+		public Criteria andUserIdNotEqualTo(String value) {
+			addCriterion("weibo.USER_ID <>", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameGreaterThan(String value) {
-			addCriterion("weibo.USER_USERNAME >", value, "userUsername");
+		public Criteria andUserIdGreaterThan(String value) {
+			addCriterion("weibo.USER_ID >", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameGreaterThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_USERNAME >=", value, "userUsername");
+		public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+			addCriterion("weibo.USER_ID >=", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameLessThan(String value) {
-			addCriterion("weibo.USER_USERNAME <", value, "userUsername");
+		public Criteria andUserIdLessThan(String value) {
+			addCriterion("weibo.USER_ID <", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameLessThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_USERNAME <=", value, "userUsername");
+		public Criteria andUserIdLessThanOrEqualTo(String value) {
+			addCriterion("weibo.USER_ID <=", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameLike(String value) {
-			addCriterion("weibo.USER_USERNAME like", value, "userUsername");
+		public Criteria andUserIdLike(String value) {
+			addCriterion("weibo.USER_ID like", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameNotLike(String value) {
-			addCriterion("weibo.USER_USERNAME not like", value, "userUsername");
+		public Criteria andUserIdNotLike(String value) {
+			addCriterion("weibo.USER_ID not like", value, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameIn(List<String> values) {
-			addCriterion("weibo.USER_USERNAME in", values, "userUsername");
+		public Criteria andUserIdIn(List<String> values) {
+			addCriterion("weibo.USER_ID in", values, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameNotIn(List<String> values) {
-			addCriterion("weibo.USER_USERNAME not in", values, "userUsername");
+		public Criteria andUserIdNotIn(List<String> values) {
+			addCriterion("weibo.USER_ID not in", values, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameBetween(String value1, String value2) {
-			addCriterion("weibo.USER_USERNAME between", value1, value2, "userUsername");
+		public Criteria andUserIdBetween(String value1, String value2) {
+			addCriterion("weibo.USER_ID between", value1, value2, "userId");
 			return (Criteria) this;
 		}
 
-		public Criteria andUserUsernameNotBetween(String value1, String value2) {
-			addCriterion("weibo.USER_USERNAME not between", value1, value2, "userUsername");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameIsNull() {
-			addCriterion("weibo.USER_NICKNAME is null");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameIsNotNull() {
-			addCriterion("weibo.USER_NICKNAME is not null");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameEqualTo(String value) {
-			addCriterion("weibo.USER_NICKNAME =", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameNotEqualTo(String value) {
-			addCriterion("weibo.USER_NICKNAME <>", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameGreaterThan(String value) {
-			addCriterion("weibo.USER_NICKNAME >", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameGreaterThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_NICKNAME >=", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameLessThan(String value) {
-			addCriterion("weibo.USER_NICKNAME <", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameLessThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_NICKNAME <=", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameLike(String value) {
-			addCriterion("weibo.USER_NICKNAME like", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameNotLike(String value) {
-			addCriterion("weibo.USER_NICKNAME not like", value, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameIn(List<String> values) {
-			addCriterion("weibo.USER_NICKNAME in", values, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameNotIn(List<String> values) {
-			addCriterion("weibo.USER_NICKNAME not in", values, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameBetween(String value1, String value2) {
-			addCriterion("weibo.USER_NICKNAME between", value1, value2, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserNicknameNotBetween(String value1, String value2) {
-			addCriterion("weibo.USER_NICKNAME not between", value1, value2, "userNickname");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgIsNull() {
-			addCriterion("weibo.USER_HEADIMG is null");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgIsNotNull() {
-			addCriterion("weibo.USER_HEADIMG is not null");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgEqualTo(String value) {
-			addCriterion("weibo.USER_HEADIMG =", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgNotEqualTo(String value) {
-			addCriterion("weibo.USER_HEADIMG <>", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgGreaterThan(String value) {
-			addCriterion("weibo.USER_HEADIMG >", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgGreaterThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_HEADIMG >=", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgLessThan(String value) {
-			addCriterion("weibo.USER_HEADIMG <", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgLessThanOrEqualTo(String value) {
-			addCriterion("weibo.USER_HEADIMG <=", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgLike(String value) {
-			addCriterion("weibo.USER_HEADIMG like", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgNotLike(String value) {
-			addCriterion("weibo.USER_HEADIMG not like", value, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgIn(List<String> values) {
-			addCriterion("weibo.USER_HEADIMG in", values, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgNotIn(List<String> values) {
-			addCriterion("weibo.USER_HEADIMG not in", values, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgBetween(String value1, String value2) {
-			addCriterion("weibo.USER_HEADIMG between", value1, value2, "userHeadimg");
-			return (Criteria) this;
-		}
-
-		public Criteria andUserHeadimgNotBetween(String value1, String value2) {
-			addCriterion("weibo.USER_HEADIMG not between", value1, value2, "userHeadimg");
+		public Criteria andUserIdNotBetween(String value1, String value2) {
+			addCriterion("weibo.USER_ID not between", value1, value2, "userId");
 			return (Criteria) this;
 		}
 
@@ -687,76 +547,6 @@ public class WeiboExample {
 
 		public Criteria andLikedNotBetween(Integer value1, Integer value2) {
 			addCriterion("weibo.LIKED not between", value1, value2, "liked");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidIsNull() {
-			addCriterion("weibo.REPLY_UUID is null");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidIsNotNull() {
-			addCriterion("weibo.REPLY_UUID is not null");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidEqualTo(String value) {
-			addCriterion("weibo.REPLY_UUID =", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidNotEqualTo(String value) {
-			addCriterion("weibo.REPLY_UUID <>", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidGreaterThan(String value) {
-			addCriterion("weibo.REPLY_UUID >", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidGreaterThanOrEqualTo(String value) {
-			addCriterion("weibo.REPLY_UUID >=", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidLessThan(String value) {
-			addCriterion("weibo.REPLY_UUID <", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidLessThanOrEqualTo(String value) {
-			addCriterion("weibo.REPLY_UUID <=", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidLike(String value) {
-			addCriterion("weibo.REPLY_UUID like", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidNotLike(String value) {
-			addCriterion("weibo.REPLY_UUID not like", value, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidIn(List<String> values) {
-			addCriterion("weibo.REPLY_UUID in", values, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidNotIn(List<String> values) {
-			addCriterion("weibo.REPLY_UUID not in", values, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidBetween(String value1, String value2) {
-			addCriterion("weibo.REPLY_UUID between", value1, value2, "replyUuid");
-			return (Criteria) this;
-		}
-
-		public Criteria andReplyUuidNotBetween(String value1, String value2) {
-			addCriterion("weibo.REPLY_UUID not between", value1, value2, "replyUuid");
 			return (Criteria) this;
 		}
 
