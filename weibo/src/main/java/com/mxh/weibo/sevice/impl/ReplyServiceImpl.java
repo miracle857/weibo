@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.mxh.weibo.common.PaginatedList;
 import com.mxh.weibo.common.model.Reply;
-import com.mxh.weibo.common.model.ReplyExample;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.ReplyCriterua;
+import com.mxh.weibo.common.o.vo.ReplyVo;
 import com.mxh.weibo.common.util.UUIDUtils;
 import com.mxh.weibo.dao.ReplyMapper;
 import com.mxh.weibo.dao.WeiboMapper;
@@ -28,14 +28,13 @@ public class ReplyServiceImpl implements ReplyService {
 	private WeiboMapper weiboMapper;
 
 	@Override
-	public PaginatedList<Reply> getReplyByWBID(ReplyCriterua criterua) {
+	public PaginatedList<ReplyVo> getReplyByWBID(ReplyCriterua criterua) {
 
-		ReplyExample example = new ReplyExample();
-		//example.setOrderByClause(orderByClause);
-		example.createCriteria().andWeiboUuidEqualTo(criterua.getWeiboUuid()).andDeletedEqualTo((byte) 0);
-		List<Reply> list = replyMapper.selectByExample(example);
 
-		PaginatedList<Reply> result = new PaginatedList<>();
+
+		List<ReplyVo> list = replyMapper.selectReplyByWeiboId(criterua);
+		
+		PaginatedList<ReplyVo> result = new PaginatedList<>();
 		result.setPagination(criterua);
 		result.setResult(list);
 		return result;

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.model.WeiboExample;
 import com.mxh.weibo.common.o.WeiboCriteria;
+import com.mxh.weibo.common.o.vo.WeiboVo;
 
 public interface WeiboMapper {
 
@@ -76,7 +77,7 @@ public interface WeiboMapper {
 	 */
 	int updateByPrimaryKey(Weibo record);
 
-	List<Weibo> selectByWeiboCriteria(WeiboCriteria criteria);
+	List<WeiboVo> selectByWeiboCriteria(WeiboCriteria criteria);
 
 	int countByWeiboCriteria(WeiboCriteria criteria);
 

@@ -7,14 +7,21 @@
       auto generated, do not modify.
     -->
     <id column="weibo_UUID" jdbcType="VARCHAR" property="uuid" />
-    <result column="weibo_USER_ID" jdbcType="VARCHAR" property="userId" />
+   <!--  <result column="weibo_USER_ID" jdbcType="VARCHAR" property="userId" /> -->
     <result column="weibo_PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="weibo_CONTENT" jdbcType="VARCHAR" property="content" />
     <result column="weibo_PRAISE" jdbcType="INTEGER" property="praise" />
     <result column="weibo_LIKED" jdbcType="INTEGER" property="liked" />
     <result column="weibo_DELETED" jdbcType="TINYINT" property="deleted" />
     <result column="weibo_REPLY_NUM" jdbcType="INTEGER" property="replyNum" />
-	
+  </resultMap>
+  <resultMap type="com.mxh.weibo.common.o.vo.WeiboVo" id="weiboAndUser" extends="BaseResultMap">
+  	<association property="user" javaType="com.mxh.weibo.common.model.User">
+  		<id column="weibo_USER_ID" property="uuid"/>
+  		<result column="user_username" property="username"/>
+  		<result column="user_nickname" property="nickname"/>
+  		<result column="user_headimg" property="headimg"/>
+  	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -319,10 +326,14 @@
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
   
-  <select id="selectByWeiboCriteria" parameterType="com.mxh.weibo.common.o.WeiboCriteria" resultMap="BaseResultMap">
+  <select id="selectByWeiboCriteria" parameterType="com.mxh.weibo.common.o.WeiboCriteria" resultMap="weiboAndUser">
 	 select
-	   <include refid="Base_Column_List" />
+	   <include refid="Base_Column_List" />,us.USERNAME as user_username,us.NICKNAME as user_nickname
+	   ,us.HEADIMG as user_headimg
 	 from weibo_weibo weibo
+	 join weibo_user us on(
+	 	weibo.USER_ID = us.UUID
+	 )
 	 where 1=1 
 	 <if test="userUsername != null and '' != userUsername">
 	 	and weibo.USER_USERNAME = #{userUsername,jdbcType=VARCHAR}
@@ -348,4 +359,10 @@
   	SET weibo.`REPLY_NUM` = weibo.`REPLY_NUM` + 1 
   	WHERE weibo.`UUID` = #{uuid}
   </update>
+  
+  <select id="selectUserByUserId" resultType="com.mxh.weibo.common.model.User">
+  	select us.UUID, us.USERNAME , us.NICKNAME
+  	from weibo_user us
+  	where us.UUID = #{weibo_USER_ID}
+  </select>
 </mapper>

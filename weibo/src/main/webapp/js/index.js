@@ -7,6 +7,7 @@ var loginImg = $("#s-headimg").val();
 var loginNickname = $("#s-nickname").val();
 var loginUsername = $("#s-username").val();
 
+
 $(document).ready(function(){
 	//listWeibo(1);
 	
@@ -52,6 +53,7 @@ $("#reply-content").on('input', function() {
     }
 });
 
+// 发微博
 $(".btn-reply").click(function() {
 
 	// 1.对textarea 判空
@@ -67,8 +69,6 @@ $(".btn-reply").click(function() {
 		datatype : "json",
 		success : function(data){
 			
-			// 3.日期处理，并展示内容
-			console.log(getWeibo(data.body));
 			$("#container").prepend(getWeibo(data.body));
 			$(".shown").show("slow");
 			$("#reply-content").val('');
@@ -114,10 +114,10 @@ function listWeibo(page){
 function getWeibo(data){
 	var time = FormatDateTime(data.publishTime);
 	var uuid = data.uuid;
-	var username = data.userUsername;
-	var name = data.userNickname;
+	var username = data.user.username;
+	var name = data.user.nickname;
 	var content = data.content;
-	var img = data.userHeadimg;
+	var img = data.user.headimg;
 	var body = "<div class='weibo-body shown' style='display:none' id="+uuid+">"
 		+ "<div class='inner'>"
 		+ "<div class='head-img'>"
@@ -289,10 +289,10 @@ function getReply(uuid){
 
 function getReplyContenet(data){
 	var uuid = data.uuid;
-	var name = data.userNickname;
+	var name = data.user.nickname;
 	var content = data.content;
 	var date = FormatDateTime(data.publishtime);
-	var img = data.userHeadimg;
+	var img = data.user.headimg;
 	var body = `<div id=`+uuid+`>
 					<!-- 头像 -->
 					<div style="float: left;clear: both;display: block; margin-left: 10px;margin-top: 0px;">
@@ -337,7 +337,8 @@ function replyWeibo(weiboUuid){
 		datatype : "json",
 		success : function(data){
 			// 3.日期处理，并展示内容
-			if(data.success == true){
+			if(data.success){
+				
 				$("#"+weiboUuid+" .replyArea .replyShow").append(getReplyContenet(data.body));
 				
 				// 清空内容，关闭按钮

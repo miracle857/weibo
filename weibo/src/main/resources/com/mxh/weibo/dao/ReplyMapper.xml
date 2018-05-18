@@ -302,4 +302,35 @@
       REPLY_WHO = #{replyWho,jdbcType=VARCHAR}
     where UUID = #{uuid,jdbcType=VARCHAR}
   </update>
+  
+  
+  <resultMap id="replyMap" type="com.mxh.weibo.common.o.vo.ReplyVo">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="reply_UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="reply_WEIBO_UUID" jdbcType="VARCHAR" property="weiboUuid" />
+    <result column="reply_PUBLISHTIME" jdbcType="TIMESTAMP" property="publishtime" />
+    <result column="reply_CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="reply_DELETED" jdbcType="TINYINT" property="deleted" />
+    <result column="reply_REPLY_WHO" jdbcType="VARCHAR" property="replyWho" />
+    <association property="user" javaType="com.mxh.weibo.common.model.User" >
+    	<id column="reply_USER_ID" property="uuid"/>
+    	<result column="user_username" property="username"/>
+    	<result column="user_nickname" property="nickname"/>
+    	<result column="user_headimg" property="headimg"/>
+    </association>
+  </resultMap>
+  <select id="selectReplyByWeiboId" parameterType="com.mxh.weibo.common.o.ReplyCriterua" resultMap="replyMap">
+  	SELECT 
+	  <include refid="Base_Column_List" />,us.username as user_username,us.nickname as user_nickname,us.headimg as user_headimg
+	FROM
+	  weibo_reply reply 
+	  JOIN weibo_user us 
+	    ON (reply.`USER_ID` = us.`UUID`)
+  	<if test="pagesize &gt; 0 ">
+	   limit #{offset}, #{pagesize}
+	</if>
+  </select>
 </mapper>

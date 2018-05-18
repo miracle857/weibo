@@ -1,9 +1,13 @@
 package com.mxh.weibo.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.mxh.weibo.common.model.Reply;
 import com.mxh.weibo.common.model.ReplyExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.mxh.weibo.common.o.ReplyCriterua;
+import com.mxh.weibo.common.o.vo.ReplyVo;
 
 public interface ReplyMapper {
 
@@ -72,4 +76,6 @@ public interface ReplyMapper {
 	 * @mbggenerated
 	 */
 	int updateByPrimaryKey(Reply record);
+
+	List<ReplyVo> selectReplyByWeiboId(ReplyCriterua criterua);
 }

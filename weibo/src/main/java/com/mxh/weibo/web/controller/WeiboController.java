@@ -18,6 +18,7 @@ import com.mxh.weibo.common.model.User;
 import com.mxh.weibo.common.model.Weibo;
 import com.mxh.weibo.common.o.WeiboCriteria;
 import com.mxh.weibo.common.o.vo.WeiboVo;
+import com.mxh.weibo.common.util.PropertyUtil;
 import com.mxh.weibo.sevice.WeiboService;
 import com.mxh.weibo.web.BaseResponse;
 import com.mxh.weibo.web.response.ResponsePageVo;
@@ -33,10 +34,17 @@ public class WeiboController extends BaseController {
 
 	@RequestMapping("/publish")
 	@ResponseBody
-	public BaseResponse<Weibo> publishWeibo(Weibo weibo, HttpSession session) {
+	public BaseResponse<WeiboVo> publishWeibo(Weibo weibo, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		weibo.setUserId(user.getUuid());
-		return new BaseResponse<>(true, "发布成功", weiboService.publishWeibo(weibo));
+		
+		Weibo publishWeibo = weiboService.publishWeibo(weibo);
+		
+		WeiboVo vo = new WeiboVo();
+		PropertyUtil.copyProperties(vo, publishWeibo);
+		vo.setUser(this.getLogin());
+		
+		return new BaseResponse<WeiboVo>().setSuccess(true).setBody(vo).setMessage("发布成功");
 	}
 
 	@RequestMapping("/list")

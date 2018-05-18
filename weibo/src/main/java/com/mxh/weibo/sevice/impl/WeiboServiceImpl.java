@@ -38,10 +38,10 @@ public class WeiboServiceImpl implements WeiboService {
 		int total = weiboMapper.countByWeiboCriteria(criteria);
 		criteria.setTotal(total); // 计算数量，得出分页信息
 		
-		List<Weibo> list = weiboMapper.selectByWeiboCriteria(criteria);
+		List<WeiboVo> list = weiboMapper.selectByWeiboCriteria(criteria);
 		
 		List<WeiboVo> result = new ArrayList<>();
-		for (Weibo weibo : list) {
+		for (WeiboVo weibo : list) {
 			WeiboVo vo = new WeiboVo();
 			
 			PropertyUtil.copyProperties(vo, weibo);
@@ -96,10 +96,10 @@ public class WeiboServiceImpl implements WeiboService {
 		
 		WeiboCriteria criteria = new WeiboCriteria();
 		criteria.setUserUsername(user.getUsername());
-		List<Weibo> selectByWeiboCriteria = weiboMapper.selectByWeiboCriteria(criteria );
+		List<WeiboVo> selectByWeiboCriteria = weiboMapper.selectByWeiboCriteria(criteria );
 		
 		List<WeiboVo> result = new ArrayList<>();
-		for (Weibo weibo : selectByWeiboCriteria) {
+		for (WeiboVo weibo : selectByWeiboCriteria) {
 			WeiboVo vo = new WeiboVo();
 			
 			PropertyUtil.copyProperties(vo, weibo);

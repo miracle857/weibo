@@ -3,6 +3,8 @@ package com.mxh.weibo.common.o.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.mxh.weibo.common.model.User;
+
 public class WeiboVo implements Serializable{
 
 	/**
@@ -14,21 +16,9 @@ public class WeiboVo implements Serializable{
 	 * @mbggenerated
 	 */
 	private String uuid;
-	/**
-	 * 用户名. Column: weibo_weibo.USER_USERNAME
-	 * @mbggenerated
-	 */
-	private String userUsername;
-	/**
-	 * 用户昵称. Column: weibo_weibo.USER_NICKNAME
-	 * @mbggenerated
-	 */
-	private String userNickname;
-	/**
-	 * 用户头像. Column: weibo_weibo.USER_HEADIMG
-	 * @mbggenerated
-	 */
-	private String userHeadimg;
+
+	private User user;
+	
 	/**
 	 * 发布时间. Column: weibo_weibo.PUBLISH_TIME
 	 * @mbggenerated
@@ -68,6 +58,13 @@ public class WeiboVo implements Serializable{
 	private byte like;
 	
 	
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public byte getLike() {
 		return like;
 	}
@@ -80,24 +77,7 @@ public class WeiboVo implements Serializable{
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	public String getUserUsername() {
-		return userUsername;
-	}
-	public void setUserUsername(String userUsername) {
-		this.userUsername = userUsername;
-	}
-	public String getUserNickname() {
-		return userNickname;
-	}
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
-	}
-	public String getUserHeadimg() {
-		return userHeadimg;
-	}
-	public void setUserHeadimg(String userHeadimg) {
-		this.userHeadimg = userHeadimg;
-	}
+	
 	public Date getPublishTime() {
 		return publishTime;
 	}
